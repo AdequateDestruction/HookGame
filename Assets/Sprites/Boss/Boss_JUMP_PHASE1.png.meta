@@ -1,0 +1,557 @@
+fileFormatVersion: 2
+guid: 75eacd106aef93349a99216b0cfebba9
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Boss_JUMP_PHASE1_0
+    21300002: Boss_JUMP_PHASE1_1
+    21300004: Boss_JUMP_PHASE1_2
+    21300006: Boss_JUMP_PHASE1_3
+    21300008: Boss_JUMP_PHASE1_4
+    21300010: Boss_JUMP_PHASE1_5
+    21300012: Boss_JUMP_PHASE1_6
+    21300014: Boss_JUMP_PHASE1_7
+    21300016: Boss_JUMP_PHASE1_8
+    21300018: Boss_JUMP_PHASE1_9
+    21300020: Boss_JUMP_PHASE1_10
+    21300022: Boss_JUMP_PHASE1_11
+    21300024: Boss_JUMP_PHASE1_12
+    21300026: Boss_JUMP_PHASE1_13
+    21300028: Boss_JUMP_PHASE1_14
+    21300030: Boss_JUMP_PHASE1_15
+    21300032: Boss_JUMP_PHASE1_16
+    21300034: Boss_JUMP_PHASE1_17
+    21300036: Boss_JUMP_PHASE1_18
+    21300038: Boss_JUMP_PHASE1_19
+    21300040: Boss_JUMP_PHASE1_20
+    21300042: Boss_JUMP_PHASE1_21
+  externalObjects: {}
+  serializedVersion: 5
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Boss_JUMP_PHASE1_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 736
+        width: 548
+        height: 359
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd30bc282af67dc4e9c861fe7408efc0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_JUMP_PHASE1_1
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 736
+        width: 548
+        height: 359
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3b6c47906aad2d40a8604212ef2f3b0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_JUMP_PHASE1_2
+      rect:
+        serializedVersion: 2
+        x: 1337
+        y: 741
+        width: 533
+        height: 363
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dd46797097744448be39a6f6dd00869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_JUMP_PHASE1_3
+      rect:
+        serializedVersion: 2
+        x: 1996
+        y: 741
+        width: 533
+        height: 363
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c82f58ac29a268b4e9ae8dea6448c5a3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_JUMP_PHASE1_4
+      rect:
+        serializedVersion: 2
+        x: 2655
+        y: 741
+        width: 533
+        height: 363
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6be3043076e422744b585070babd7957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_JUMP_PHASE1_5
+      rect:
+        serializedVersion: 2
+        x: 3318
+        y: 743
+        width: 508
+        height: 325
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f566481cf67abd429fabf2863c68b85
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_JUMP_PHASE1_6
+      rect:
+        serializedVersion: 2
+        x: 3977
+        y: 743
+        width: 508
+        height: 325
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dafc363e9e14f8d499a671a5b91088ef
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_JUMP_PHASE1_7
+      rect:
+        serializedVersion: 2
+        x: 4636
+        y: 743
+        width: 508
+        height: 325
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e6e3e7d9fa9e9f4482da377158cfc02
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_JUMP_PHASE1_8
+      rect:
+        serializedVersion: 2
+        x: 5299
+        y: 742
+        width: 490
+        height: 338
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 842d6208974f94943bfc4f97bff5351b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_JUMP_PHASE1_9
+      rect:
+        serializedVersion: 2
+        x: 5958
+        y: 742
+        width: 490
+        height: 338
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d33cadaf4c304b845ada1facfaac15a8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_JUMP_PHASE1_10
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 369
+        width: 487
+        height: 347
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 271ed776acf462a45997a652382286f1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_JUMP_PHASE1_11
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 380
+        width: 484
+        height: 341
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d80cb87b6cc95be44b4ab036474b79a5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_JUMP_PHASE1_12
+      rect:
+        serializedVersion: 2
+        x: 1348
+        y: 369
+        width: 487
+        height: 347
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93c3adfaad430e74f86e991a91f159d1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_JUMP_PHASE1_13
+      rect:
+        serializedVersion: 2
+        x: 2004
+        y: 374
+        width: 490
+        height: 338
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb3bfb334d9bbfb48bb3fe37204a1c12
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_JUMP_PHASE1_14
+      rect:
+        serializedVersion: 2
+        x: 2659
+        y: 375
+        width: 508
+        height: 325
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fee69dabadeda44ca279f3092b717da
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_JUMP_PHASE1_15
+      rect:
+        serializedVersion: 2
+        x: 3314
+        y: 373
+        width: 533
+        height: 363
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8aa811bcd5ed7e5439031acf084404fc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_JUMP_PHASE1_16
+      rect:
+        serializedVersion: 2
+        x: 3973
+        y: 373
+        width: 533
+        height: 363
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62002afe274485d438cc7ce79d0db3a2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_JUMP_PHASE1_17
+      rect:
+        serializedVersion: 2
+        x: 4632
+        y: 373
+        width: 533
+        height: 363
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a61737697f911b3469da4922eeac6803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_JUMP_PHASE1_18
+      rect:
+        serializedVersion: 2
+        x: 5291
+        y: 373
+        width: 533
+        height: 363
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c54472a362bafb44e8121185c5eb19ee
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_JUMP_PHASE1_19
+      rect:
+        serializedVersion: 2
+        x: 5950
+        y: 368
+        width: 548
+        height: 359
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aaff08ad1e1d48d41b8bc47f21b08d31
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_JUMP_PHASE1_20
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 0
+        width: 548
+        height: 359
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7216ac0b9b8213d45a2f15ab607580fd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_JUMP_PHASE1_21
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 0
+        width: 548
+        height: 359
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3886fcf52afb7949b6f4107567d14a7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 1ab0f32d372eb484383c381f3f2b3a1f
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
