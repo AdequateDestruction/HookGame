@@ -23,6 +23,8 @@ TagManager:
   - LeaderboardScores
   - LeaderboardTitle
   - LeaderboardNames
+  - Unwalkable
+  - Switch
   layers:
   - Default
   - TransparentFX
