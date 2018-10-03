@@ -45,11 +45,11 @@ public class MiniBossMoving : State
 
     public override void Update()
     {
-        Vector3 dir = miniBossAI.player.transform.position - miniBossAI.transform.position;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        miniBossAI.transform.rotation = Quaternion.Slerp(miniBossAI.transform.localRotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * miniBossAI.rotateSpeed);
+        //Vector3 dir = miniBossAI.player.transform.position - miniBossAI.transform.position;
+        //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        //miniBossAI.transform.rotation = Quaternion.Slerp(miniBossAI.transform.localRotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * miniBossAI.rotateSpeed);
 
-        miniBossAI.rb.velocity = miniBossAI.transform.right * miniBossAI.movementSpeed;
+        //miniBossAI.rb.velocity = miniBossAI.transform.right * miniBossAI.movementSpeed;
 
 
     }
