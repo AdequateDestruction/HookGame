@@ -135,6 +135,17 @@ public class HookScript : MonoBehaviour
                 goingOut = false;
                 other.GetComponentInParent<TennisShotScript>().HookShotPong((playerTransform.position + transform.position) * 0.5f);
             }
+            //Test/Placeholder for stage2/phase1
+            else if(other.tag == "Switch")
+            {
+                if (activeCounter > 1)
+                {
+                    goingOut = false;
+                    hitAS.Play();
+                    Debug.Log("Switch");
+
+                }
+            }
         }
     }
 
