@@ -20,6 +20,9 @@ TagManager:
   - Hook
   - TentacleBlock
   - DeathButtonsContainer
+  - LeaderboardScores
+  - LeaderboardTitle
+  - LeaderboardNames
   layers:
   - Default
   - TransparentFX
