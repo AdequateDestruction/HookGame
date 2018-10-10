@@ -10,46 +10,51 @@ using UnityEngine.UI;
 public class PlayFabSM : MonoBehaviour
 {
     List<string> scoreList;
-    string userGivenName = "Pertti Jorma"; //name must be between 3-15 characters
+    //string userGivenName = "Pertti Jorma"; //name must be between 3-15 characters
     int playerScoreInt = 7;
-    public double time= 00.2045;
 
     GameObject leaderboardScoresObj;
-    GameObject leaderboardTitleObj;
     GameObject leaderboardNamesObj;
-    public List<Text> texts = new List<Text>();
-    public List<PlayerLeaderboardEntry> playerScores = new List<PlayerLeaderboardEntry>();
+    GameObject leaderboardPanel;
+    List<Text> texts = new List<Text>();
+    List<PlayerLeaderboardEntry> playerScores = new List<PlayerLeaderboardEntry>();
 
 
     public void Start()
     {
         leaderboardScoresObj = GameObject.FindGameObjectWithTag("LeaderboardScores");
-        leaderboardTitleObj = GameObject.FindGameObjectWithTag("LeaderboardTitle");
         leaderboardNamesObj = GameObject.FindGameObjectWithTag("LeaderboardNames");
-        
+        leaderboardPanel = GameObject.FindGameObjectWithTag("LeaderboardPanel");
+        leaderboardPanel.SetActive(false);
+        LoginToPlayfab();
+    }
+
+    public void LoginToPlayfab()
+    {
         var request = new LoginWithCustomIDRequest { CustomId = "AdequateDestruction", CreateAccount = true };
         PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnLoginFailure);
     }
 
+
     private void OnLoginSuccess(LoginResult result)
     {
-        Debug.Log("Congratulations, you made your first successful API call!");
+        Debug.Log("Congratulations, you have logged into playfab");
         //UpdatePlayerStatistics();
         //GetPlayerStatistics();
         //UpdateDisplayName();
-        GetLeaderboardScores();
+        //GetLeaderboardScores();
     }
 
 
     //Debug for if the login fails
     private void OnLoginFailure(PlayFabError error)
     {
-        Debug.LogWarning("Something went wrong with your first API call.  :(");
+        Debug.LogWarning("Something went wrong with your API call.  :(");
         Debug.LogError("Here's some debug information:");
         Debug.LogError(error.GenerateErrorReport());
     }
 
-    //fetches leaderboard information for the specified board and version.
+    //fetches leaderboard information for the specified board and version. Should only be called if you want to show the scores
     public void GetLeaderboardScores()
     {
         PlayFabClientAPI.GetLeaderboard(new GetLeaderboardRequest()
@@ -58,40 +63,40 @@ public class PlayFabSM : MonoBehaviour
             Version = 1,
             StatisticName = "Score",
             StartPosition = 0,
-            MaxResultsCount = 10,
+            MaxResultsCount = 20,
 
         },
-            result => setplayerScores(result.Leaderboard),
+            result => GetLeaderboard(result.Leaderboard),
             error => Debug.Log(error.GenerateErrorReport())            
         );
 
         
     }
     //sets the 'results' leaderboard info to a non-local variable so that it can be used elsewhere
-    public void setplayerScores(List<PlayerLeaderboardEntry> playerLeaderboardEntries)
+    public void GetLeaderboard(List<PlayerLeaderboardEntry> playerLeaderboardEntries)
     {
         print("playerleaderboardsentires count " + playerLeaderboardEntries.Count);
         playerScores = playerLeaderboardEntries;
         print("Playerscores count " + playerScores.Count);
 
-        showScores();
+        ShowScores();
     }
     //shows the scores, altering the MaxResultCount will determine how many highscores are shown.
-    public void showScores()
+    public void ShowScores()
     {
         print("playerScores count " + playerScores.Count);
 
         if (playerScores != null)
         {
-            leaderboardTitleObj.GetComponent<Text>().text = "halp halp"; //make this somehow search the name automatically
-
             for (int i = 0; i < playerScores.Count; i++)
             {
-                print("Leaderboard UI score change " + playerScores[0].StatValue);
+                             
                 leaderboardScoresObj.GetComponentsInChildren<Text>()[i].text = playerScores[i].StatValue.ToString();
                 leaderboardNamesObj.GetComponentsInChildren<Text>()[i].text = playerScores[i].DisplayName;
+                
 
             }
+            leaderboardPanel.SetActive(true);
         }
     }
 
@@ -107,6 +112,8 @@ public class PlayFabSM : MonoBehaviour
             result =>Debug.Log("Complete " + result.Statistics[0].Value),
             error => Debug.Log(error.GenerateErrorReport())
         );
+            leaderboardPanel.SetActive(true);
+        
     }
 
     //for saving a new score, manual check needed so only the highest score is submitted to playfab
@@ -123,21 +130,29 @@ public class PlayFabSM : MonoBehaviour
                 }
                 }
             },
-            result => Debug.Log("Complete"),
-            error => Debug.Log(error.GenerateErrorReport())
+            result => Debug.Log("Leaderboard UI score change " + playerScores[0].StatValue),
+        error => Debug.Log(error.GenerateErrorReport())
         );   
     }
 
     //sets the playername for the user so that it can be shown in the leaderboard, name must be between 3 -25 characters
-    public void UpdateDisplayName()
+    public void UpdateDisplayName(Text userGivenName)
     {
         PlayFabClientAPI.UpdateUserTitleDisplayName(
             new UpdateUserTitleDisplayNameRequest()
             {
-                DisplayName = userGivenName
+                DisplayName = userGivenName.text
             },
-            result => Debug.Log("Displayname changed"),
-            error => Debug.Log(error.GenerateErrorReport())
+            result => Debug.Log("Displayname changed to " + userGivenName.text),
+            error => Debug.Log(error.GenerateErrorReport() + userGivenName.text)
         );
+    }
+
+    private void Update()
+    {
+        if(leaderboardPanel == null) //make this aggressive if needed(it instantiates the canvas if it is missing)
+        {
+            leaderboardPanel = GameObject.FindGameObjectWithTag("LeaderboardPanel");
+        }
     }
 }

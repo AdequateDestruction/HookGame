@@ -21,10 +21,10 @@ TagManager:
   - TentacleBlock
   - DeathButtonsContainer
   - LeaderboardScores
-  - LeaderboardTitle
   - LeaderboardNames
   - Unwalkable
   - Switch
+  - LeaderboardPanel
   layers:
   - Default
   - TransparentFX
