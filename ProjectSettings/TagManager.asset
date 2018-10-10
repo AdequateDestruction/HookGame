@@ -25,6 +25,7 @@ TagManager:
   - Unwalkable
   - Switch
   - LeaderboardPanel
+  - MiniBoss
   layers:
   - Default
   - TransparentFX

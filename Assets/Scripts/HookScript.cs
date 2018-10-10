@@ -64,94 +64,103 @@ public class HookScript : MonoBehaviour
     {
         if (goingOut)
         {
-            if (other.tag == "PullBlock")
-            {
-                if (activeCounter > 3)
-                {
-                    goingOut = false;
-                    FindObjectOfType<PlayerMovement>().PullHooked();                    // Let playerMovement know that something has been hooked, stopping the player
-                    pullBlock = other.GetComponent<PullBlockScript>();                  // Store the pullBlock
-                    pullBlock.gotHooked(hookSpeed, gameObject.transform);               // Initiate the pullBlock getting pulled
-                    GetComponentInChildren<Animator>().Play("HookAttachedAnimation");   // Show visual for hook attaching
-                }
-                else
-                {
-                    goingOut = false;
-                }
-                hitAS.Play();
-            }
-            else if (other.tag == "DeflectBlock" || other.tag == "Boss")                // Bounce back from DeflectBlocks / Boss (change this tag if needed, in use for boss1 at the moment)
-            {
-                goingOut = false;
-                hitAS.Play();
-            }
-            else if (other.tag == "StaticBlock")                                        // Attach to this block and tell playerMovement it needs to be pulled here
-            {
-                if (activeCounter > 1)
-                {
-                    goingOut = false;
-                    pullingPlayer = true;
-                    FindObjectOfType<PlayerMovement>().StaticHooked();
-                    GetComponentInChildren<Animator>().Play("HookAttachedAnimation");
 
-                    if (other.name == "BigMushroom")                                    // Show animation if the block is a big mushroom
+            switch (other.tag)
+            {
+                case "PullBlock":
+                    if (activeCounter > 3)
                     {
-                        other.gameObject.GetComponentInChildren<Animator>().Play("BigMushroomFlashAnimation");
+                        goingOut = false;
+                        FindObjectOfType<PlayerMovement>().PullHooked();                    // Let playerMovement know that something has been hooked, stopping the player
+                        pullBlock = other.GetComponent<PullBlockScript>();                  // Store the pullBlock
+                        pullBlock.gotHooked(hookSpeed, gameObject.transform);               // Initiate the pullBlock getting pulled
+                        GetComponentInChildren<Animator>().Play("HookAttachedAnimation");   // Show visual for hook attaching
                     }
-                    
-                    if (TrapPitColliders.Length != 0)                                   // Workaround to let the player pass through the solid colliders around the trap pits in boss1 stage. Not necessary for other scenes.
+                    else
                     {
-                        foreach (GameObject go in TrapPitColliders)
+                        goingOut = false;
+                    }
+                    hitAS.Play();
+                    break;
+
+                case "Boss":
+                    goingOut = false;
+                    hitAS.Play();
+                    break;
+
+                case "DeflectBlock":
+                    goingOut = false;
+                    hitAS.Play();
+                    break;
+
+                case "StaticBlock":
+                    if (activeCounter > 1)
+                    {
+                        goingOut = false;
+                        pullingPlayer = true;
+                        FindObjectOfType<PlayerMovement>().StaticHooked();
+                        GetComponentInChildren<Animator>().Play("HookAttachedAnimation");
+
+                        if (other.name == "BigMushroom")                                    // Show animation if the block is a big mushroom
                         {
-                            go.SetActive(false);
+                            other.gameObject.GetComponentInChildren<Animator>().Play("BigMushroomFlashAnimation");
+                        }
+
+                        if (TrapPitColliders.Length != 0)                                   // Workaround to let the player pass through the solid colliders around the trap pits in boss1 stage. Not necessary for other scenes.
+                        {
+                            foreach (GameObject go in TrapPitColliders)
+                            {
+                                go.SetActive(false);
+                            }
                         }
                     }
-                }
-                else
-                {
+                    else
+                    {
+                        goingOut = false;
+                    }
+                    hitAS.Play();
+                    break;
+
+                case "TentacleBlock":
                     goingOut = false;
-                }
-                hitAS.Play();
-            }
-            else if (other.tag == "TentacleBlock")                                      // Damage a hit tentacle and bounce back
-            {
-                goingOut = false;
-                other.transform.parent.GetComponent<TentacleScript>().hookHit();
-                hitAS.Play();
-            }
-            else if (other.tag == "Core")                                               // Used in boss1 stage3, a mess
-            {
-                ripBlock = other.gameObject;
-                ripOffSet = other.transform.position - transform.position;
-                goingOut = false;
-                ripping = true;
-                other.GetComponent<CoreScript>().StartRipping(this);
-                FindObjectOfType<PlayerMovement>().StartRipping();
-                hitAS.Play();
-                GetComponentInChildren<Animator>().Play("HookAttachedAnimation");
-            }
-            else if (other.tag == "TennisShot")                                         // Bounce back the tennis shot in boss1 stage3
-            {
-                goingOut = false;
-                other.GetComponentInParent<TennisShotScript>().HookShotPong((playerTransform.position + transform.position) * 0.5f);
-            }
-            //Test/Placeholder for stage2/phase1
-            else if(other.tag == "Switch")
-            {
+                    other.transform.parent.GetComponent<TentacleScript>().hookHit();
+                    hitAS.Play();
+                    break;
 
-                //if (activeCounter > 1)
-                //{
-                //    goingOut = false;
-                //    hitAS.Play();
-                //    Debug.Log("Switch");
+                case "Core":
+                    ripBlock = other.gameObject;
+                    ripOffSet = other.transform.position - transform.position;
+                    goingOut = false;
+                    ripping = true;
+                    other.GetComponent<CoreScript>().StartRipping(this);
+                    FindObjectOfType<PlayerMovement>().StartRipping();
+                    hitAS.Play();
+                    GetComponentInChildren<Animator>().Play("HookAttachedAnimation");
+                    break;
 
-                //}
+                case "TennisShot":
+                    goingOut = false;
+                    other.GetComponentInParent<TennisShotScript>().HookShotPong((playerTransform.position + transform.position) * 0.5f);
+                    break;
 
-                //TODO add tag for MiniBossAI
-                hitAS.Play();
-                goingOut = false;
-                other.transform.parent.gameObject.SetActive(false);
+                case "Switch":
+                    if (activeCounter > 1)
+                    {
+                        goingOut = false;
+                        hitAS.Play();
+                        Debug.Log("Switch");
 
+                    }
+                    break;
+
+                case "MiniBoss":
+                    hitAS.Play();
+                    goingOut = false;
+                    other.transform.parent.gameObject.SetActive(false);
+                    break;
+
+                default:
+                    break;
             }
         }
     }
