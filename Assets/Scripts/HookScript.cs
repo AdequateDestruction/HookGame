@@ -138,13 +138,20 @@ public class HookScript : MonoBehaviour
             //Test/Placeholder for stage2/phase1
             else if(other.tag == "Switch")
             {
-                if (activeCounter > 1)
-                {
-                    goingOut = false;
-                    hitAS.Play();
-                    Debug.Log("Switch");
 
-                }
+                //if (activeCounter > 1)
+                //{
+                //    goingOut = false;
+                //    hitAS.Play();
+                //    Debug.Log("Switch");
+
+                //}
+
+                //TODO add tag for MiniBossAI
+                hitAS.Play();
+                goingOut = false;
+                other.transform.parent.gameObject.SetActive(false);
+
             }
         }
     }

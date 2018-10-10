@@ -45,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
 
     GameObject currentHook;
 
+    public GameObject cols;
+
     void Start()
     {
         currentState = 0;
@@ -389,6 +391,9 @@ public class PlayerMovement : MonoBehaviour
     public void HookReturned()
     {
         hookIsOut = false;
+     
+            cols.SetActive(true);
+        
     }
 
     // Hook collides with a StaticBlock and changes player State
@@ -396,6 +401,9 @@ public class PlayerMovement : MonoBehaviour
     {
         currentState = 1;
 
+      
+            cols.SetActive(false);
+        
         // Check which direction the hook is, play correct directional animation based on it
         if ((Mathf.Max(currentHook.transform.position.y, transform.position.y) == currentHook.transform.position.y) && (Mathf.Abs(currentHook.transform.position.y - transform.position.y) > Mathf.Abs(currentHook.transform.position.x - transform.position.x)))
         {
