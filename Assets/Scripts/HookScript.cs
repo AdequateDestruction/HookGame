@@ -123,7 +123,12 @@ public class HookScript : MonoBehaviour
 
                 case "TentacleBlock":
                     goingOut = false;
+                    if(other.transform.parent.GetComponent<TentacleScript>() != null)
                     other.transform.parent.GetComponent<TentacleScript>().hookHit();
+                    else
+                    {
+                        other.transform.parent.GetComponent<MiniVolcanoes>().hookHit();
+                    }
                     hitAS.Play();
                     break;
 
@@ -140,7 +145,12 @@ public class HookScript : MonoBehaviour
 
                 case "TennisShot":
                     goingOut = false;
+                    if(other.GetComponentInParent<TennisShotScript>() != null)
                     other.GetComponentInParent<TennisShotScript>().HookShotPong((playerTransform.position + transform.position) * 0.5f);
+                    else
+                    {
+                        other.GetComponentInParent<RockTennis>().HookShotPong((playerTransform.position + transform.position) * 0.5f);
+                    }
                     break;
 
                 case "Switch":
