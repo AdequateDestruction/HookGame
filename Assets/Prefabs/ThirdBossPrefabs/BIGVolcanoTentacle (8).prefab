@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 61882576156389760}
   - component: {fileID: 82889198799842168}
   - component: {fileID: 114561125913729976}
+  - component: {fileID: 114044138170631594}
   m_Layer: 0
   m_Name: BIGVolcanoTentacle (8)
   m_TagString: Tentacle
@@ -318,6 +319,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114044138170631594
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1735549670859578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fac2d9108dd13040a7f484cebed99ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MiniVolcParent: {fileID: 0}
+  secondPhaseAmmunition: {fileID: 1878005953594204, guid: 3e66ae5d36b96a34bb04b8377f98aa57,
+    type: 2}
 --- !u!114 &114561125913729976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -334,13 +349,15 @@ MonoBehaviour:
   tentacleAnimator: {fileID: 95291690912911284}
   damageCollider: {fileID: 61882576156389760}
   blockCollider: {fileID: 61871789986451618}
-  volcanoProjectile: {fileID: 1878005953594204, guid: 3e66ae5d36b96a34bb04b8377f98aa57,
+  projectileShadow: {fileID: 1878005953594204, guid: 2d5c92cb21fcb3f40af63668ce6ec71c,
     type: 2}
   maxRange: 0
   minRange: 0
   randomInvokeMin: 0.05
   randomInvokeMax: 0.9
   invokeRepeat: 1
+  stopShooting: 0
+  boss: 1
 --- !u!212 &212073738430176262
 SpriteRenderer:
   m_ObjectHideFlags: 1
