@@ -32,6 +32,33 @@ public class WaterIdle : State
 
 }
 
+
+    public class WaterTurbine: State
+{
+    WaterBossAI waterBossAI;
+
+    public WaterTurbine(string stateID, WaterBossAI waterBossAI) : base(stateID)
+    {
+        this.waterBossAI = waterBossAI;
+    }
+
+    public override void Enter()
+    {
+        Debug.Log("turbine");
+    }
+
+    public override void Update()
+    {
+        
+    }
+
+    public override void Exit()
+    {
+        //Debug.Log("ExampleIdle: Exit");
+
+    }
+
+}
 public class WaterMoving : State
 {
     WaterBossAI waterBossAI;
@@ -43,7 +70,7 @@ public class WaterMoving : State
 
     public override void Enter()
     {
-        Debug.Log("ExampleIdle: Enter");
+        //Debug.Log("ExampleIdle: Enter");
     }
 
     public override void Update()
@@ -67,7 +94,7 @@ public class WaterMoving : State
 
     public override void Exit()
     {
-        Debug.Log("ExampleIdle: Exit");
+        //Debug.Log("ExampleIdle: Exit");
 
     }
 

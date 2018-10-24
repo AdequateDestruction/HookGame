@@ -18,6 +18,7 @@ public class WaterBossAI : MonoBehaviour {
     {
         //states
         sm.AddState(new WaterIdle("Idle", this));
+        sm.AddState(new WaterTurbine("Turbine", this));
         sm.AddState(new WaterMoving("Moving", this));
 
     }
@@ -41,4 +42,16 @@ public class WaterBossAI : MonoBehaviour {
             yield return null;
         }
     }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "StaticBlock")
+        {
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            GetComponent<Rigidbody2D>().angularVelocity = 0f;
+            SM.SetNextState("Idle");
+        }
+    }
+
 }
