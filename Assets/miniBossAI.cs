@@ -6,12 +6,14 @@ public class miniBossAI : MonoBehaviour {
 
     public GameObject Parent;
     public Vector2 spawnpos;
+    public WaterBossAI waterBossScript;
 
 	void Start ()
     {
         Parent = transform.parent.gameObject;
         spawnpos = new Vector2(Parent.transform.position.x, Parent.transform.position.y);
-	}
+        waterBossScript= GameObject.Find("WaterBoss").GetComponent<WaterBossAI>();
+    }
 	
 	void Update () {
 		
@@ -31,5 +33,9 @@ public class miniBossAI : MonoBehaviour {
         }
     }
 
-    
+    private void OnDisable()
+    {
+        waterBossScript.minibossKilled++;
+    }
+
 }
