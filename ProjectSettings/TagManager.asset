@@ -26,6 +26,7 @@ TagManager:
   - Switch
   - LeaderboardPanel
   - MiniBoss
+  - PongedByPlayer
   layers:
   - Default
   - TransparentFX
