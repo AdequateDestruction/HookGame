@@ -166,7 +166,8 @@ public class HookScript : MonoBehaviour
                 case "MiniBoss":
                     hitAS.Play();
                     goingOut = false;
-                    other.transform.parent.gameObject.SetActive(false);
+                    //other.transform.parent.gameObject.SetActive(false);
+                    other.gameObject.GetComponent<miniBossAI>().isDead = true;
                     break;
 
                 default:

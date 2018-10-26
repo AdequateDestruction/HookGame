@@ -20,7 +20,7 @@ public class WaterBossAI : MonoBehaviour {
     [HideInInspector]
     public int minibossKilled;
     [HideInInspector]
-    public bool playerHit=false, frenzyed = true;
+    public bool playerHit=false, frenzyed = false;
 
 
     StateMachine sm = new StateMachine();
@@ -50,10 +50,12 @@ public class WaterBossAI : MonoBehaviour {
     private void Update()
     {
         //Debug.DrawRay(transform.position, rayCastPos.position, Color.red, 25f);
-        if (minibossKilled==killsToTrigger&&frenzyed)
+        //if enough minibosses killed starts to attack player
+        if (minibossKilled>=killsToTrigger&&!frenzyed)
         {
+            Debug.Log("poo");
             sm.SetNextState("Moving");
-            frenzyed = false;
+            frenzyed = true;
         }
     }
 

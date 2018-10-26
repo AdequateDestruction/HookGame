@@ -60,21 +60,21 @@ public class Turbine : MonoBehaviour {
         }
     }
 
-    public void OnTriggerStay2D(Collider2D collision)
-    {       
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         if (collision.GetComponent<Rigidbody2D>())
         {
-            if (collision.gameObject.name=="WaterBoss")
+            if (collision.gameObject.name == "WaterBoss")
             {
                 waterBossScript.SM.SetNextState("Turbine");
             }
             if (collision.tag == "MiniBoss")
-            {    
+            {
                 //If MiniBoss collides with turbine disables pathfinding and changes rigidbody to dynamic.
                 //ChildposToParent scripts job is to change parents gameobject position when child gameobjects position changes. Rigidbody is attached to child object
                 collision.transform.parent.GetComponent<Pathfinding.AIPath>().enabled = !collision.transform.parent.GetComponent<Pathfinding.AIPath>().enabled;
-                collision.GetComponent<Rigidbody2D>().isKinematic = false;
-                collision.GetComponent<ChildposToParent>().enabled=!collision.GetComponent<ChildposToParent>().enabled;
+                collision.GetComponent<ChildposToParent>().enabled = !collision.GetComponent<ChildposToParent>().enabled;
+                collision.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
             }
 
             switch (direction)
@@ -94,6 +94,6 @@ public class Turbine : MonoBehaviour {
                 default:
                     break;
             }
-        }     
+        }
     }
 }
