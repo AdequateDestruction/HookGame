@@ -14,7 +14,7 @@ public class RockTennis : MonoBehaviour {
 
     void Start()
     {
-        //bossTransform = GameObject.FindGameObjectWithTag("Boss").transform;
+        bossTransform = GameObject.FindGameObjectWithTag("Boss").transform;
         tShotAnimator = GetComponent<Animator>();
         pongSource = GetComponent<AudioSource>();
         tShotAnimator.Play("PH_TennisShotAnimation");
@@ -37,16 +37,16 @@ public class RockTennis : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-        else if (other.tag == "Boss")
+        else if (other.tag == "Boss" && gameObject.tag == "PongedByPlayer" )
         {
-            if (pongedTimes > pongedRequirement)
+            if (pongedTimes > pongedRequirement )
             {
-                FindObjectOfType<StageManager>().ExposeArmorPiece();
-                FindObjectOfType<ProjectileSpawner>().TennisShotDestroyed();
+                bossTransform.gameObject.GetComponent<ThirdBossSM>().SecondPhaseTakeDmg();
                 Destroy(gameObject);
             }
             else
             {
+                print("RockTennis pong");
                 BossPong();
             }
         }
@@ -54,6 +54,7 @@ public class RockTennis : MonoBehaviour {
 
     public void HookShotPong(Vector3 _hookPos)
     {
+        gameObject.tag = "PongedByPlayer";
         tShotAnimator.Play("PH_TennisShotPongAnimation");
         transform.eulerAngles = new Vector3(0, 0, -Mathf.Atan2((_hookPos.y - transform.position.y), -(_hookPos.x - transform.position.x)) * Mathf.Rad2Deg - 90);
         moveSpeed = moveSpeed * 1.1f;
