@@ -361,6 +361,8 @@ MonoBehaviour:
     type: 2}
   lava: {fileID: 0}
   lavaActive: 0
+  lavaFadeSpeed: 0.05
+  lavaRiseSpeed: 0.01
 --- !u!114 &114561125913729976
 MonoBehaviour:
   m_ObjectHideFlags: 1
