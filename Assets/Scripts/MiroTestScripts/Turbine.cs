@@ -14,6 +14,7 @@ public class Turbine : MonoBehaviour {
     WaterBossAI waterBossScript;
     Collider2D col;
     GameObject visual;
+    PlayerMovement playerMovementScript;
     float randomTime;
     bool turbineIsOn;
     float time;
@@ -27,6 +28,7 @@ public class Turbine : MonoBehaviour {
 
     private void Start()
     {
+        playerMovementScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
         waterBossScript = GameObject.Find("WaterBoss").GetComponent<WaterBossAI>();
         col = GetComponent<Collider2D>();
         visual = transform.GetChild(0).gameObject;
@@ -62,6 +64,10 @@ public class Turbine : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.tag=="Player")
+        {
+           //playerMovementScript.moveSpeed=0.15f;
+        }
         if (collision.GetComponent<Rigidbody2D>())
         {
             if (collision.gameObject.name == "WaterBoss")
