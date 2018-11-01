@@ -6,11 +6,6 @@ public class MiniVolcanoes : MonoBehaviour {
 
     //should probably make this use object pooling, do this once we know what fire rate we will use
 
-    public SpriteRenderer tentacleRenderer;
-    public SpriteRenderer tentaIndicatorRenderer;
-    public Animator tentacleAnimator;
-    public Collider2D damageCollider;
-    public Collider2D blockCollider;
     public GameObject projectileShadow;
 
     //public variables for balancing
@@ -35,11 +30,6 @@ public class MiniVolcanoes : MonoBehaviour {
     void Start()
     {
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        damageCollider.enabled = false;
-        blockCollider.enabled = false;
-        despawnSource = GetComponent<AudioSource>();
-        StartCoroutine(TentacleSpawn());
-
 
         float randomStart = Random.Range(randomInvokeMin, randomInvokeMax);
         InvokeRepeating("TacticalArtillery", randomStart, invokeRepeat);
@@ -49,27 +39,15 @@ public class MiniVolcanoes : MonoBehaviour {
     {
         if (!despawning && !boss)
         {
-            despawnSource.Play();
             StartCoroutine(TentacleDeSpawn());
         }
     }
 
-    private IEnumerator TentacleSpawn()
-    {
-        tentacleAnimator.Play("TentacleSpawnAnimation");
-        yield return new WaitForSeconds(1.5f);
-        damageCollider.enabled = true;
-        blockCollider.enabled = true;
-    }
 
     private IEnumerator TentacleDeSpawn()
     {
         despawning = true;
-        StopCoroutine(TentacleSpawn());
-        damageCollider.enabled = false;
-        blockCollider.enabled = false;
-        tentacleAnimator.Play("TentacleDeSpawnAnimation");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }
     
