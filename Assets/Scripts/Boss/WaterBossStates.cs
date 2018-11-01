@@ -20,12 +20,16 @@ public class WaterIdle : State
 
     public override void Update()
     {
-        timer += Time.deltaTime;
-
-        if (timer>3)
+        if (waterBossAI.frenzyed)
         {
-            waterBossAI.SM.SetNextState("Moving");
+            timer += Time.deltaTime;
+
+            if (timer > 3)
+            {
+                waterBossAI.SM.SetNextState("Moving");
+            }
         }
+
     }
 
     public override void Exit()
@@ -143,7 +147,6 @@ public class WaterMoving : State
     public override void Enter()
     {
         Debug.Log(waterBossAI.SM.CurrentState);
-        //waterBossAI.col.enabled = !waterBossAI.col.enabled;
     }
 
     public override void Update()
@@ -157,7 +160,6 @@ public class WaterMoving : State
 
     public override void Exit()
     {
-        //waterBossAI.col.enabled = !waterBossAI.col.enabled;
     }
 
 }

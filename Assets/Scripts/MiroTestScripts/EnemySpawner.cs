@@ -30,7 +30,7 @@ public class EnemySpawner : MonoBehaviour {
             newEnemy = (GameObject)Instantiate(enemyPrefab);
             newEnemy.SetActive(false);           
             enemy.Add(newEnemy);
-            newEnemy.transform.parent = transform;
+            newEnemy.transform.parent = null;
         }
 
         InvokeRepeating("SpawnEnemy", invokeStartTime, invokeRepeatTime);
