@@ -6,31 +6,31 @@ public class ThirdBossSM : MonoBehaviour {
 
     public string currentState= "1stState";
     MiniVolcanoes thisVolcano;
-    public bool coroutineInProgress = false;
-    SpriteRenderer spriteRenderer;
-    float risingAlpha = 0, lavaTimer = 0;
+    public bool coroutineInProgress = false, idleAnimationActive, moveAnimationActive, moveCoroutineInProgress = false;
+    SpriteRenderer lavaSpriteRenderer;
+    float risingAlpha = 0, lavaTimer = 0, magmaBreathTimer = 0, lavaOverflowTimer;
     ParticleSystem magmaParticle;
     PlayerMovement player;
+    Pathfinding.AIPath aiPath;
+    Pathfinding.AIDestinationSetter aiSetter;
 
     public float randomLavaTime, maxInvoke = 20, minInvoke = 10;
-    public int secondPhaseHP = 3;
-    public GameObject MiniVolcParent;
+    public int secondPhaseHP = 3, thirdPhaseHP = 4, mBreathRandom = 10, mBreathRandMax = 20, mBreathRandMin= 10;
+    public GameObject MiniVolcParent, LavaOverflowParticleSys, ProximityTrigger;
     public GameObject secondPhaseAmmunition, lava;
-    public bool lavaActive = false;
+    public bool lavaActive = false, magmaBreathActive = false, doOnce = true, lavaOverflowActive;
     public float lavaFadeSpeed = 0.05f, lavaRiseSpeed = 0.01f;
 
 
-    public float RotationSpeed = 5;
-    private Quaternion _lookRotation;
-    private Vector3 _direction;
-    public Transform Target;
     // Use this for initialization
     void Start () {
         thisVolcano = gameObject.GetComponent<MiniVolcanoes>();
-        spriteRenderer = lava.GetComponent<SpriteRenderer>();
+        lavaSpriteRenderer = lava.GetComponent<SpriteRenderer>();
         randomLavaTime = Random.Range(minInvoke, maxInvoke);
         magmaParticle = gameObject.GetComponentInChildren<ParticleSystem>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        aiPath = gameObject.GetComponent<Pathfinding.AIPath>();
+        aiSetter = gameObject.GetComponent<Pathfinding.AIDestinationSetter>();
     }
 
     private void FixedUpdate()
@@ -50,6 +50,23 @@ public class ThirdBossSM : MonoBehaviour {
                 lavaTimer += Time.deltaTime;
             }
 
+            lavaOverflowTimer += Time.deltaTime;
+
+            if(lavaOverflowTimer > 50)
+            {
+                StartCoroutine(LavaOverflow());
+            }
+        }
+
+        if(currentState == "3rdState")
+        {
+            magmaBreathTimer += Time.deltaTime;
+        }
+
+        if(magmaBreathActive)
+        {
+            Vector2 dir = magmaParticle.transform.position - player.transform.position;
+            magmaParticle.transform.forward = (dir * -1);
         }
     }
 
@@ -95,12 +112,12 @@ public class ThirdBossSM : MonoBehaviour {
     {
         coroutineInProgress = true;
         print("BustinOut");
-
-        new WaitForSeconds(4f);
+        yield return new WaitForSeconds(4);
+        print("waited 4 seconds");
         currentState = "2ndState";
         StopCoroutine("BustinOut");
         coroutineInProgress = false;
-        yield return new WaitForSeconds(0.1f);
+        
         
     }
 
@@ -122,6 +139,34 @@ public class ThirdBossSM : MonoBehaviour {
     public void SecondPhaseTakeDmg()
     {
         secondPhaseHP = secondPhaseHP - 1;
+        StartCoroutine(LavaOverflow());
+    }
+
+    IEnumerator LavaOverflow()
+    {
+
+        if(currentState == "3rdState")
+        {
+            /*
+            while(aiPath.reachedEndOfPath == false)
+            {
+                aiSetter.target = LavaOverflowParticleSys.transform;
+                aiPath.canSearch = true;
+                aiPath.canMove = true;
+
+            }*/
+            //move to the middle first then do the overflow
+
+        }
+
+        lavaOverflowTimer = 0;
+        lavaOverflowActive = true;
+        StopMoving();
+        LavaOverflowParticleSys.GetComponent<ParticleSystem>().Play();
+        yield return new WaitForSeconds(3);
+        LavaOverflowParticleSys.GetComponent<ParticleSystem>().Stop();
+        lavaOverflowActive = false;
+        lavaOverflowTimer = 0;
     }
 
     void LavaHazard()
@@ -130,13 +175,13 @@ public class ThirdBossSM : MonoBehaviour {
         if(risingAlpha < 0.93f)
         {
             risingAlpha = risingAlpha + lavaRiseSpeed;
-            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, risingAlpha);
+            lavaSpriteRenderer.color = new Color(lavaSpriteRenderer.color.r, lavaSpriteRenderer.color.g, lavaSpriteRenderer.color.b, risingAlpha);
         }
 
         if(risingAlpha > 0.93f)
         {
             risingAlpha = 1;
-            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, risingAlpha);
+            lavaSpriteRenderer.color = new Color(lavaSpriteRenderer.color.r, lavaSpriteRenderer.color.g, lavaSpriteRenderer.color.b, risingAlpha);
             lavaActive = true;
 
 
@@ -155,13 +200,13 @@ public class ThirdBossSM : MonoBehaviour {
         while (risingAlpha >= 0.10f)
         {
             risingAlpha = risingAlpha - lavaFadeSpeed;
-            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, risingAlpha);
+            lavaSpriteRenderer.color = new Color(lavaSpriteRenderer.color.r, lavaSpriteRenderer.color.g, lavaSpriteRenderer.color.b, risingAlpha);
         }
 
         if (risingAlpha <= 0.10f)
         {
             risingAlpha = 0;
-            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, risingAlpha);
+            lavaSpriteRenderer.color = new Color(lavaSpriteRenderer.color.r, lavaSpriteRenderer.color.g, lavaSpriteRenderer.color.b, risingAlpha);
             randomLavaTime = Random.Range(minInvoke, maxInvoke);
             yield return new WaitForSeconds(randomLavaTime);
             lavaTimer = 0;
@@ -171,21 +216,98 @@ public class ThirdBossSM : MonoBehaviour {
 
     void ThirdState()
     {
+        if(thirdPhaseHP <= 0)
+        {
+            print("Boss dies");
+        }
         thisVolcano.stopShooting = true;
         print("third state");
-        MagmaBreath();
+
+        if(moveCoroutineInProgress == false)
+        {
+           StartCoroutine(MoveSeconds(4));
+        }
+
     }
 
     void MagmaBreath()
     {
         //do an animation here to warn the player first
-        magmaParticle.Play();
-        print(magmaParticle.transform.position + "magma pos and " + player.transform.position);
-        //magmaParticle.transform.rota
+        if(magmaBreathTimer < 7)
+        {
+            magmaBreathActive = true;
+            magmaParticle.Play();
+            StopMoving();
 
 
-        Vector2 dir = magmaParticle.transform.position - player.transform.position;
-        magmaParticle.transform.right = dir;
+        }
+        else if(doOnce)//set the random magma breath duration variable only once per cycle for the next cycle
+        {
+            doOnce = false;
+            mBreathRandom = Random.Range(mBreathRandMin, mBreathRandMax);
+            magmaBreathActive = false;
+            magmaParticle.Stop();
+        }
+
+        if(magmaBreathTimer > mBreathRandom) //random magma breath duration
+        {
+            print("magma reset");
+            doOnce = true;
+            magmaBreathTimer = 0;
+            magmaBreathActive = true;
+        }
     }
     
+    public void ThirdPhaseTakeDMG()
+    {
+        thirdPhaseHP = thirdPhaseHP - 1;
+    }
+
+    IEnumerator MoveSeconds(int seconds)
+    {
+        //if(lavaOverflowActive == false && magmaBreathActive == false)
+        
+            moveCoroutineInProgress = true;
+            Move();
+            yield return new WaitForSeconds(seconds);
+            StopMoving();
+            CheckPlayerProximity();
+        
+        yield return moveCoroutineInProgress = false;
+        
+    }
+
+    private void Move()
+    {
+        if(lavaOverflowActive == false && magmaBreathActive == false)
+        {
+            print("move");
+            idleAnimationActive = false;
+            moveAnimationActive = true;
+
+            aiPath.canSearch = true;
+            aiPath.canMove = true;
+        }
+
+    }
+
+    void StopMoving()
+    {
+        print("Stop move");
+        aiPath.canMove = false;
+        aiPath.canSearch = false;
+
+
+        idleAnimationActive = true;
+        moveAnimationActive = false;
+    }
+
+    void CheckPlayerProximity()
+    {
+        if(ProximityTrigger.GetComponent<Proximity>().playerInRange == true)
+        {
+            MagmaBreath();
+        }
+
+    }
 }
