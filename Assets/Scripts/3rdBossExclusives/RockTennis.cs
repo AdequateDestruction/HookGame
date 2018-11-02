@@ -39,7 +39,7 @@ public class RockTennis : MonoBehaviour {
         }
         else if (other.tag == "Boss" && gameObject.tag == "PongedByPlayer" )
         {
-            if (pongedTimes > pongedRequirement )
+            if (pongedTimes > pongedRequirement)
             {
                 bossTransform.gameObject.GetComponent<ThirdBossSM>().SecondPhaseTakeDmg();
                 Destroy(gameObject);
