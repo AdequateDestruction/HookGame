@@ -8,6 +8,8 @@ public class miniBossAI : MonoBehaviour {
     WaterBossAI waterBossScript;
     Animator animator;
     GameObject visual;
+    
+
 
     public bool isDead;
     bool doOnce=false;
@@ -21,6 +23,9 @@ public class miniBossAI : MonoBehaviour {
         Parent = transform.parent.gameObject;
         visual = transform.parent.GetChild(1).gameObject;
         waterBossScript= GameObject.Find("WaterBoss").GetComponent<WaterBossAI>();
+
+      
+
     }
     private void OnEnable()
     {

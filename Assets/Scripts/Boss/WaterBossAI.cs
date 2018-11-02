@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class WaterBossAI : MonoBehaviour {
 
+    public ParticleSystem particle;
+    public float WhirlpoolRotSpeed;
+
     [HideInInspector]
     public Collider2D col;
     [HideInInspector]
@@ -34,7 +37,11 @@ public class WaterBossAI : MonoBehaviour {
         sm.AddState(new WaterDash("Dash", this));
         sm.AddState(new WaterTurbine("Turbine", this));
         sm.AddState(new WaterMoving("Moving", this));
+        sm.AddState(new WaterBreath("Breath", this));
+        sm.AddState(new WaterWhirlpool("Whirlpool", this));
 
+
+        particle.Stop();
     }
 
     void Start()
@@ -49,11 +56,10 @@ public class WaterBossAI : MonoBehaviour {
 
     private void Update()
     {
-        //Debug.DrawRay(transform.position, rayCastPos.position, Color.red, 25f);
+        Debug.DrawRay(transform.position, rayCastPos.position, Color.red, 25f);
         //if enough minibosses killed starts to attack player
         if (minibossKilled>=killsToTrigger&&!frenzyed)
         {
-            Debug.Log("poo");
             sm.SetNextState("Moving");
             frenzyed = true;
         }

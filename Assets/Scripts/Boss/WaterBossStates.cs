@@ -83,9 +83,9 @@ public class WaterWaiting : State
     }
     public override void Enter()
     {
-        Debug.Log(waterBossAI.SM.CurrentState);
-        dir = waterBossAI.player.transform.position - waterBossAI.transform.position;
-        angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        //Debug.Log(waterBossAI.SM.CurrentState);
+        //dir = waterBossAI.player.transform.position - waterBossAI.transform.position;
+        //angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
     }
     public override void Update()
     {
@@ -163,5 +163,72 @@ public class WaterMoving : State
     }
 
 }
+
+
+//WATERBREATH
+public class WaterBreath : State
+{
+    WaterBossAI waterBossAI;
+    float timer;
+
+    public WaterBreath(string stateID, WaterBossAI waterBossAI) : base(stateID)
+    {
+        this.waterBossAI = waterBossAI;
+    }
+
+    public override void Enter()
+    {
+        Debug.Log(waterBossAI.SM.CurrentState);
+        waterBossAI.particle.Play();
+    }
+
+    public override void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer>3)
+        {
+            waterBossAI.SM.SetNextState("Moving");
+        }
+    }
+
+    public override void Exit()
+    {
+        waterBossAI.particle.Stop();
+
+    }
+
+}
+
+
+//WHIRLPOOL
+public class WaterWhirlpool : State
+{
+    WaterBossAI waterBossAI;
+
+    public WaterWhirlpool(string stateID, WaterBossAI waterBossAI) : base(stateID)
+    {
+        this.waterBossAI = waterBossAI;
+    }
+
+    public override void Enter()
+    {
+        Debug.Log(waterBossAI.SM.CurrentState);
+
+    }
+
+    public override void Update()
+    {
+        waterBossAI.rb.velocity = Vector2.zero;
+        waterBossAI.transform.Rotate(0, 0, waterBossAI.WhirlpoolRotSpeed*Time.deltaTime);
+    }
+
+    public override void Exit()
+    {
+        waterBossAI.particle.Stop();
+
+    }
+
+}
+
 
 

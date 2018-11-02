@@ -65,7 +65,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4067428101687552
 Transform:
   m_ObjectHideFlags: 1
@@ -173,7 +173,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDead: 0
   electricityTime: 5
-  tmp_collided: 0
 --- !u!114 &114110204287116390
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,7 +209,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 4294967295
     useGraphRaycasting: 0
-  traversableTags: -1
+  traversableTags: -262153
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask: -1
 --- !u!114 &114237735747614436
