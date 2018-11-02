@@ -17,32 +17,64 @@ public class Whirlpool : MonoBehaviour {
     public List<GameObject> pools;
 
     public float timer;
+    public float repeateTime=3;
+    public SpriteRenderer spriteRenderer;
+    public Collider2D col;
+    public ParticleSystem explosion;
 
-	// Use this for initialization
-	void Start ()
+    public bool somethingInWhirlpool, exploded;
+    public float explosionTimer;
+    public float explosionTime=3;
+    public float invulnerableCD;
+
+    // Use this for initialization
+    void Start ()
     {
         tempPlayerSpeed = GameObject.Find("Player").GetComponent<PlayerMovement>().moveSpeed;
         playerMovementScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
         waterBossAIScript = GameObject.Find("WaterBoss").GetComponent<WaterBossAI>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        col = GetComponent<Collider2D>();
         playerMovementScript.notTeleported = true;
+        explosion = GetComponent<ParticleSystem>();
 
     }
 
 
     void Update ()
     {
-        if (useTeleport)
+        //Random activation
+        timer += Time.deltaTime;
+        if (timer>repeateTime&&!somethingInWhirlpool)
         {
-            if (teleported == false)
-            {
-                timer += Time.deltaTime;
-                if (timer > 3)
-                {
-                    playerMovementScript.notTeleported = true;
-                    teleported = true;
-                    timer = 0;
-                }
-            }
+            spriteRenderer.enabled = !spriteRenderer.enabled;
+            col.enabled = !col.enabled;
+            timer = 0;
+        }
+
+        //explosion activation
+        if (explosionTimer>explosionTime&&somethingInWhirlpool)
+        {
+            explosion.Play();
+            exploded = true;
+            waterBossAIScript.invulnerableTimer = Time.time + invulnerableCD;
+            waterBossAIScript.invulnerable = true;
+
+        }
+        else if (somethingInWhirlpool)
+        {
+            explosionTimer += Time.deltaTime;
+        }
+        if (exploded)
+        {
+            explosionTimer += Time.deltaTime;
+
+        }
+
+        if (explosionTimer>explosionTime*2&&exploded)
+        {
+            waterBossAIScript.SM.SetNextState("Idle");
+            this.gameObject.SetActive(false);
         }
     }
 
@@ -50,20 +82,9 @@ public class Whirlpool : MonoBehaviour {
     {
         if (collision.tag=="Player")
         {
-            if (useSlow)
-            {
-                collision.GetComponent<PlayerMovement>().moveSpeed = tempPlayerSpeed / 2;
-            }
-            if (useTeleport)
-            {
-                if (teleported && collision.GetComponent<PlayerMovement>().notTeleported)
-                {
-                    teleported = false;
-                    collision.GetComponent<PlayerMovement>().notTeleported = false;
-                    collision.transform.position = pools[Random.Range(0, 1)].transform.position;
+            collision.GetComponent<PlayerMovement>().moveSpeed = tempPlayerSpeed/2;
 
-                }
-            }
+
         }
         if (collision.tag=="MiniBoss")
         {
@@ -73,6 +94,7 @@ public class Whirlpool : MonoBehaviour {
         if (collision.tag=="Boss")
         {
             Debug.Log("spotted");
+            somethingInWhirlpool = true;
             waterBossAIScript.SM.SetNextState("Whirlpool");
         }
     }
@@ -82,6 +104,10 @@ public class Whirlpool : MonoBehaviour {
         if (collision.tag == "Boss")
         {
             collision.transform.position = Vector2.MoveTowards(collision.transform.position, this.transform.position,suckSpeed*Time.deltaTime);
+        }
+        if (collision.tag=="Player")
+        {
+            collision.transform.position = Vector2.MoveTowards(collision.transform.position, this.transform.position, suckSpeed * Time.deltaTime);
         }
     }
 
@@ -96,4 +122,6 @@ public class Whirlpool : MonoBehaviour {
             }
         }
     }
+
+
 }

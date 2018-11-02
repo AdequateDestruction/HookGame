@@ -194,6 +194,7 @@ public class WaterBreath : State
     public override void Exit()
     {
         waterBossAI.particle.Stop();
+        timer = 0;
 
     }
 
@@ -213,12 +214,13 @@ public class WaterWhirlpool : State
     public override void Enter()
     {
         Debug.Log(waterBossAI.SM.CurrentState);
+        waterBossAI.rb.velocity = Vector2.zero;
 
     }
 
     public override void Update()
     {
-        waterBossAI.rb.velocity = Vector2.zero;
+       
         waterBossAI.transform.Rotate(0, 0, waterBossAI.WhirlpoolRotSpeed*Time.deltaTime);
     }
 

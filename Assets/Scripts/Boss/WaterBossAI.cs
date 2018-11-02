@@ -10,7 +10,9 @@ public class WaterBossAI : MonoBehaviour {
     [HideInInspector]
     public Collider2D col;
     [HideInInspector]
-    public Transform rayCastPos;
+    public Transform rayCastEnd;
+    [HideInInspector]
+    public Transform rayCastStart;
     [HideInInspector]
     public GameObject player;
     [HideInInspector]
@@ -24,6 +26,14 @@ public class WaterBossAI : MonoBehaviour {
     public int minibossKilled;
     [HideInInspector]
     public bool playerHit=false, frenzyed = false;
+
+
+
+    public int invulFlashCounter;
+    public SpriteRenderer bossVisual;
+    public Color defaultColor, damageColor;
+    public bool invulnerable;
+    public float invulnerableTimer;
 
 
     StateMachine sm = new StateMachine();
@@ -46,8 +56,11 @@ public class WaterBossAI : MonoBehaviour {
 
     void Start()
     {
+        //bossVisual = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+
         col = GetComponent<Collider2D>();
-        rayCastPos = transform.GetChild(1);
+        rayCastEnd = transform.GetChild(1);
+        rayCastStart = transform.GetChild(2);
         player = GameObject.Find("Player");
         rb = GetComponent<Rigidbody2D>();
 
@@ -56,22 +69,46 @@ public class WaterBossAI : MonoBehaviour {
 
     private void Update()
     {
-        Debug.DrawRay(transform.position, rayCastPos.position, Color.red, 25f);
+        //Debug.DrawRay(rayCastStart.position, rayCastEnd.position- rayCastStart.position, Color.red, 1f);
         //if enough minibosses killed starts to attack player
         if (minibossKilled>=killsToTrigger&&!frenzyed)
         {
             sm.SetNextState("Moving");
             frenzyed = true;
         }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            bossVisual.color = damageColor;
+        }
+
+        if (invulnerable)
+        {
+            if (invulFlashCounter % 10 == 0 || invulFlashCounter % 10 == 1)
+            {
+                bossVisual.color = damageColor;
+            }
+            else
+            {
+                bossVisual.color = defaultColor;
+            }
+            invulFlashCounter++;
+
+            if (Time.time >= invulnerableTimer)
+            {
+                invulnerable = false;
+                bossVisual.color = defaultColor;
+            }
+        }
     }
 
     private void FixedUpdate()
     {
         //when raycast hits player when moving, changes state to dash
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, rayCastPos.position);
+        RaycastHit2D hit = Physics2D.Raycast(rayCastStart.position, rayCastEnd.position - rayCastStart.position);
         if (SM.CurrentState=="Moving"&&hit.collider!=null&&hit.collider.gameObject.name=="Player")
         {
-            SM.SetNextState("Dash");
+            SM.SetNextState("Breath");
             playerHit = true;
         }
     }

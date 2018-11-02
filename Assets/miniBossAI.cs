@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class miniBossAI : MonoBehaviour {
 
@@ -8,7 +9,10 @@ public class miniBossAI : MonoBehaviour {
     WaterBossAI waterBossScript;
     Animator animator;
     GameObject visual;
-    
+
+    WaterStageManager waterStageManagerScript;
+
+    bool phase2;
 
 
     public bool isDead;
@@ -19,13 +23,15 @@ public class miniBossAI : MonoBehaviour {
 
     void Start ()
     {
+        waterStageManagerScript = GameObject.Find("WaterStageManager").GetComponent<WaterStageManager>();
         animator = GetComponent<Animator>();
         Parent = transform.parent.gameObject;
         visual = transform.parent.GetChild(1).gameObject;
-        waterBossScript= GameObject.Find("WaterBoss").GetComponent<WaterBossAI>();
-
-      
-
+        if (SceneManager.GetActiveScene().name==waterStageManagerScript.PHASE2)
+        {
+            waterBossScript= GameObject.Find("WaterBoss").GetComponent<WaterBossAI>();
+            phase2 = true;
+        }
     }
     private void OnEnable()
     {
@@ -38,16 +44,21 @@ public class miniBossAI : MonoBehaviour {
         {
             if (!doOnce)
             {
-                waterBossScript.minibossKilled++;
+                if (phase2)
+                {
+                    waterBossScript.minibossKilled++;
+                    animator.SetBool("Dead", true);
+                }
                 visual.SetActive(false);
-                animator.SetBool("Dead", true);
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 GetComponent<Rigidbody2D>().angularVelocity = 0f;
+
                 //disables pathfinding/stops moving
-                if (Parent.GetComponent<Pathfinding.AIPath>().enabled)
-                {
-                    Parent.GetComponent<Pathfinding.AIPath>().enabled = !Parent.GetComponent<Pathfinding.AIPath>().enabled;
-                }
+                Parent.GetComponent<Pathfinding.AIPath>().canMove = false;
+                //if (Parent.GetComponent<Pathfinding.AIPath>().enabled)
+                //{
+                //    Parent.GetComponent<Pathfinding.AIPath>().enabled = !Parent.GetComponent<Pathfinding.AIPath>().enabled;
+                //}
                 doOnce = true;
             }
 
@@ -70,6 +81,10 @@ public class miniBossAI : MonoBehaviour {
             this.transform.localPosition = Vector3.zero;
             isDead = true;
         }
+        if (collision.gameObject.tag=="Player")
+        {
+            collision.gameObject.GetComponent<PlayerMovement>().TakeDamage();
+        }
     }
 
     private void OnDisable()
@@ -80,7 +95,9 @@ public class miniBossAI : MonoBehaviour {
             doOnce = false;
             timer = 0;
             visual.SetActive(true);
-            Parent.GetComponent<Pathfinding.AIPath>().enabled = !Parent.GetComponent<Pathfinding.AIPath>().enabled;
+            Parent.GetComponent<Pathfinding.AIPath>().canMove = true;
+
+            //Parent.GetComponent<Pathfinding.AIPath>().enabled = !Parent.GetComponent<Pathfinding.AIPath>().enabled;
             this.transform.localPosition = Vector3.zero;
         }
     }
