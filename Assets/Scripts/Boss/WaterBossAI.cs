@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WaterBossAI : MonoBehaviour {
 
+    public WaterStageManager waterStagemanagerScript;
     public ParticleSystem particle;
     public float WhirlpoolRotSpeed;
 
@@ -22,7 +24,7 @@ public class WaterBossAI : MonoBehaviour {
 
 
     public int killsToTrigger=1;
-    [HideInInspector]
+    //[HideInInspector]
     public int minibossKilled;
     [HideInInspector]
     public bool playerHit=false, frenzyed = false;
@@ -35,6 +37,10 @@ public class WaterBossAI : MonoBehaviour {
     public bool invulnerable;
     public float invulnerableTimer;
 
+
+    public GameObject inHale;
+    public List<Transform> corners;
+    public bool turned;
 
     StateMachine sm = new StateMachine();
     public StateMachine SM { get { return sm; } }
@@ -49,6 +55,10 @@ public class WaterBossAI : MonoBehaviour {
         sm.AddState(new WaterMoving("Moving", this));
         sm.AddState(new WaterBreath("Breath", this));
         sm.AddState(new WaterWhirlpool("Whirlpool", this));
+        sm.AddState(new WaterInHale("InHale", this));
+        sm.AddState(new WaterToCorner("ToCorner", this));
+
+
 
 
         particle.Stop();
@@ -57,29 +67,35 @@ public class WaterBossAI : MonoBehaviour {
     void Start()
     {
         //bossVisual = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
-
+        waterStagemanagerScript = GameObject.Find("WaterStageManager").GetComponent<WaterStageManager>();
         col = GetComponent<Collider2D>();
         rayCastEnd = transform.GetChild(1);
         rayCastStart = transform.GetChild(2);
         player = GameObject.Find("Player");
         rb = GetComponent<Rigidbody2D>();
-
         StartCoroutine(AI());
+        corners = new List<Transform>();
+
+        for (int i = 0; i < GameObject.Find("RandomCorners").transform.childCount; i++)
+        {
+            corners.Add(GameObject.Find("RandomCorners").transform.GetChild(i));
+        }
     }
 
     private void Update()
     {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            sm.SetNextState("ToCorner");
+
+        }
+
         //Debug.DrawRay(rayCastStart.position, rayCastEnd.position- rayCastStart.position, Color.red, 1f);
         //if enough minibosses killed starts to attack player
         if (minibossKilled>=killsToTrigger&&!frenzyed)
         {
             sm.SetNextState("Moving");
             frenzyed = true;
-        }
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-            bossVisual.color = damageColor;
         }
 
         if (invulnerable)
@@ -108,8 +124,21 @@ public class WaterBossAI : MonoBehaviour {
         RaycastHit2D hit = Physics2D.Raycast(rayCastStart.position, rayCastEnd.position - rayCastStart.position);
         if (SM.CurrentState=="Moving"&&hit.collider!=null&&hit.collider.gameObject.name=="Player")
         {
-            SM.SetNextState("Breath");
-            playerHit = true;
+            if (SceneManager.GetActiveScene().name==waterStagemanagerScript.PHASE2)
+            {
+                SM.SetNextState("Breath");
+                playerHit = true;
+            }
+            else if (SceneManager.GetActiveScene().name == waterStagemanagerScript.PHASE3)
+            {
+                SM.SetNextState("InHale");
+            }
+
+        }
+
+        if (SM.CurrentState== "ToCorner"&& hit.collider != null && hit.collider.gameObject.name == "Center")
+        {
+            turned = true;
         }
     }
 
@@ -126,11 +155,11 @@ public class WaterBossAI : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //when waterboss hits wall when not in moving state
-        if (collision.gameObject.tag == "StaticBlock"&&sm.CurrentState!="Moving")
+        if (collision.gameObject.tag == "StaticBlock"&&sm.CurrentState!="Moving"|| sm.CurrentState != "ToCorner")
         {
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0f;
-            SM.SetNextState("Idle");
+            //SM.SetNextState("Idle");
         }
     }
 }

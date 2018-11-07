@@ -232,5 +232,91 @@ public class WaterWhirlpool : State
 
 }
 
+//INHALE
+public class WaterInHale : State
+{
+    WaterBossAI waterBossAI;
+    float timer;
+
+    public WaterInHale(string stateID, WaterBossAI waterBossAI) : base(stateID)
+    {
+        this.waterBossAI = waterBossAI;
+    }
+
+    public override void Enter()
+    {
+        Debug.Log(waterBossAI.SM.CurrentState);
+        timer = 0;
+        waterBossAI.inHale.SetActive(true);
+    }
+
+    public override void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer > 3)
+        {
+            waterBossAI.SM.SetNextState("ToCorner");
+        }
+    }
+
+    public override void Exit()
+    {
+        waterBossAI.inHale.SetActive(false);
+    }
+
+}
+
+//TOCORNER
+public class WaterToCorner : State
+{
+    WaterBossAI waterBossAI;
+    Transform corner;
+    bool travelled;
+    float angle;
+
+    public WaterToCorner(string stateID, WaterBossAI waterBossAI) : base(stateID)
+    {
+        this.waterBossAI = waterBossAI;
+    }
+
+    public override void Enter()
+    {
+        Debug.Log(waterBossAI.SM.CurrentState);
+        corner = waterBossAI.corners[Random.Range(0, waterBossAI.corners.Count)];
+        Debug.Log(corner);
+    }
+
+    public override void Update()
+    {
+        //rotates towards center
+        if (Vector2.Distance(corner.position, waterBossAI.transform.position) < 0.8f)
+        {
+            travelled = true;
+            waterBossAI.rb.velocity = Vector2.zero;
+            Vector3 dir = Vector3.zero - waterBossAI.transform.position;
+            angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            waterBossAI.transform.rotation = Quaternion.Slerp(waterBossAI.transform.localRotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * waterBossAI.rotateSpeed);
+
+            //raycast hits center
+            if (waterBossAI.turned)
+            {
+                waterBossAI.SM.SetNextState("InHale");
+            }
+                    }
+        else if (!travelled)
+        {
+            //moves and rotates towards corner
+            Vector3 dir = corner.position - waterBossAI.transform.position;
+            angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            waterBossAI.transform.rotation = Quaternion.Slerp(waterBossAI.transform.localRotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * waterBossAI.rotateSpeed);
+            waterBossAI.rb.velocity = waterBossAI.transform.right * waterBossAI.movementSpeed;
+        }
+            }
+    public override void Exit()
+    {
+        waterBossAI.turned = false;
+        travelled = false;
+    }
+    }
 
 
