@@ -57,6 +57,9 @@ public class WaterStageManager : MonoBehaviour {
             Phase3();
         }
 
+
+        Nextphase();
+
     }
 
 
@@ -89,9 +92,35 @@ public class WaterStageManager : MonoBehaviour {
 
     public void Phase3()
     {
-        if (inhaleScript.inhaledEnemies >= 10)
+        if (inhaleScript.inhaledEnemies >= 20)
         {
             SceneManager.LoadScene(PHASE1);
         }
+    }
+
+    public void Nextphase()
+    {
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            SceneManager.LoadScene(PHASE1);
+        }
+        else if (Input.GetKey(KeyCode.Alpha2))
+        {
+            SceneManager.LoadScene(PHASE2);
+        }
+        else if (Input.GetKey(KeyCode.Alpha3))
+        {
+            SceneManager.LoadScene(PHASE3);
+        }
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
+
+    public void reloadPhase()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
     }
 }

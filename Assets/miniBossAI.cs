@@ -6,13 +6,13 @@ using UnityEngine.SceneManagement;
 public class miniBossAI : MonoBehaviour {
 
     GameObject Parent;
-    WaterBossAI waterBossScript;
     Animator animator;
     GameObject visual;
 
+    WaterBossAI waterBossScript;
     WaterStageManager waterStageManagerScript;
 
-    bool phase2;
+    bool canDo;
 
 
     public bool isDead;
@@ -27,10 +27,12 @@ public class miniBossAI : MonoBehaviour {
         animator = GetComponent<Animator>();
         Parent = transform.parent.gameObject;
         visual = transform.parent.GetChild(1).gameObject;
+
+        //if phase is NOT phase1
         if (SceneManager.GetActiveScene().name!=waterStageManagerScript.PHASE1)
         {
             waterBossScript= GameObject.Find("WaterBoss").GetComponent<WaterBossAI>();
-            phase2 = true;
+            canDo = true;
         }
  
     }
@@ -45,7 +47,7 @@ public class miniBossAI : MonoBehaviour {
         {
             if (!doOnce)
             {
-                if (phase2)
+                if (canDo)
                 {
                     waterBossScript.minibossKilled++;
                     animator.SetBool("Dead", true);
@@ -56,13 +58,10 @@ public class miniBossAI : MonoBehaviour {
 
                 //disables pathfinding/stops moving
                 Parent.GetComponent<Pathfinding.AIPath>().canMove = false;
-                //if (Parent.GetComponent<Pathfinding.AIPath>().enabled)
-                //{
-                //    Parent.GetComponent<Pathfinding.AIPath>().enabled = !Parent.GetComponent<Pathfinding.AIPath>().enabled;
-                //}
                 doOnce = true;
             }
 
+            //how long electricity stays on corpse
             timer += Time.deltaTime;
             if (timer > electricityTime)
             {
@@ -73,6 +72,7 @@ public class miniBossAI : MonoBehaviour {
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        //just kills miniboss when collided with StaticBlock
         if (collision.gameObject.tag == "StaticBlock")
         {
             GetComponent<ChildposToParent>().enabled = !GetComponent<ChildposToParent>().enabled;
@@ -102,6 +102,7 @@ public class miniBossAI : MonoBehaviour {
             this.transform.localPosition = Vector3.zero;
         }
     }
+
     public void Animation()
     {
 
