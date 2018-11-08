@@ -37,7 +37,7 @@ public class RockTennis : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-        else if (other.tag == "Boss" && gameObject.tag == "PongedByPlayer" )
+        else if ((other.tag == "Boss" || other.tag == "BossCollider") && gameObject.tag == "PongedByPlayer" )
         {
             if (pongedTimes > pongedRequirement)
             {

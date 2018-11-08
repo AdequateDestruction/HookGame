@@ -15,10 +15,10 @@ public class ThirdBossSM : MonoBehaviour {
     Pathfinding.AIDestinationSetter aiSetter;
 
     public float randomLavaTime, maxInvoke = 20, minInvoke = 10;
-    public int secondPhaseHP = 3, thirdPhaseHP = 4, mBreathRandom = 10, mBreathRandMax = 20, mBreathRandMin= 10;
+    public int secondPhaseHP = 3, thirdPhaseHP = 4, mBreathRandom = 10, mBreathRandMax = 15, mBreathRandMin= 10;
     public GameObject MiniVolcParent, LavaOverflowParticleSys, ProximityTrigger;
     public GameObject secondPhaseAmmunition, lava;
-    public bool lavaActive = false, magmaBreathActive = false, doOnce = true, lavaOverflowActive;
+    public bool lavaActive = false, magmaBreathActive = false, doOnce = false, lavaOverflowActive;
     public float lavaFadeSpeed = 0.05f, lavaRiseSpeed = 0.01f;
 
 
@@ -54,7 +54,32 @@ public class ThirdBossSM : MonoBehaviour {
 
             if(lavaOverflowTimer > 50)
             {
-                StartCoroutine(LavaOverflow());
+                lavaOverflowActive = true;
+                if(currentState == "3rdState")//move to the middle first then do the overflow in third phase
+                {
+                    aiSetter.target = LavaOverflowParticleSys.transform;
+                    aiPath.canSearch = true;
+                    aiPath.canMove = true;
+
+                    if(transform.position.x <= LavaOverflowParticleSys.transform.position.x + 1 && transform.position.x >= LavaOverflowParticleSys.transform.position.x - 1)
+                    {
+                        if (transform.position.y <= LavaOverflowParticleSys.transform.position.y + 1 && transform.position.y >= LavaOverflowParticleSys.transform.position.y - 1)
+                        {
+                            print("keskellä");
+                            transform.position = LavaOverflowParticleSys.transform.position;
+                            aiPath.canSearch = false;
+                            aiPath.canMove = false;
+                            StartCoroutine(LavaOverflow());
+                        }
+
+                    }
+                }
+                
+                if(currentState != "3rdState")
+                {
+                    StartCoroutine(LavaOverflow());
+                }
+                
             }
         }
 
@@ -67,7 +92,25 @@ public class ThirdBossSM : MonoBehaviour {
         {
             Vector2 dir = magmaParticle.transform.position - player.transform.position;
             magmaParticle.transform.forward = (dir * -1);
+
+
         }
+        if (magmaBreathTimer > mBreathRandom) //random magma breath duration
+        {
+            print("magma reset");
+            doOnce = true;
+            magmaBreathTimer = 0;
+            mBreathRandom = Random.Range(mBreathRandMin, mBreathRandMax);
+            //magmaBreathActive = true;
+        }
+
+        if (doOnce)//set the random magma breath duration variable only once per cycle for the next cycle and stop the breath
+        {
+            doOnce = false;
+            magmaBreathActive = false;
+            magmaParticle.Stop();
+        }
+
     }
 
     // Update is called once per frame
@@ -138,26 +181,16 @@ public class ThirdBossSM : MonoBehaviour {
 
     public void SecondPhaseTakeDmg()
     {
-        secondPhaseHP = secondPhaseHP - 1;
-        StartCoroutine(LavaOverflow());
+        if(secondPhaseHP > 0)
+        {
+            secondPhaseHP = secondPhaseHP - 1;
+            StartCoroutine(LavaOverflow());
+        }
+
     }
 
     IEnumerator LavaOverflow()
     {
-
-        if(currentState == "3rdState")
-        {
-            /*
-            while(aiPath.reachedEndOfPath == false)
-            {
-                aiSetter.target = LavaOverflowParticleSys.transform;
-                aiPath.canSearch = true;
-                aiPath.canMove = true;
-
-            }*/
-            //move to the middle first then do the overflow
-
-        }
 
         lavaOverflowTimer = 0;
         lavaOverflowActive = true;
@@ -235,26 +268,11 @@ public class ThirdBossSM : MonoBehaviour {
         //do an animation here to warn the player first
         if(magmaBreathTimer < 7)
         {
+            Vector2 dir = magmaParticle.transform.position - player.transform.position;
+            magmaParticle.transform.forward = (dir * -1);
             magmaBreathActive = true;
             magmaParticle.Play();
             StopMoving();
-
-
-        }
-        else if(doOnce)//set the random magma breath duration variable only once per cycle for the next cycle
-        {
-            doOnce = false;
-            mBreathRandom = Random.Range(mBreathRandMin, mBreathRandMax);
-            magmaBreathActive = false;
-            magmaParticle.Stop();
-        }
-
-        if(magmaBreathTimer > mBreathRandom) //random magma breath duration
-        {
-            print("magma reset");
-            doOnce = true;
-            magmaBreathTimer = 0;
-            magmaBreathActive = true;
         }
     }
     
@@ -265,14 +283,15 @@ public class ThirdBossSM : MonoBehaviour {
 
     IEnumerator MoveSeconds(int seconds)
     {
-        //if(lavaOverflowActive == false && magmaBreathActive == false)
-        
+        if (lavaOverflowActive == false && magmaBreathActive == false)
+        {
             moveCoroutineInProgress = true;
             Move();
             yield return new WaitForSeconds(seconds);
             StopMoving();
             CheckPlayerProximity();
-        
+            yield return new WaitForSeconds(1.5f);
+        } 
         yield return moveCoroutineInProgress = false;
         
     }
@@ -281,6 +300,9 @@ public class ThirdBossSM : MonoBehaviour {
     {
         if(lavaOverflowActive == false && magmaBreathActive == false)
         {
+            if(aiSetter.target != player.transform)
+            aiSetter.target = player.transform;
+
             print("move");
             idleAnimationActive = false;
             moveAnimationActive = true;
@@ -308,6 +330,13 @@ public class ThirdBossSM : MonoBehaviour {
         {
             MagmaBreath();
         }
+    }
 
+    private void OnCollisionEnter2D(Collision2D collision) //Boss deals damage to player on contact
+    {
+        if(collision.transform.tag == "Player")
+        {
+            player.TakeDamage();
+        }
     }
 }
