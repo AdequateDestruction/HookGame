@@ -33,7 +33,7 @@ public class RockTennis : MonoBehaviour {
             other.gameObject.GetComponent<PlayerMovement>().TakeDamage();
             Destroy(gameObject);
         }
-        else if (other.tag == "PullBlock" || other.tag == "StaticBlock" || other.tag == "DeflectBlock")
+        else if (other.tag == "PullBlock" || other.tag == "StaticBlock" || other.tag == "DeflectBlock" || other.tag == "Pillar")
         {
             Destroy(gameObject);
         }

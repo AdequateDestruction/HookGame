@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ThirdBossSM : MonoBehaviour {
 
@@ -21,7 +22,9 @@ public class ThirdBossSM : MonoBehaviour {
     public GameObject secondPhaseAmmunition, lava;
     public bool lavaActive = false, magmaBreathActive = false, doOnce = false, lavaOverflowActive;
     public float lavaFadeSpeed = 0.05f, lavaRiseSpeed = 0.01f;
-
+    public GameObject debugText, bossSpriteChild;
+    public Sprite walkingSprite, idleSprite;
+    public GameObject walkingCollision, idleCollision;
 
     // Use this for initialization
     void Start () {
@@ -112,6 +115,29 @@ public class ThirdBossSM : MonoBehaviour {
             magmaParticle.Stop();
         }
 
+        if(currentState == "3rdState" && idleAnimationActive)
+        {
+            idleCollision.SetActive(true);
+            walkingCollision.SetActive(false);
+            bossSpriteChild.GetComponent<SpriteRenderer>().sprite = idleSprite;
+        }
+
+        if(currentState == "3rdState" && moveAnimationActive)
+        {
+            walkingCollision.SetActive(true);
+            idleCollision.SetActive(false);
+            bossSpriteChild.GetComponent<SpriteRenderer>().sprite = walkingSprite;
+        }
+
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            player.currentHealth = 40;
+        }
+
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            player.currentHealth = 1;
+        }
     }
 
     // Update is called once per frame
@@ -161,8 +187,6 @@ public class ThirdBossSM : MonoBehaviour {
         currentState = "2ndState";
         StopCoroutine("BustinOut");
         coroutineInProgress = false;
-        
-        
     }
 
     void SecondState()
@@ -187,7 +211,6 @@ public class ThirdBossSM : MonoBehaviour {
             secondPhaseHP = secondPhaseHP - 1;
             StartCoroutine(LavaOverflow());
         }
-
     }
 
     IEnumerator LavaOverflow()
@@ -252,6 +275,7 @@ public class ThirdBossSM : MonoBehaviour {
     {
         if(thirdPhaseHP <= 0)
         {
+            debugText.GetComponent<Text>().gameObject.SetActive(true);
             print("Boss dies");
         }
         thisVolcano.stopShooting = true;
@@ -280,6 +304,10 @@ public class ThirdBossSM : MonoBehaviour {
     public void ThirdPhaseTakeDMG()
     {
         thirdPhaseHP = thirdPhaseHP - 1;
+        if(lavaOverflowActive != false)
+        {
+            lavaOverflowTimer = 0;
+        }
     }
 
     IEnumerator MoveSeconds(int seconds)
@@ -333,8 +361,13 @@ public class ThirdBossSM : MonoBehaviour {
         }
     }
 
-    public void reloadScene() //for death canvas
+    public void ReloadScene() //for death canvas
     {
         SceneManager.LoadScene("ThirdBoss");
+    }
+
+    public void ExitApplication()
+    {
+        Application.Quit();
     }
 }

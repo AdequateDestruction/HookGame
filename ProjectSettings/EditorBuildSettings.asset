@@ -14,13 +14,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Main.unity
     guid: f60e299f2ae744246b3f1ae659693c0b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Stage2Phase1.unity
     guid: a07a5c72761e04c4e840a195fa798cce
-  - enabled: 1
+  - enabled: 0
     path: Assets/Stage2Phase2.unity
     guid: cb5e8300f74d6c64c8f3208f6e953c55
-  - enabled: 1
+  - enabled: 0
     path: Assets/Stage2Phase3.unity
     guid: 611debab06ce17d4c9d2220f24e2f5a7
+  - enabled: 1
+    path: Assets/ThirdBoss.unity
+    guid: 01d07757b5461e742bde66d2ee13a53b
   m_configObjects: {}

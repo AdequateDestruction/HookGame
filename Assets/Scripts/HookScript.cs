@@ -121,6 +121,34 @@ public class HookScript : MonoBehaviour
                     hitAS.Play();
                     break;
 
+                case "Pillar":
+                    if (activeCounter > 1)
+                    {
+                        goingOut = false;
+                        pullingPlayer = true;
+                        FindObjectOfType<PlayerMovement>().StaticHooked();
+                        GetComponentInChildren<Animator>().Play("HookAttachedAnimation");
+
+                        if (other.name == "BigMushroom")                                    // Show animation if the block is a big mushroom
+                        {
+                            other.gameObject.GetComponentInChildren<Animator>().Play("BigMushroomFlashAnimation");
+                        }
+
+                        if (TrapPitColliders.Length != 0)                                   // Workaround to let the player pass through the solid colliders around the trap pits in boss1 stage. Not necessary for other scenes.
+                        {
+                            foreach (GameObject go in TrapPitColliders)
+                            {
+                                go.SetActive(false);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        goingOut = false;
+                    }
+                    hitAS.Play();
+                    break;
+
                 case "TentacleBlock":
                     goingOut = false;
                     if(other.transform.parent.GetComponent<TentacleScript>() != null)
