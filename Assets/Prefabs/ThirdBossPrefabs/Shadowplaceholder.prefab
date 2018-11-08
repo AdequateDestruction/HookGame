@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4746624099020756}
   - component: {fileID: 212549136856755592}
   - component: {fileID: 114793504097815890}
+  - component: {fileID: 58473185252651736}
+  - component: {fileID: 50452851524850466}
   m_Layer: 0
   m_Name: Shadowplaceholder
   m_TagString: Untagged
@@ -41,6 +43,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50452851524850466
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1878005953594204}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &58473185252651736
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1878005953594204}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.3
 --- !u!114 &114793504097815890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -61,7 +98,6 @@ MonoBehaviour:
     type: 2}
   fallingRockSprite: {fileID: 1425123218190096, guid: 2cf7c57e07988714a99c6e49e65a4be7,
     type: 2}
-  tmp_pos: {x: 0, y: 0}
 --- !u!212 &212549136856755592
 SpriteRenderer:
   m_ObjectHideFlags: 1

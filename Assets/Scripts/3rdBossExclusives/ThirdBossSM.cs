@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ThirdBossSM : MonoBehaviour {
 
@@ -332,11 +333,8 @@ public class ThirdBossSM : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) //Boss deals damage to player on contact
+    public void reloadScene() //for death canvas
     {
-        if(collision.transform.tag == "Player")
-        {
-            player.TakeDamage();
-        }
+        SceneManager.LoadScene("ThirdBoss");
     }
 }

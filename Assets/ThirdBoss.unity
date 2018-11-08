@@ -319,7 +319,7 @@ MonoBehaviour:
   randomInvokeMin: 0.05
   randomInvokeMax: 0.9
   invokeRepeat: 1
-  stopShooting: 0
+  stopShooting: 1
   boss: 0
 --- !u!50 &123091973
 Rigidbody2D:
@@ -524,7 +524,7 @@ MonoBehaviour:
   randomInvokeMin: 0.05
   randomInvokeMax: 0.9
   invokeRepeat: 1
-  stopShooting: 0
+  stopShooting: 1
   boss: 0
 --- !u!50 &146881719
 Rigidbody2D:
@@ -1249,7 +1249,7 @@ MonoBehaviour:
   randomInvokeMin: 0.05
   randomInvokeMax: 0.9
   invokeRepeat: 1
-  stopShooting: 0
+  stopShooting: 1
   boss: 0
 --- !u!50 &361081297
 Rigidbody2D:
@@ -6707,6 +6707,7 @@ GameObject:
   - component: {fileID: 628887593}
   - component: {fileID: 628887595}
   - component: {fileID: 628887594}
+  - component: {fileID: 628887596}
   m_Layer: 0
   m_Name: Colliders
   m_TagString: BossCollider
@@ -6806,6 +6807,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &628887596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 628887591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8016b7a189d90244ab79da90ae687da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &649964233
 GameObject:
   m_ObjectHideFlags: 0
@@ -7839,9 +7851,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: DeathButtons
-        m_Mode: 3
+      - m_Target: {fileID: 1164966590}
+        m_MethodName: reloadScene
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7924,7 +7936,7 @@ MonoBehaviour:
   randomInvokeMin: 0.05
   randomInvokeMax: 0.9
   invokeRepeat: 1
-  stopShooting: 0
+  stopShooting: 1
   boss: 0
 --- !u!50 &903549945
 Rigidbody2D:
@@ -9394,7 +9406,7 @@ MonoBehaviour:
   randomInvokeMin: 0.05
   randomInvokeMax: 0.9
   invokeRepeat: 1
-  stopShooting: 0
+  stopShooting: 1
   boss: 0
 --- !u!50 &1108114436
 Rigidbody2D:
@@ -14482,7 +14494,7 @@ MonoBehaviour:
   randomInvokeMin: 0.05
   randomInvokeMax: 0.9
   invokeRepeat: 1
-  stopShooting: 0
+  stopShooting: 1
   boss: 0
 --- !u!50 &1345760923
 Rigidbody2D:
@@ -14847,7 +14859,7 @@ MonoBehaviour:
   randomInvokeMin: 0.05
   randomInvokeMax: 0.9
   invokeRepeat: 1
-  stopShooting: 0
+  stopShooting: 1
   boss: 0
 --- !u!50 &1410341852
 Rigidbody2D:
@@ -15640,7 +15652,7 @@ MonoBehaviour:
   randomInvokeMin: 0.05
   randomInvokeMax: 0.9
   invokeRepeat: 1
-  stopShooting: 0
+  stopShooting: 1
   boss: 0
 --- !u!50 &1596852717
 Rigidbody2D:
