@@ -26,7 +26,7 @@ public class WaterBossAI : MonoBehaviour {
     public int killsToTrigger=1;
     //[HideInInspector]
     public int minibossKilled;
-    [HideInInspector]
+    //[HideInInspector]
     public bool playerHit=false, frenzyed = false;
 
 
@@ -76,23 +76,26 @@ public class WaterBossAI : MonoBehaviour {
         StartCoroutine(AI());
         corners = new List<Transform>();
 
-        for (int i = 0; i < GameObject.Find("RandomCorners").transform.childCount; i++)
+     
+        if (SceneManager.GetActiveScene().name == waterStagemanagerScript.PHASE3)
         {
-            corners.Add(GameObject.Find("RandomCorners").transform.GetChild(i));
+
+            for (int i = 0; i < GameObject.Find("RandomCorners").transform.childCount; i++)
+            {
+                corners.Add(GameObject.Find("RandomCorners").transform.GetChild(i));
+            }
+            sm.SetNextState("ToCorner");
+
+
         }
     }
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            sm.SetNextState("ToCorner");
-
-        }
-
         //Debug.DrawRay(rayCastStart.position, rayCastEnd.position- rayCastStart.position, Color.red, 1f);
         //if enough minibosses killed starts to attack player
-        if (minibossKilled>=killsToTrigger&&!frenzyed)
+
+        if (SceneManager.GetActiveScene().name == waterStagemanagerScript.PHASE2&&minibossKilled >= killsToTrigger&&!frenzyed)
         {
             sm.SetNextState("Moving");
             frenzyed = true;
@@ -139,6 +142,8 @@ public class WaterBossAI : MonoBehaviour {
         if (SM.CurrentState== "ToCorner"&& hit.collider != null && hit.collider.gameObject.name == "Center")
         {
             turned = true;
+            SM.SetNextState("InHale");
+
         }
     }
 

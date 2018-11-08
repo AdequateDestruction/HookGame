@@ -174,6 +174,7 @@ public class WaterBreath : State
     public WaterBreath(string stateID, WaterBossAI waterBossAI) : base(stateID)
     {
         this.waterBossAI = waterBossAI;
+        waterBossAI.rb.velocity = Vector2.zero;
     }
 
     public override void Enter()
@@ -252,6 +253,7 @@ public class WaterInHale : State
 
     public override void Update()
     {
+        waterBossAI.rb.velocity = Vector2.zero;
         timer += Time.deltaTime;
         if (timer > 3)
         {
@@ -300,6 +302,7 @@ public class WaterToCorner : State
             //raycast hits center
             if (waterBossAI.turned)
             {
+                Debug.Log("Done");
                 waterBossAI.SM.SetNextState("InHale");
             }
                     }

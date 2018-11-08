@@ -541,7 +541,11 @@ public class PlayerMovement : MonoBehaviour
                 {
                     Destroy(currentHook);
                 }
-                FindObjectOfType<BossScript>().PlayerDead();
+                if (FindObjectOfType<BossScript>()!=null)
+                {
+                    FindObjectOfType<BossScript>().PlayerDead();
+                }
+                
                 GameObject.FindGameObjectWithTag("MusicManager").GetComponent<MusicManagerScript>().SwitchToDeathTrack();
                 GetComponent<BoxCollider2D>().enabled = false;
                 StartCoroutine(ShowDeathButtons());

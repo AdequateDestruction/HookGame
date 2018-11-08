@@ -4,30 +4,23 @@ using UnityEngine;
 
 public class Whirlpool : MonoBehaviour {
 
-    float tempPlayerSpeed;
-    public float suckSpeed;
+    float tempPlayerSpeed, timer, repeateTime, explosionTimer;
+    [SerializeField]
+    float suckSpeed;
 
-    public PlayerMovement playerMovementScript;
-    public WaterBossAI waterBossAIScript;
-    public WaterStageManager waterStagemanagerScript;
+    PlayerMovement playerMovementScript;
+    WaterBossAI waterBossAIScript;
+    WaterStageManager waterStagemanagerScript;
+    SpriteRenderer spriteRenderer;
+    ParticleSystem explosion;
+    Collider2D col;
 
-    public bool useSlow;
-    public bool useTeleport;
+    [SerializeField]
+    float repeateTimeMax=5, repeateTimeMin=1;
 
-    public bool teleported;
-    public List<GameObject> pools;
-
-    public float timer;
-    public float repeateTimeMax=5, repeateTimeMin=1;
-    public float repeateTime;
-    public SpriteRenderer spriteRenderer;
-    public Collider2D col;
-    public ParticleSystem explosion;
-
-    public bool somethingInWhirlpool, exploded;
-    public float explosionTimer;
-    public float explosionTime=3;
-    public float invulnerableCD;
+    bool somethingInWhirlpool, exploded;
+    [SerializeField]
+    float explosionTime=3, invulnerableCD;
 
     // Use this for initialization
     void Start ()
@@ -38,16 +31,15 @@ public class Whirlpool : MonoBehaviour {
         waterStagemanagerScript = GameObject.Find("WaterStageManager").GetComponent<WaterStageManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
-        playerMovementScript.notTeleported = true;
         explosion = GetComponent<ParticleSystem>();
+
+        playerMovementScript.notTeleported = true;
         repeateTime = Random.Range(repeateTimeMin, repeateTimeMax);
-
     }
-
 
     void Update ()
     {
-        //Random activation
+        //Random whirlpool activation
         timer += Time.deltaTime;
         if (timer>repeateTime&&!somethingInWhirlpool)
         {
@@ -118,18 +110,13 @@ public class Whirlpool : MonoBehaviour {
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Player")
-        {
-            if (useSlow)
-            {
-                collision.GetComponent<PlayerMovement>().moveSpeed = tempPlayerSpeed;
-
-            }
+        {           
+            collision.GetComponent<PlayerMovement>().moveSpeed = tempPlayerSpeed;
         }
     }
 
     private void OnDisable()
     {
         waterStagemanagerScript.whirlpoolDestroyed++;
-
     }
 }

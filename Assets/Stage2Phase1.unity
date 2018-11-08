@@ -30332,7 +30332,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &496241390
 RectTransform:
   m_ObjectHideFlags: 0
@@ -55023,9 +55023,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: DeathButtons
-        m_Mode: 3
+      - m_Target: {fileID: 114544913732667028, guid: cd95301021ee9024586dd472d5553488,
+          type: 2}
+        m_MethodName: reloadPhase
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -118591,6 +118592,7 @@ MonoBehaviour:
   PHASE3: Stage2phase3
   cols: {fileID: 0}
   LeversActivated: 0
+  whirlpoolDestroyed: 0
 --- !u!4 &1948155990
 Transform:
   m_ObjectHideFlags: 0
