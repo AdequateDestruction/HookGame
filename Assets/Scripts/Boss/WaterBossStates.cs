@@ -300,6 +300,7 @@ public class WaterToCorner : State
             //raycast hits center
             if (waterBossAI.turned)
             {
+                Debug.Log("Done");
                 waterBossAI.SM.SetNextState("InHale");
             }
                     }

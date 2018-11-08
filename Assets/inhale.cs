@@ -8,10 +8,12 @@ public class inhale : MonoBehaviour {
 
     public GameObject Player;
     public bool pullPlayer;
+    public int inhaledEnemies;
 
 	void Start ()
     {
-        Player = GameObject.Find("Player");	
+        Player = GameObject.Find("Player");
+        
 	}
 	
 	void Update ()
@@ -55,6 +57,19 @@ public class inhale : MonoBehaviour {
         {
             pullPlayer = false;
 
+        }
+        if (collision.tag == "MiniBoss")
+        {
+            collision.transform.parent.GetComponent<Pathfinding.AIDestinationSetter>().target = Player.transform;
+            collision.transform.parent.GetComponent<Pathfinding.AIPath>().maxSpeed = 2;
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "MiniBoss")
+        {
+            collision.gameObject.GetComponent<miniBossAI>().isDead = true;
+            inhaledEnemies++;
         }
     }
 }

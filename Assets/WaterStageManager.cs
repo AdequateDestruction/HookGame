@@ -10,6 +10,7 @@ public class WaterStageManager : MonoBehaviour {
 
 
     PlayerMovement playerMovementScript;
+    inhale inhaleScript;
     //Phase1
     public GameObject cols;
     public int LeversActivated;
@@ -29,6 +30,13 @@ public class WaterStageManager : MonoBehaviour {
         else if (SceneManager.GetActiveScene().name == PHASE2)
         {
 
+
+        }
+        else if (SceneManager.GetActiveScene().name == PHASE3)
+        {
+            inhaleScript = GameObject.Find("WaterBoss").transform.GetChild(5).GetComponent<inhale>();
+            GameObject.Find("WaterBoss").transform.GetChild(5).gameObject.SetActive(false);
+
         }
 
     }
@@ -44,7 +52,11 @@ public class WaterStageManager : MonoBehaviour {
         {
             Phase2();
         }
-             
+        else if (SceneManager.GetActiveScene().name == PHASE3)
+        {
+            Phase3();
+        }
+
     }
 
 
@@ -68,9 +80,18 @@ public class WaterStageManager : MonoBehaviour {
 
     public void Phase2()
     {
-        if (whirlpoolDestroyed>=4)
+        if (whirlpoolDestroyed>=2)
         {
+            SceneManager.LoadScene(PHASE3);
+        }
+    }
 
+
+    public void Phase3()
+    {
+        if (inhaleScript.inhaledEnemies >= 10)
+        {
+            SceneManager.LoadScene(PHASE1);
         }
     }
 }

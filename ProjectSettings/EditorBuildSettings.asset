@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Stage2Phase2.unity
     guid: cb5e8300f74d6c64c8f3208f6e953c55
+  - enabled: 1
+    path: Assets/Stage2Phase3.unity
+    guid: 611debab06ce17d4c9d2220f24e2f5a7
   m_configObjects: {}
