@@ -27,11 +27,12 @@ public class miniBossAI : MonoBehaviour {
         animator = GetComponent<Animator>();
         Parent = transform.parent.gameObject;
         visual = transform.parent.GetChild(1).gameObject;
-        if (SceneManager.GetActiveScene().name==waterStageManagerScript.PHASE2)
+        if (SceneManager.GetActiveScene().name!=waterStageManagerScript.PHASE1)
         {
             waterBossScript= GameObject.Find("WaterBoss").GetComponent<WaterBossAI>();
             phase2 = true;
         }
+ 
     }
     private void OnEnable()
     {

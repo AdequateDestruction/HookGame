@@ -173,7 +173,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDead: 0
   electricityTime: 5
-  phase2: 0
 --- !u!114 &114110204287116390
 MonoBehaviour:
   m_ObjectHideFlags: 1

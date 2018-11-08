@@ -9,6 +9,7 @@ public class Whirlpool : MonoBehaviour {
 
     public PlayerMovement playerMovementScript;
     public WaterBossAI waterBossAIScript;
+    public WaterStageManager waterStagemanagerScript;
 
     public bool useSlow;
     public bool useTeleport;
@@ -17,7 +18,8 @@ public class Whirlpool : MonoBehaviour {
     public List<GameObject> pools;
 
     public float timer;
-    public float repeateTime=3;
+    public float repeateTimeMax=5, repeateTimeMin=1;
+    public float repeateTime;
     public SpriteRenderer spriteRenderer;
     public Collider2D col;
     public ParticleSystem explosion;
@@ -33,10 +35,12 @@ public class Whirlpool : MonoBehaviour {
         tempPlayerSpeed = GameObject.Find("Player").GetComponent<PlayerMovement>().moveSpeed;
         playerMovementScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
         waterBossAIScript = GameObject.Find("WaterBoss").GetComponent<WaterBossAI>();
+        waterStagemanagerScript = GameObject.Find("WaterStageManager").GetComponent<WaterStageManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
         playerMovementScript.notTeleported = true;
         explosion = GetComponent<ParticleSystem>();
+        repeateTime = Random.Range(repeateTimeMin, repeateTimeMax);
 
     }
 
@@ -123,5 +127,9 @@ public class Whirlpool : MonoBehaviour {
         }
     }
 
+    private void OnDisable()
+    {
+        waterStagemanagerScript.whirlpoolDestroyed++;
 
+    }
 }

@@ -10,8 +10,11 @@ public class WaterStageManager : MonoBehaviour {
 
 
     PlayerMovement playerMovementScript;
+    //Phase1
     public GameObject cols;
     public int LeversActivated;
+    //phase2
+    public int whirlpoolDestroyed=0;
 
 	// Use this for initialization
 	void Start ()
@@ -23,6 +26,10 @@ public class WaterStageManager : MonoBehaviour {
         {
             cols = GameObject.Find("Cols");
         }
+        else if (SceneManager.GetActiveScene().name == PHASE2)
+        {
+
+        }
 
     }
 	
@@ -32,6 +39,10 @@ public class WaterStageManager : MonoBehaviour {
         if (SceneManager.GetActiveScene().name==PHASE1)
         {
             Phase1();
+        }
+        else if (SceneManager.GetActiveScene().name == PHASE2)
+        {
+            Phase2();
         }
              
     }
@@ -52,6 +63,14 @@ public class WaterStageManager : MonoBehaviour {
         if (LeversActivated == 3)
         {
             SceneManager.LoadScene(PHASE2);
+        }
+    }
+
+    public void Phase2()
+    {
+        if (whirlpoolDestroyed>=4)
+        {
+
         }
     }
 }
