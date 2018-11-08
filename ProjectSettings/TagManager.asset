@@ -28,6 +28,7 @@ TagManager:
   - MiniBoss
   - PongedByPlayer
   - Pillar
+  - BossCollider
   layers:
   - Default
   - TransparentFX

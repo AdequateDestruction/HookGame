@@ -59,6 +59,9 @@ MonoBehaviour:
   shatter: 0
   rockCluster: {fileID: 1993555305193336, guid: f5dd77ddcc197794d8ca7b5e7f6b7880,
     type: 2}
+  fallingRockSprite: {fileID: 1425123218190096, guid: 2cf7c57e07988714a99c6e49e65a4be7,
+    type: 2}
+  tmp_pos: {x: 0, y: 0}
 --- !u!212 &212549136856755592
 SpriteRenderer:
   m_ObjectHideFlags: 1
