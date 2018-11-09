@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BossCollisionDMG : MonoBehaviour {
+
+    //Used to make colliding with the boss deal damage
+
     PlayerMovement player;
     bool touchingBoss = false;
 

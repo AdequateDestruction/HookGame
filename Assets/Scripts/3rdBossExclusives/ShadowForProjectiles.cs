@@ -7,18 +7,18 @@ public class ShadowForProjectiles : MonoBehaviour {
     float risingAlpha = 0;
     //public for customization
     public float invokeStart = 0.1f;
-    public float invokeRepeat = 0.5f;
-    public float alphaMultiplier = 1f;
+    public float invokeRepeat = 0.05f;
+    public float alphaMultiplier = 0.01f;
     public bool big = false;
     public bool shatter = false;
     public GameObject rockCluster;
     public GameObject fallingRockSprite;
     
-    float yMulti = 3f;
+    float yMulti = 5.5f;
     bool doOnce = true;
     GameObject rockObject;
     PlayerMovement playerScript;
-    bool insideShadow = false;
+    public bool insideShadow = false;
 
 	// Use this for initialization
 	void Start () {
@@ -35,12 +35,20 @@ public class ShadowForProjectiles : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
-        if(insideShadow)
+        if(risingAlpha >= 0.85f)
         {
-            playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-            playerScript.TakeDamage();
+
+
+
+            if(insideShadow)
+            {
+                playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+                playerScript.TakeDamage();
+            }
+
+
         }
         
     }
@@ -50,37 +58,50 @@ public class ShadowForProjectiles : MonoBehaviour {
         if(risingAlpha <= 1)
         risingAlpha = risingAlpha + alphaMultiplier;
 
-        if (risingAlpha >= 0.85f)
+        if (risingAlpha >= 0.80f)
         {
-            if(big)
+            if(big && !shatter)
             {
-                yMulti = 4;
+                yMulti = 6f;
+            }
+
+            if(shatter)
+            {
+                yMulti = 3.5f;
             }
 
             if(doOnce == true)
             {
                 rockObject = Instantiate(fallingRockSprite, new Vector2(transform.position.x, transform.position.y + yMulti), transform.rotation);
+                rockObject.GetComponent<RockFall>().ShadowsPos(gameObject.transform.position);
             }
 
-            if(big && doOnce)
+            if(doOnce)
             {
-                rockObject.transform.localScale = rockObject.transform.localScale * 3;
                 doOnce = false;
+
+                if(big)
+                {
+                    rockObject.transform.localScale = rockObject.transform.localScale * 3;
+                }
             }
 
 
             spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, risingAlpha);
 
-            if (shatter)
-            {
-                Instantiate(rockCluster,transform.position,transform.rotation);
-            }
 
-            if(risingAlpha >= 0.90f)
+
+            if(risingAlpha >= 0.86f)
             {
+
                 risingAlpha = 1;
                 spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, risingAlpha);
                 CancelInvoke();
+
+                if (shatter)
+                {
+                    Instantiate(rockCluster, transform.position, transform.rotation);
+                }
                 Destroy(gameObject);
             }
 
@@ -93,24 +114,21 @@ public class ShadowForProjectiles : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(risingAlpha >= 0.85f) //Does not work if put in the same if with && for some reason
+        
+        if(collision.tag == "Player")
         {
-            if(collision.tag == "Player")
-            {
-                insideShadow = true;
-            }
+            insideShadow = true;
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (risingAlpha >= 0.85f) //Does not work if put in the same if with && for some reason
+
+        if (collision.tag == "Player")
         {
-            if (collision.tag == "Player")
-            {
-                insideShadow = true;
-            }
+            insideShadow = true;
         }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)

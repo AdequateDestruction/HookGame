@@ -89,15 +89,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd03b44814e90947817bb899c88c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invokeStart: 0
-  invokeRepeat: 0.5
-  alphaMultiplier: 0.1
+  invokeStart: 0.1
+  invokeRepeat: 0.05
+  alphaMultiplier: 0.01
   big: 1
   shatter: 1
   rockCluster: {fileID: 1993555305193336, guid: f5dd77ddcc197794d8ca7b5e7f6b7880,
     type: 2}
   fallingRockSprite: {fileID: 1425123218190096, guid: 2cf7c57e07988714a99c6e49e65a4be7,
     type: 2}
+  insideShadow: 0
 --- !u!212 &212549136856755592
 SpriteRenderer:
   m_ObjectHideFlags: 1
