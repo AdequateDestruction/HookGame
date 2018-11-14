@@ -445,6 +445,15 @@ public class ThirdBossSM : MonoBehaviour {
         LavaOverflowParticleSys.GetComponent<ParticleSystem>().Stop();
         lavaActive = false;
         //boss death animation here probably as well as some other stuff if neccessary
+
+
+    }
+
+    IEnumerator ChangeScene()
+    {
+        //Miron change scene functio tänne
+        WorldSceneManager.NextScene();
+        yield return new WaitForSeconds(4f);
     }
 
     /// <summary>
@@ -454,6 +463,8 @@ public class ThirdBossSM : MonoBehaviour {
     {
         SceneManager.LoadScene("ThirdBoss");
     }
+
+
 
     /// <summary>
     /// Used for the quit button in deathcanvas, should be moved to load mainmenu once InteractiveMainMenu is done
