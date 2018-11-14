@@ -40,7 +40,7 @@ public class BossScript : MonoBehaviour
     bool stage3vulnerable;
     Animator bossAnimator;
     Transform playerTransform;
-    PlayerMovement pMoveScript;
+    public PlayerMovement pMoveScript;
     Vector3 jumpStartPos;
     Vector3 jumpTarget;
     bool playerAbove;
