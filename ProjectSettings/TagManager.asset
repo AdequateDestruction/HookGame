@@ -29,6 +29,7 @@ TagManager:
   - PongedByPlayer
   - Pillar
   - BossCollider
+  - TimerText
   layers:
   - Default
   - TransparentFX

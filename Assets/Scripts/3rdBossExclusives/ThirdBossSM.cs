@@ -18,7 +18,7 @@ public class ThirdBossSM : MonoBehaviour {
     PlayerMovement player;
     Pathfinding.AIPath aiPath;
     Pathfinding.AIDestinationSetter aiSetter;
-    int secondPhaseHP = 3, thirdPhaseHP = 4;
+    public int secondPhaseHP = 3, thirdPhaseHP = 4; //public so timer can check when boss dies on phase 4
 
     //Public variables, usually for balancing or for ease of use access to other objects
     public float randomLavaTime, maxInvoke = 20, minInvoke = 10, lavaFadeSpeed = 0.05f, lavaRiseSpeed = 0.01f, lavaActiveDuration = 2.5f; //public lava variables
@@ -26,7 +26,7 @@ public class ThirdBossSM : MonoBehaviour {
     public float lavaOverflowDuration = 3, playerProximityCheckTimer = 1.5f; //Lavaoverflow duration and random other variables
     public GameObject MiniVolcParent, LavaOverflowParticleSys, ProximityTrigger;
     public GameObject secondPhaseAmmunition, lava;
-    public bool lavaActive = false, magmaBreathActive = false, doOnce = false, lavaOverflowActive;
+    public bool lavaActive = false, magmaBreathActive = false, doOnce = false, lavaOverflowActive, playerDead = false;
     public GameObject debugText, bossSpriteChild;
     public Sprite walkingSprite, idleSprite;
     public GameObject walkingCollision, idleCollision;
@@ -135,9 +135,16 @@ public class ThirdBossSM : MonoBehaviour {
             bossSpriteChild.GetComponent<SpriteRenderer>().sprite = walkingSprite;
         }
 
-        if(playerRangeCheckInProg == true)//if player range check is in progress tick the function
+        if(playerRangeCheckInProg == true && currentState == "3rdState")//if player range check is in progress tick the function
         {
             CheckPlayerProximity();
+        }
+
+        if(player.currentHealth <= 0)
+        {
+            print("Player dead");
+            currentState = "PlayerDead";
+            playerDead = true;
         }
 
         if(Input.GetKeyDown(KeyCode.H))//Cheat for easier testing, DISABLE ON RELEASE
@@ -171,6 +178,12 @@ public class ThirdBossSM : MonoBehaviour {
                 break;
             case "3rdState":
                 ThirdState();
+                break;
+            case "BossDeadState":
+
+            break;
+            case "PlayerDead":
+
                 break;
             default:
                 break;
@@ -315,6 +328,7 @@ public class ThirdBossSM : MonoBehaviour {
         {
             debugText.GetComponent<Text>().gameObject.SetActive(true);
             print("Boss dies");
+            currentState = "BossDeadState";
         }
         thisVolcano.stopShooting = true;
         print("third state");
@@ -419,6 +433,18 @@ public class ThirdBossSM : MonoBehaviour {
         {
             MagmaBreath();
         }
+    }
+
+    void BossDead()
+    {
+        magmaBreathTimer = 0;
+        magmaBreathActive = false;
+        magmaParticle.Stop();
+        lavaOverflowTimer = 0;
+        lavaOverflowActive = false;
+        LavaOverflowParticleSys.GetComponent<ParticleSystem>().Stop();
+        lavaActive = false;
+        //boss death animation here probably as well as some other stuff if neccessary
     }
 
     /// <summary>
