@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class Lever : MonoBehaviour {
 
-    public WaterStageManager waterstageManagerScript;
+    WaterStageManager waterstageManagerScript;
     bool doOnce;
 
 	// Use this for initialization
 	void Start ()
     {
         doOnce = true;
+        waterstageManagerScript = GameObject.Find("WaterStageManager").GetComponent<WaterStageManager>();
 	}
 	
-	// Update is called once per frame
 	void Update ()
     {
+        //if lever is activated with Hook, Sprite is changed from HookScript
         if (doOnce && transform.GetChild(1).gameObject.activeSelf)
         {
             waterstageManagerScript.LeversActivated++;

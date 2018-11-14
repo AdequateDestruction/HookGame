@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class WaterStageManager : MonoBehaviour {
     public string PHASE1, PHASE2, PHASE3;
 
-
     PlayerMovement playerMovementScript;
     inhale inhaleScript;
     //Phase1
@@ -15,11 +14,20 @@ public class WaterStageManager : MonoBehaviour {
     //phase2
     public int whirlpoolDestroyed=0;
 
-	// Use this for initialization
-	void Start ()
+    string toBeLoaded;
+    bool loadingOut;
+    bool loadingIn;
+    Fade fadeScript;
+
+
+    // Use this for initialization
+    void Start ()
     {
-        PHASE1 = "Stage2Phase1"; PHASE2 = "Stage2Phase2"; PHASE3 = "Stage2Phase3";
         playerMovementScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        fadeScript = GameObject.Find("fade").GetComponent<Fade>();
+
+        PHASE1 = "Stage2Phase1"; PHASE2 = "Stage2Phase2"; PHASE3 = "Stage2Phase3";
+        loadingIn = true;
 
         if (SceneManager.GetActiveScene().name == PHASE1)
         {
@@ -34,9 +42,8 @@ public class WaterStageManager : MonoBehaviour {
             inhaleScript = GameObject.Find("WaterBoss").transform.GetChild(5).GetComponent<inhale>();
             GameObject.Find("WaterBoss").transform.GetChild(5).gameObject.SetActive(false);
         }
-            }
+    }
 	
-	// Update is called once per frame
 	void Update ()
     {
         if (SceneManager.GetActiveScene().name==PHASE1)
@@ -52,14 +59,33 @@ public class WaterStageManager : MonoBehaviour {
             Phase3();
         }
 
-
+        //DEBUG
         Nextphase();
+
+        //Fade between sceneloads
+        if (loadingOut)
+        {
+            fadeScript.FadeIn();
+            if (fadeScript.fade.a>=1)
+            {
+                SceneManager.LoadScene(toBeLoaded);
+            }
+        }
+        if (loadingIn)
+        {
+            fadeScript.FadeOut();
+            if (fadeScript.fade.a <= 0)
+            {
+                fadeScript.elapsedTime = 0f;
+                loadingIn = false;
+            }
+        }
 
     }
 
-
     public void Phase1()
     {
+        //if player is pulled by hook sets colliders in cols off
         if (playerMovementScript.currentState == 1)
         {
             cols.gameObject.SetActive(false);
@@ -67,7 +93,6 @@ public class WaterStageManager : MonoBehaviour {
         else
         {
             cols.gameObject.SetActive(true);
-
         }
 
         if (LeversActivated == 3)
@@ -83,8 +108,7 @@ public class WaterStageManager : MonoBehaviour {
             SceneManager.LoadScene(PHASE3);
         }
     }
-
-
+    
     public void Phase3()
     {
         if (inhaleScript.inhaledEnemies >= 20)
@@ -93,21 +117,23 @@ public class WaterStageManager : MonoBehaviour {
         }
     }
 
-
-    //DEBUG
+        //DEBUG
     public void Nextphase()
     {
         if (Input.GetKey(KeyCode.Alpha1))
         {
-            SceneManager.LoadScene(PHASE1);
+            toBeLoaded = PHASE1;
+            loadingOut = true;
         }
         else if (Input.GetKey(KeyCode.Alpha2))
         {
-            SceneManager.LoadScene(PHASE2);
+            toBeLoaded = PHASE2;
+            loadingOut = true;
         }
         else if (Input.GetKey(KeyCode.Alpha3))
         {
-            SceneManager.LoadScene(PHASE3);
+            toBeLoaded = PHASE3;
+            loadingOut = true;
         }
         if (Input.GetKey(KeyCode.Escape))
         {
@@ -115,9 +141,4 @@ public class WaterStageManager : MonoBehaviour {
         }
     }
 
-    public void reloadPhase()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        
-    }
 }

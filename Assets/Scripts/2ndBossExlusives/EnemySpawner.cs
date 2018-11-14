@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 
-
-
     [SerializeField]
     GameObject enemyPrefab;
 
@@ -18,6 +16,7 @@ public class EnemySpawner : MonoBehaviour {
     [Header("Invoke repeating")]
     [SerializeField]
     float invokeStartTime;
+
     [SerializeField]
     float invokeRepeatTime;
 
