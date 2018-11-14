@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class inhale : MonoBehaviour {
 
-    public float suckSpeed;
+    GameObject Player;
+    bool suckPlayer;
 
-    public GameObject Player;
-    public bool pullPlayer;
+    [SerializeField]
+    float suckSpeed;
+
     public int inhaledEnemies;
 
 	void Start ()
     {
         Player = GameObject.Find("Player");
-        
-	}
+    }
 	
 	void Update ()
     {
-        if (pullPlayer)
+        //moves player towards this gameobjects position
+        if (suckPlayer)
         {
             Player.transform.position= Vector2.MoveTowards(Player.transform.position, this.transform.position, suckSpeed * Time.deltaTime);
         }
@@ -28,13 +30,14 @@ public class inhale : MonoBehaviour {
     {
         if (collision.tag == "MiniBoss")
         {
+            //gives pathfinding new target
             collision.transform.parent.GetComponent<Pathfinding.AIDestinationSetter>().target = this.gameObject.transform.GetChild(0);
             collision.transform.parent.GetComponent<Pathfinding.AIPath>().maxSpeed = 1;
         }
         else if (collision.tag=="Player")
         {
             Player = collision.gameObject;
-            pullPlayer = true;
+            suckPlayer = true;
         }
 
     }
@@ -44,22 +47,17 @@ public class inhale : MonoBehaviour {
         {
             collision.transform.parent.position = Vector2.MoveTowards(collision.transform.position, this.transform.position, suckSpeed * Time.deltaTime);
         }
-        else
-        {
-            //collision.transform.position = Vector2.MoveTowards(collision.transform.position, this.transform.position, suckSpeed * Time.deltaTime);
-        }
-
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag=="Player")
         {
-            pullPlayer = false;
-
+            suckPlayer = false;
         }
         if (collision.tag == "MiniBoss")
         {
+            //gives pathfinding new target
             collision.transform.parent.GetComponent<Pathfinding.AIDestinationSetter>().target = Player.transform;
             collision.transform.parent.GetComponent<Pathfinding.AIPath>().maxSpeed = 2;
         }

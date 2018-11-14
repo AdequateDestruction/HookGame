@@ -83,9 +83,7 @@ public class WaterWaiting : State
     }
     public override void Enter()
     {
-        //Debug.Log(waterBossAI.SM.CurrentState);
-        //dir = waterBossAI.player.transform.position - waterBossAI.transform.position;
-        //angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
     }
     public override void Update()
     {

@@ -8,19 +8,16 @@ public class miniBossAI : MonoBehaviour {
     GameObject Parent;
     Animator animator;
     GameObject visual;
-
     WaterBossAI waterBossScript;
     WaterStageManager waterStageManagerScript;
 
-    bool canDo;
-
+    bool canDo, doOnce = false;
+    float timer = 0;
+    [SerializeField]
+    float electricityTime = 5;
 
     public bool isDead;
-    bool doOnce=false;
-    float timer=0;
-    [SerializeField]
-    float electricityTime=5;
-
+    
     void Start ()
     {
         waterStageManagerScript = GameObject.Find("WaterStageManager").GetComponent<WaterStageManager>();
@@ -38,6 +35,7 @@ public class miniBossAI : MonoBehaviour {
     }
     private void OnEnable()
     {
+        //when enabled change location back to spawner
         this.transform.localPosition = Vector3.zero;
     }
     void Update ()
@@ -72,7 +70,7 @@ public class miniBossAI : MonoBehaviour {
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        //just kills miniboss when collided with StaticBlock
+        //kills miniboss when collided with StaticBlock
         if (collision.gameObject.tag == "StaticBlock")
         {
             GetComponent<ChildposToParent>().enabled = !GetComponent<ChildposToParent>().enabled;
@@ -91,14 +89,13 @@ public class miniBossAI : MonoBehaviour {
     private void OnDisable()
     {
         if (isDead)
-        {//reset enemy for pooling
+        {
+            //reset enemy for pooling
             isDead = false;
             doOnce = false;
             timer = 0;
             visual.SetActive(true);
             Parent.GetComponent<Pathfinding.AIPath>().canMove = true;
-
-            //Parent.GetComponent<Pathfinding.AIPath>().enabled = !Parent.GetComponent<Pathfinding.AIPath>().enabled;
             this.transform.localPosition = Vector3.zero;
         }
     }

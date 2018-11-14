@@ -4,14 +4,9 @@ using UnityEngine;
 
 public class ChildposToParent : MonoBehaviour {
 
-
-	void Start ()
-    {
-		
-	}
-
-	void Update ()
+    void Update ()
     {
         transform.parent.position = transform.position;
 	}
+
 }

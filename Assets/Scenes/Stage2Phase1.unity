@@ -17689,6 +17689,53 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1001 &285819491
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4712997159851500, guid: 8e0c46cd694c7ad49bac1f62c6da0729, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2.140933
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712997159851500, guid: 8e0c46cd694c7ad49bac1f62c6da0729, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.273928
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712997159851500, guid: 8e0c46cd694c7ad49bac1f62c6da0729, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.015625
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712997159851500, guid: 8e0c46cd694c7ad49bac1f62c6da0729, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712997159851500, guid: 8e0c46cd694c7ad49bac1f62c6da0729, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712997159851500, guid: 8e0c46cd694c7ad49bac1f62c6da0729, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712997159851500, guid: 8e0c46cd694c7ad49bac1f62c6da0729, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712997159851500, guid: 8e0c46cd694c7ad49bac1f62c6da0729, type: 2}
+      propertyPath: m_RootOrder
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 212759464779275422, guid: 8e0c46cd694c7ad49bac1f62c6da0729,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 8e0c46cd694c7ad49bac1f62c6da0729, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &286930980
 GameObject:
   m_ObjectHideFlags: 0
@@ -115225,7 +115272,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1901323944}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.4, y: -0.3, z: 0}
+  m_LocalPosition: {x: -3.44, y: -0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2073385636}
@@ -118590,7 +118637,6 @@ MonoBehaviour:
   PHASE1: Stage2phase1
   PHASE2: Stage2phase2
   PHASE3: Stage2phase3
-  cols: {fileID: 0}
   LeversActivated: 0
   whirlpoolDestroyed: 0
 --- !u!4 &1948155990

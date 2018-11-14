@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class WaterBossAI : MonoBehaviour {
 
-    public WaterStageManager waterStagemanagerScript;
+    WaterStageManager waterStagemanagerScript;
     public ParticleSystem particle;
+    [SerializeField]
     public float WhirlpoolRotSpeed;
 
     [HideInInspector]
@@ -19,21 +20,22 @@ public class WaterBossAI : MonoBehaviour {
     public GameObject player;
     [HideInInspector]
     public Rigidbody2D rb;
+    [HideInInspector]
+    public int minibossKilled;
+    [HideInInspector]
+    public bool playerHit = false, frenzyed = false;
 
     public float movementSpeed=1, dashSpeed=5,rotateSpeed = 1;
 
-
+    [SerializeField]
     public int killsToTrigger=1;
-    //[HideInInspector]
-    public int minibossKilled;
-    //[HideInInspector]
-    public bool playerHit=false, frenzyed = false;
 
 
-
-    public int invulFlashCounter;
-    public SpriteRenderer bossVisual;
-    public Color defaultColor, damageColor;
+    int invulFlashCounter;
+    SpriteRenderer bossVisual;
+    [SerializeField]
+    Color defaultColor, damageColor;
+    [HideInInspector]
     public bool invulnerable;
     public float invulnerableTimer;
 
@@ -47,60 +49,47 @@ public class WaterBossAI : MonoBehaviour {
 
     private void Awake()
     {
-        //states
-        sm.AddState(new WaterIdle("Idle", this));
-        sm.AddState(new WaterWaiting("Waiting", this));
-        sm.AddState(new WaterDash("Dash", this));
-        sm.AddState(new WaterTurbine("Turbine", this));
-        sm.AddState(new WaterMoving("Moving", this));
-        sm.AddState(new WaterBreath("Breath", this));
-        sm.AddState(new WaterWhirlpool("Whirlpool", this));
-        sm.AddState(new WaterInHale("InHale", this));
-        sm.AddState(new WaterToCorner("ToCorner", this));
-
-
-
-
+        States();
         particle.Stop();
     }
 
     void Start()
     {
-        //bossVisual = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+        particle= transform.GetChild(4).gameObject.GetComponent<ParticleSystem>();
+        bossVisual = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
         waterStagemanagerScript = GameObject.Find("WaterStageManager").GetComponent<WaterStageManager>();
         col = GetComponent<Collider2D>();
         rayCastEnd = transform.GetChild(1);
         rayCastStart = transform.GetChild(2);
         player = GameObject.Find("Player");
         rb = GetComponent<Rigidbody2D>();
-        StartCoroutine(AI());
         corners = new List<Transform>();
 
-     
+        StartCoroutine(AI());
+
+        //Find corners in phase 3
         if (SceneManager.GetActiveScene().name == waterStagemanagerScript.PHASE3)
         {
-
             for (int i = 0; i < GameObject.Find("RandomCorners").transform.childCount; i++)
             {
                 corners.Add(GameObject.Find("RandomCorners").transform.GetChild(i));
             }
             sm.SetNextState("ToCorner");
-
-
         }
     }
 
     private void Update()
     {
         //Debug.DrawRay(rayCastStart.position, rayCastEnd.position- rayCastStart.position, Color.red, 1f);
-        //if enough minibosses killed starts to attack player
 
+        //if enough minibosses killed starts to attack player
         if (SceneManager.GetActiveScene().name == waterStagemanagerScript.PHASE2&&minibossKilled >= killsToTrigger&&!frenzyed)
         {
             sm.SetNextState("Moving");
             frenzyed = true;
         }
 
+        //visual when taking damage
         if (invulnerable)
         {
             if (invulFlashCounter % 10 == 0 || invulFlashCounter % 10 == 1)
@@ -123,7 +112,7 @@ public class WaterBossAI : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        //when raycast hits player when moving, changes state to dash
+        //when raycast hits player when moving, changes state
         RaycastHit2D hit = Physics2D.Raycast(rayCastStart.position, rayCastEnd.position - rayCastStart.position);
         if (SM.CurrentState=="Moving"&&hit.collider!=null&&hit.collider.gameObject.name=="Player")
         {
@@ -147,6 +136,30 @@ public class WaterBossAI : MonoBehaviour {
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //when waterboss hits wall when not in moving/tocorner state
+        if (collision.gameObject.tag == "StaticBlock"&&sm.CurrentState!="Moving"|| sm.CurrentState != "ToCorner")
+        {
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+        }
+    }
+
+    void States()
+    {
+        //states
+        sm.AddState(new WaterIdle("Idle", this));
+        sm.AddState(new WaterWaiting("Waiting", this));
+        sm.AddState(new WaterDash("Dash", this));
+        sm.AddState(new WaterTurbine("Turbine", this));
+        sm.AddState(new WaterMoving("Moving", this));
+        sm.AddState(new WaterBreath("Breath", this));
+        sm.AddState(new WaterWhirlpool("Whirlpool", this));
+        sm.AddState(new WaterInHale("InHale", this));
+        sm.AddState(new WaterToCorner("ToCorner", this));
+    }
+
     //"threading"
     IEnumerator AI()
     {
@@ -154,17 +167,6 @@ public class WaterBossAI : MonoBehaviour {
         {
             sm.Update();
             yield return null;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //when waterboss hits wall when not in moving state
-        if (collision.gameObject.tag == "StaticBlock"&&sm.CurrentState!="Moving"|| sm.CurrentState != "ToCorner")
-        {
-            rb.velocity = Vector2.zero;
-            rb.angularVelocity = 0f;
-            //SM.SetNextState("Idle");
         }
     }
 }

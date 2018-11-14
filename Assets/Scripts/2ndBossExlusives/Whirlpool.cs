@@ -5,8 +5,7 @@ using UnityEngine;
 public class Whirlpool : MonoBehaviour {
 
     float tempPlayerSpeed, timer, repeateTime, explosionTimer;
-    [SerializeField]
-    float suckSpeed;
+    bool somethingInWhirlpool, exploded;
 
     PlayerMovement playerMovementScript;
     WaterBossAI waterBossAIScript;
@@ -16,13 +15,8 @@ public class Whirlpool : MonoBehaviour {
     Collider2D col;
 
     [SerializeField]
-    float repeateTimeMax=5, repeateTimeMin=1;
+    float suckSpeed, repeateTimeMax = 5, repeateTimeMin=1, explosionTime = 3, invulnerableCD;
 
-    bool somethingInWhirlpool, exploded;
-    [SerializeField]
-    float explosionTime=3, invulnerableCD;
-
-    // Use this for initialization
     void Start ()
     {
         tempPlayerSpeed = GameObject.Find("Player").GetComponent<PlayerMovement>().moveSpeed;
@@ -33,7 +27,6 @@ public class Whirlpool : MonoBehaviour {
         col = GetComponent<Collider2D>();
         explosion = GetComponent<ParticleSystem>();
 
-        playerMovementScript.notTeleported = true;
         repeateTime = Random.Range(repeateTimeMin, repeateTimeMax);
     }
 
@@ -66,7 +59,6 @@ public class Whirlpool : MonoBehaviour {
             explosionTimer += Time.deltaTime;
 
         }
-
         if (explosionTimer>explosionTime*2&&exploded)
         {
             waterBossAIScript.SM.SetNextState("Idle");
@@ -79,17 +71,13 @@ public class Whirlpool : MonoBehaviour {
         if (collision.tag=="Player")
         {
             collision.GetComponent<PlayerMovement>().moveSpeed = tempPlayerSpeed/2;
-
-
         }
         if (collision.tag=="MiniBoss")
         {
             collision.GetComponent<miniBossAI>().isDead = true;
         }
-
         if (collision.tag=="Boss")
         {
-            Debug.Log("spotted");
             somethingInWhirlpool = true;
             waterBossAIScript.SM.SetNextState("Whirlpool");
         }

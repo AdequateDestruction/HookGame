@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Stage2Phase3.unity
     guid: 611debab06ce17d4c9d2220f24e2f5a7
+  - enabled: 0
+    path: Assets/ThirdBoss.unity
+    guid: 01d07757b5461e742bde66d2ee13a53b
   m_configObjects: {}
