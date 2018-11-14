@@ -13680,6 +13680,10 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 1810329582815880, guid: 8e0c46cd694c7ad49bac1f62c6da0729, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e0c46cd694c7ad49bac1f62c6da0729, type: 2}
   m_IsPrefabParent: 0
@@ -15041,7 +15045,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c317f1607fba14bb9b0b228d33f50a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterStagemanagerScript: {fileID: 0}
   particle: {fileID: 322927004}
   WhirlpoolRotSpeed: 30
   col: {fileID: 0}
@@ -15049,15 +15052,13 @@ MonoBehaviour:
   rayCastStart: {fileID: 0}
   player: {fileID: 742883309}
   rb: {fileID: 1732321897}
+  minibossKilled: 0
+  playerHit: 0
+  frenzyed: 0
   movementSpeed: 1
   dashSpeed: 5
   rotateSpeed: 1
   killsToTrigger: 1
-  minibossKilled: 0
-  playerHit: 0
-  frenzyed: 0
-  invulFlashCounter: 0
-  bossVisual: {fileID: 433055567}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   invulnerable: 0

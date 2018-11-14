@@ -54,5 +54,5 @@ MonoBehaviour:
   PHASE1: Stage2phase1
   PHASE2: Stage2phase2
   PHASE3: Stage2phase3
-  cols: {fileID: 0}
   LeversActivated: 0
+  whirlpoolDestroyed: 0

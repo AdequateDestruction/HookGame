@@ -52,7 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd2568e56288df445a24d7b9eb88d194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeIn: {r: 0, g: 0, b: 0, a: 0}
+  fade: {r: 0, g: 0, b: 0, a: 0}
+  elapsedTime: 0
   fadeSpeed: 2
 --- !u!212 &212759464779275422
 SpriteRenderer:

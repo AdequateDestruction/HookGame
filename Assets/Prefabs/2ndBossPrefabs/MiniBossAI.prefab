@@ -171,8 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed1c6cbf1c26be943bb8c5412d5fb04e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDead: 0
   electricityTime: 5
+  isDead: 0
 --- !u!114 &114110204287116390
 MonoBehaviour:
   m_ObjectHideFlags: 1

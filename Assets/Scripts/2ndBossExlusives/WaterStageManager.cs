@@ -7,6 +7,7 @@ public class WaterStageManager : MonoBehaviour {
     public string PHASE1, PHASE2, PHASE3;
 
     PlayerMovement playerMovementScript;
+    WorldSceneManager worldSceneManagerScript;
     inhale inhaleScript;
     //Phase1
     GameObject cols;
@@ -23,11 +24,11 @@ public class WaterStageManager : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        worldSceneManagerScript = GameObject.Find("WorldSceneManager").GetComponent<WorldSceneManager>();
         playerMovementScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
         fadeScript = GameObject.Find("fade").GetComponent<Fade>();
 
         PHASE1 = "Stage2Phase1"; PHASE2 = "Stage2Phase2"; PHASE3 = "Stage2Phase3";
-        loadingIn = true;
 
         if (SceneManager.GetActiveScene().name == PHASE1)
         {
@@ -62,24 +63,7 @@ public class WaterStageManager : MonoBehaviour {
         //DEBUG
         Nextphase();
 
-        //Fade between sceneloads
-        if (loadingOut)
-        {
-            fadeScript.FadeIn();
-            if (fadeScript.fade.a>=1)
-            {
-                SceneManager.LoadScene(toBeLoaded);
-            }
-        }
-        if (loadingIn)
-        {
-            fadeScript.FadeOut();
-            if (fadeScript.fade.a <= 0)
-            {
-                fadeScript.elapsedTime = 0f;
-                loadingIn = false;
-            }
-        }
+
 
     }
 
@@ -97,7 +81,7 @@ public class WaterStageManager : MonoBehaviour {
 
         if (LeversActivated == 3)
         {
-            SceneManager.LoadScene(PHASE2);
+            worldSceneManagerScript.NextScene();
         }
     }
 
@@ -105,7 +89,8 @@ public class WaterStageManager : MonoBehaviour {
     {
         if (whirlpoolDestroyed>=2)
         {
-            SceneManager.LoadScene(PHASE3);
+            worldSceneManagerScript.NextScene();
+
         }
     }
     
@@ -113,28 +98,15 @@ public class WaterStageManager : MonoBehaviour {
     {
         if (inhaleScript.inhaledEnemies >= 20)
         {
-            SceneManager.LoadScene(PHASE1);
+            worldSceneManagerScript.NextScene();
+
         }
     }
 
         //DEBUG
     public void Nextphase()
     {
-        if (Input.GetKey(KeyCode.Alpha1))
-        {
-            toBeLoaded = PHASE1;
-            loadingOut = true;
-        }
-        else if (Input.GetKey(KeyCode.Alpha2))
-        {
-            toBeLoaded = PHASE2;
-            loadingOut = true;
-        }
-        else if (Input.GetKey(KeyCode.Alpha3))
-        {
-            toBeLoaded = PHASE3;
-            loadingOut = true;
-        }
+
         if (Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();

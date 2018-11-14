@@ -71,22 +71,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   suckSpeed: 1
-  playerMovementScript: {fileID: 0}
-  waterBossAIScript: {fileID: 0}
-  useSlow: 1
-  useTeleport: 0
-  teleported: 0
-  pools:
-  - {fileID: 0}
-  - {fileID: 0}
-  timer: 0
-  repeateTime: 3
-  spriteRenderer: {fileID: 0}
-  col: {fileID: 0}
-  explosion: {fileID: 0}
-  somethingInWhirlpool: 0
-  explosionTimer: 0
+  repeateTimeMax: 5
+  repeateTimeMin: 1
   explosionTime: 3
+  invulnerableCD: 0
 --- !u!198 &198884924721472180
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -158,7 +158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91c96cf5b63443a4c99468ecfaed5128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterstageManagerScript: {fileID: 0}
 --- !u!212 &212365517598788830
 SpriteRenderer:
   m_ObjectHideFlags: 1

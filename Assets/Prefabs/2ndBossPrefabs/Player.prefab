@@ -718,6 +718,7 @@ MonoBehaviour:
   stepsSource: {fileID: 0}
   takeDamageSource: {fileID: 82303373898147516}
   hookLaunchSource: {fileID: 82395333089580356}
+  cols: {fileID: 0}
 --- !u!212 &212128505644660776
 SpriteRenderer:
   m_ObjectHideFlags: 1

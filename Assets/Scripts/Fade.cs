@@ -6,11 +6,11 @@ public class Fade : MonoBehaviour {
 
     public Color fade;
     public float elapsedTime = 0f;
-    public float fadeSpeed;
+    public float fadeSpeed=2;
 
     void Start () {
 		fade=this.GetComponent<SpriteRenderer>().color;
-        this.GetComponent<SpriteRenderer>().color = new Color(fade.r, fade.g, fade.b, 1);
+        //this.GetComponent<SpriteRenderer>().color = new Color(fade.r, fade.g, fade.b, 1);
     }
 	
     //Scene change fade
