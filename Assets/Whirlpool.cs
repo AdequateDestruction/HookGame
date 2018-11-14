@@ -66,7 +66,6 @@ public class Whirlpool : MonoBehaviour {
             explosionTimer += Time.deltaTime;
 
         }
-
         if (explosionTimer>explosionTime*2&&exploded)
         {
             waterBossAIScript.SM.SetNextState("Idle");
@@ -79,17 +78,13 @@ public class Whirlpool : MonoBehaviour {
         if (collision.tag=="Player")
         {
             collision.GetComponent<PlayerMovement>().moveSpeed = tempPlayerSpeed/2;
-
-
         }
         if (collision.tag=="MiniBoss")
         {
             collision.GetComponent<miniBossAI>().isDead = true;
         }
-
         if (collision.tag=="Boss")
         {
-            Debug.Log("spotted");
             somethingInWhirlpool = true;
             waterBossAIScript.SM.SetNextState("Whirlpool");
         }

@@ -164,7 +164,6 @@ public class WaterBossAI : MonoBehaviour {
         {
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0f;
-            //SM.SetNextState("Idle");
         }
     }
 }

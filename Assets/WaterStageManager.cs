@@ -4,15 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class WaterStageManager : MonoBehaviour {
-    public string PHASE1;
-    public string PHASE2;
-    public string PHASE3;
+    public string PHASE1, PHASE2, PHASE3;
 
 
     PlayerMovement playerMovementScript;
     inhale inhaleScript;
     //Phase1
-    public GameObject cols;
+    GameObject cols;
     public int LeversActivated;
     //phase2
     public int whirlpoolDestroyed=0;
@@ -30,16 +28,13 @@ public class WaterStageManager : MonoBehaviour {
         else if (SceneManager.GetActiveScene().name == PHASE2)
         {
 
-
         }
         else if (SceneManager.GetActiveScene().name == PHASE3)
         {
             inhaleScript = GameObject.Find("WaterBoss").transform.GetChild(5).GetComponent<inhale>();
             GameObject.Find("WaterBoss").transform.GetChild(5).gameObject.SetActive(false);
-
         }
-
-    }
+            }
 	
 	// Update is called once per frame
 	void Update ()
@@ -98,6 +93,8 @@ public class WaterStageManager : MonoBehaviour {
         }
     }
 
+
+    //DEBUG
     public void Nextphase()
     {
         if (Input.GetKey(KeyCode.Alpha1))
