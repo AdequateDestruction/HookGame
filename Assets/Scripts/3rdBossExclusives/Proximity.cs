@@ -15,6 +15,8 @@ public class Proximity : MonoBehaviour {
 		
 	}
 
+    //Used to detect when the player is within the range of MagmaBreat() information is relayed back to ThirdBossSM script
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.tag == "Player")

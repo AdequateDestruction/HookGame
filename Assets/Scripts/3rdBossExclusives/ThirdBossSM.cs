@@ -1,26 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ThirdBossSM : MonoBehaviour {
 
     public string currentState= "1stState";
+
+    //Non-Public variables
     MiniVolcanoes thisVolcano;
-    public bool coroutineInProgress = false, idleAnimationActive, moveAnimationActive, moveCoroutineInProgress = false;
+    bool coroutineInProgress = false, idleAnimationActive, moveAnimationActive, moveCoroutineInProgress = false;
+    bool playerRangeCheckInProg = false;
     SpriteRenderer lavaSpriteRenderer;
-    float risingAlpha = 0, lavaTimer = 0, magmaBreathTimer = 0, lavaOverflowTimer;
+    float risingAlpha = 0, lavaTimer = 0, magmaBreathTimer = 0, lavaOverflowTimer; // all of the timer variables
     ParticleSystem magmaParticle;
     PlayerMovement player;
     Pathfinding.AIPath aiPath;
     Pathfinding.AIDestinationSetter aiSetter;
+    int secondPhaseHP = 3, thirdPhaseHP = 4;
 
-    public float randomLavaTime, maxInvoke = 20, minInvoke = 10;
-    public int secondPhaseHP = 3, thirdPhaseHP = 4, mBreathRandom = 10, mBreathRandMax = 15, mBreathRandMin= 10;
+    //Public variables, usually for balancing or for ease of use access to other objects
+    public float randomLavaTime, maxInvoke = 20, minInvoke = 10, lavaFadeSpeed = 0.05f, lavaRiseSpeed = 0.01f, lavaActiveDuration = 2.5f; //public lava variables
+    public float mBreathRandom = 10, mBreathRandMax = 15, mBreathRandMin= 10, magmaBreathDuration = 5; // public magma breath variables
+    public float lavaOverflowDuration = 3, playerProximityCheckTimer = 1.5f; //Lavaoverflow duration and random other variables
     public GameObject MiniVolcParent, LavaOverflowParticleSys, ProximityTrigger;
     public GameObject secondPhaseAmmunition, lava;
     public bool lavaActive = false, magmaBreathActive = false, doOnce = false, lavaOverflowActive;
-    public float lavaFadeSpeed = 0.05f, lavaRiseSpeed = 0.01f;
-
+    public GameObject debugText, bossSpriteChild;
+    public Sprite walkingSprite, idleSprite;
+    public GameObject walkingCollision, idleCollision;
 
     // Use this for initialization
     void Start () {
@@ -33,31 +42,32 @@ public class ThirdBossSM : MonoBehaviour {
         aiSetter = gameObject.GetComponent<Pathfinding.AIDestinationSetter>();
     }
 
+    //To ensure different framerates don't affect the boss
     private void FixedUpdate()
     {
-        if(currentState == "2ndState" || currentState =="3rdState")
-        {        
-            if(coroutineInProgress == false)
+
+        if(currentState == "2ndState" || currentState == "3rdState") //do when 2nd or 3rd state is in progress
+        {
+
+            if (coroutineInProgress == false) // Allow LavaHazard() to tick when no-other coroutines are in progress
             {
                 LavaHazard();
             }
-        }
 
-        if(currentState == "2ndState" || currentState == "3rdState")
-        {
-            if(coroutineInProgress == false && lavaActive == true)
+            if(coroutineInProgress == false && lavaActive == true)//counts time for the lava to remain active for a set duration, specified in Lavahazard()
             {
                 lavaTimer += Time.deltaTime;
             }
 
-            lavaOverflowTimer += Time.deltaTime;
+            lavaOverflowTimer += Time.deltaTime;//LavaOverflow timer incrementing
 
-            if(lavaOverflowTimer > 50)
+            if(lavaOverflowTimer > 50)//once timer hits 50, do lavaoverflow, reset if boss takes dmg in phases 2 or 3
             {
                 lavaOverflowActive = true;
-                if(currentState == "3rdState")//move to the middle first then do the overflow in third phase
+
+                if(currentState == "3rdState")//move to the middle with A* pathing, then do the overflow in third phase
                 {
-                    aiSetter.target = LavaOverflowParticleSys.transform;
+                    aiSetter.target = LavaOverflowParticleSys.transform;//traverse to LavaOverflowParticleSystem, this object should always be kept at 0,0,0
                     aiPath.canSearch = true;
                     aiPath.canMove = true;
 
@@ -75,48 +85,76 @@ public class ThirdBossSM : MonoBehaviour {
                     }
                 }
                 
-                if(currentState != "3rdState")
+                if(currentState != "3rdState") // 2nd state overflow is called in SecondPhaseTakeDMG()
                 {
                     StartCoroutine(LavaOverflow());
                 }
                 
             }
         }
-
-        if(currentState == "3rdState")
+        
+        if(currentState == "3rdState" && magmaBreathActive) // Magmabreath timer incrementing
         {
             magmaBreathTimer += Time.deltaTime;
         }
 
-        if(magmaBreathActive)
+        if(magmaBreathActive) //if magmabreath is active, this is used to track the player with it
         {
             Vector2 dir = magmaParticle.transform.position - player.transform.position;
             magmaParticle.transform.forward = (dir * -1);
-
-
         }
-        if (magmaBreathTimer > mBreathRandom) //random magma breath duration
+
+        if (magmaBreathTimer > mBreathRandom) //random magma breath duration, once timer is over the random duration end it, and randomise a new duration
         {
             print("magma reset");
             doOnce = true;
             magmaBreathTimer = 0;
             mBreathRandom = Random.Range(mBreathRandMin, mBreathRandMax);
-            //magmaBreathActive = true;
         }
 
-        if (doOnce)//set the random magma breath duration variable only once per cycle for the next cycle and stop the breath
+        if (doOnce)//stop the MagmaBreath
         {
             doOnce = false;
             magmaBreathActive = false;
             magmaParticle.Stop();
         }
 
+        if(currentState == "3rdState" && idleAnimationActive
+            && bossSpriteChild.GetComponent<SpriteRenderer>().sprite != idleSprite) //change to idle animation once idleAnimationActive is set to true
+        {
+            idleCollision.SetActive(true);
+            walkingCollision.SetActive(false);
+            bossSpriteChild.GetComponent<SpriteRenderer>().sprite = idleSprite;
+        }
+
+        if(currentState == "3rdState" && moveAnimationActive
+            && bossSpriteChild.GetComponent<SpriteRenderer>().sprite != walkingSprite) //Change to walking animation once walkingAnimationActive is true
+        {
+            walkingCollision.SetActive(true);
+            idleCollision.SetActive(false);
+            bossSpriteChild.GetComponent<SpriteRenderer>().sprite = walkingSprite;
+        }
+
+        if(playerRangeCheckInProg == true)//if player range check is in progress tick the function
+        {
+            CheckPlayerProximity();
+        }
+
+        if(Input.GetKeyDown(KeyCode.H))//Cheat for easier testing, DISABLE ON RELEASE
+        {
+            player.currentHealth = 40;
+        }
+
+        if(Input.GetKeyDown(KeyCode.K))//Cheat for easier testing, DISABLE ON RELEASE
+        {
+            player.currentHealth = 1;
+        }
     }
 
     // Update is called once per frame
     void Update () {
 
-        switch (currentState)
+        switch (currentState)//Simple switch case "state machine"
         {
             case "1stState":
                 CheckVolcanoes();
@@ -140,6 +178,9 @@ public class ThirdBossSM : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// When all minivolcanoes are dead move to 2ndState
+    /// </summary>
     void CheckVolcanoes()
     {
         if(MiniVolcParent.GetComponentInChildren<MiniVolcanoes>() == null)//Kaikki mini volcanot on tuhottu
@@ -151,6 +192,10 @@ public class ThirdBossSM : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// ienumerator that is reserved for some variable changes and the animation for the transition of 1st to 2nd phase
+    /// </summary>
+    /// <returns></returns>
     IEnumerator BustinOut() //Boss busts out of the volcano
     {
         coroutineInProgress = true;
@@ -160,10 +205,11 @@ public class ThirdBossSM : MonoBehaviour {
         currentState = "2ndState";
         StopCoroutine("BustinOut");
         coroutineInProgress = false;
-        
-        
     }
 
+    /// <summary>
+    /// SecondState that runs in update, activates shooting for boss again as well as changes ammunition to ones that shatter, when secondPhaseHP is under 1, move to 3rdState
+    /// </summary>
     void SecondState()
     {
         if(thisVolcano.projectileShadow != secondPhaseAmmunition)
@@ -179,6 +225,9 @@ public class ThirdBossSM : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Second state damage function, when damage is taken triggers LavaOverflow()
+    /// </summary>
     public void SecondPhaseTakeDmg()
     {
         if(secondPhaseHP > 0)
@@ -186,9 +235,12 @@ public class ThirdBossSM : MonoBehaviour {
             secondPhaseHP = secondPhaseHP - 1;
             StartCoroutine(LavaOverflow());
         }
-
     }
 
+    /// <summary>
+    /// IEnumerator for LavaOverflow, triggered when taken damage at 2nd phase or when 50 seconds are up and dmg has not been taken in that time. Timer in FixedUpdate
+    /// </summary>
+    /// <returns></returns>
     IEnumerator LavaOverflow()
     {
 
@@ -196,22 +248,25 @@ public class ThirdBossSM : MonoBehaviour {
         lavaOverflowActive = true;
         StopMoving();
         LavaOverflowParticleSys.GetComponent<ParticleSystem>().Play();
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(lavaOverflowDuration);
         LavaOverflowParticleSys.GetComponent<ParticleSystem>().Stop();
         lavaOverflowActive = false;
         lavaOverflowTimer = 0;
     }
 
+    /// <summary>
+    /// LavaHazard is responsible for the lava cycles in phases 2 and 3, runs LavaDissapate() automatically after. coroutineInProgress is used to initiate the lava cooldown
+    /// </summary>
     void LavaHazard()
     {
         print("lava Hazard");
-        if(risingAlpha < 0.93f)
+        if(risingAlpha < 0.93f)//when lavasprites' alpha is under this value increment it over time
         {
             risingAlpha = risingAlpha + lavaRiseSpeed;
             lavaSpriteRenderer.color = new Color(lavaSpriteRenderer.color.r, lavaSpriteRenderer.color.g, lavaSpriteRenderer.color.b, risingAlpha);
         }
 
-        if(risingAlpha > 0.93f)
+        if(risingAlpha > 0.93f)//when lavasprites' alpha is over this value, set it to max alpha and make it deal damage. lavaActive is checked in LavaDMG script
         {
             risingAlpha = 1;
             lavaSpriteRenderer.color = new Color(lavaSpriteRenderer.color.r, lavaSpriteRenderer.color.g, lavaSpriteRenderer.color.b, risingAlpha);
@@ -219,13 +274,17 @@ public class ThirdBossSM : MonoBehaviour {
 
 
         }
-        if (lavaTimer >3)
+        if (lavaTimer > lavaActiveDuration) //Active Lava duration, once this is over, deactivate lava and Start LavaDissapate()
         {
             lavaActive = false;
             StartCoroutine("LavaDissipate");
         }  
     }
 
+    /// <summary>
+    /// Is responsible for fading the lava away and the lava cooldown. Run automatically after LavaHazard() concludes
+    /// </summary>
+    /// <returns></returns>
     IEnumerator LavaDissipate()
     {
         coroutineInProgress = true;
@@ -247,10 +306,14 @@ public class ThirdBossSM : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// ThirdState tick function, responsible for detecting when boss dies and stops the boss shooting and initiating A* movement.
+    /// </summary>
     void ThirdState()
     {
         if(thirdPhaseHP <= 0)
         {
+            debugText.GetComponent<Text>().gameObject.SetActive(true);
             print("Boss dies");
         }
         thisVolcano.stopShooting = true;
@@ -263,39 +326,59 @@ public class ThirdBossSM : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// The Legendary Magma Breath is not a force to be trifled with. Is used by the boss to fry the player to a crisp in phase 3. Boss' best power as well as it's biggest downfall.
+    /// </summary>
     void MagmaBreath()
     {
         //do an animation here to warn the player first
-        if(magmaBreathTimer < 7)
-        {
+            magmaBreathActive = true;
+
+ 
             Vector2 dir = magmaParticle.transform.position - player.transform.position;
             magmaParticle.transform.forward = (dir * -1);
-            magmaBreathActive = true;
+            
             magmaParticle.Play();
             StopMoving();
-        }
+        
     }
     
+    /// <summary>
+    /// Use this to deal damage to the boss in 3rd phase, should only be used by the pillars that magmabreath melts, however.
+    /// </summary>
     public void ThirdPhaseTakeDMG()
     {
         thirdPhaseHP = thirdPhaseHP - 1;
+        if(lavaOverflowActive == false)
+        {
+            lavaOverflowTimer = 0;
+        }
     }
 
+    /// <summary>
+    /// Quite literally responsible for the whole flow of the 3rd phase, Moves the boss for x seconds, then stops, checks if the player is in range, if player is then fires the magma breath
+    /// </summary>
+    /// <param name="seconds">the duration that the boss should move</param>
+    /// <returns></returns>
     IEnumerator MoveSeconds(int seconds)
     {
-        if (lavaOverflowActive == false && magmaBreathActive == false)
+        if (lavaOverflowActive == false && magmaBreathActive == false)//do not allow moving when lavaoverflow or magmabreath is active
         {
             moveCoroutineInProgress = true;
             Move();
             yield return new WaitForSeconds(seconds);
             StopMoving();
-            CheckPlayerProximity();
-            yield return new WaitForSeconds(1.5f);
+            playerRangeCheckInProg = true;
+            yield return new WaitForSeconds(playerProximityCheckTimer);
+            playerRangeCheckInProg = false;
         } 
         yield return moveCoroutineInProgress = false;
         
     }
 
+    /// <summary>
+    /// Called only by MoveSeconds() Sets the target to player and uses A* to move towards player for x amount determined in MoveSeconds()
+    /// </summary>
     private void Move()
     {
         if(lavaOverflowActive == false && magmaBreathActive == false)
@@ -313,6 +396,9 @@ public class ThirdBossSM : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// Stops boss' movement by disabling CanMove and CanSearch in A* script
+    /// </summary>
     void StopMoving()
     {
         print("Stop move");
@@ -324,19 +410,30 @@ public class ThirdBossSM : MonoBehaviour {
         moveAnimationActive = false;
     }
 
+    /// <summary>
+    /// Checks if the player is within the range of the notorious MagmaBreath()
+    /// </summary>
     void CheckPlayerProximity()
     {
-        if(ProximityTrigger.GetComponent<Proximity>().playerInRange == true)
+        if(ProximityTrigger.GetComponent<Proximity>().playerInRange == true && magmaBreathActive == false)
         {
             MagmaBreath();
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) //Boss deals damage to player on contact
+    /// <summary>
+    /// Is used for the play again button on deathcanvas
+    /// </summary>
+    public void ReloadScene()
     {
-        if(collision.transform.tag == "Player")
-        {
-            player.TakeDamage();
-        }
+        SceneManager.LoadScene("ThirdBoss");
+    }
+
+    /// <summary>
+    /// Used for the quit button in deathcanvas, should be moved to load mainmenu once InteractiveMainMenu is done
+    /// </summary>
+    public void ExitApplication()
+    {
+        Application.Quit();
     }
 }

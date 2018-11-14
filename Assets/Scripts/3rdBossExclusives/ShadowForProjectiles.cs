@@ -7,13 +7,18 @@ public class ShadowForProjectiles : MonoBehaviour {
     float risingAlpha = 0;
     //public for customization
     public float invokeStart = 0.1f;
-    public float invokeRepeat = 0.5f;
-    public float alphaMultiplier = 1f;
+    public float invokeRepeat = 0.05f;
+    public float alphaMultiplier = 0.01f;
     public bool big = false;
     public bool shatter = false;
     public GameObject rockCluster;
     public GameObject fallingRockSprite;
-    float xMulti = 3f;
+    
+    float yMulti = 5.5f;
+    bool doOnce = true;
+    GameObject rockObject;
+    PlayerMovement playerScript;
+    public bool insideShadow = false;
 
 	// Use this for initialization
 	void Start () {
@@ -30,9 +35,21 @@ public class ShadowForProjectiles : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
+
+        if(risingAlpha >= 0.85f)
+        {
 
 
+
+            if(insideShadow)
+            {
+                playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+                playerScript.TakeDamage();
+            }
+
+
+        }
         
     }
 
@@ -41,38 +58,86 @@ public class ShadowForProjectiles : MonoBehaviour {
         if(risingAlpha <= 1)
         risingAlpha = risingAlpha + alphaMultiplier;
 
-        if (risingAlpha >= 0.90f)
+        if (risingAlpha >= 0.80f)
         {
-            if(big)
+            if(big && !shatter)
             {
-                xMulti = 5;
-            }
-                GameObject rockObject =  Instantiate(fallingRockSprite, new Vector2(transform.position.x + xMulti, transform.position.y), transform.rotation);
-
-            if(big)
-            {
-                rockObject.transform.localScale = rockObject.transform.localScale * 3;
+                yMulti = 6f;
             }
 
+            if(shatter)
+            {
+                yMulti = 3.5f;
+            }
 
-            risingAlpha = 1;
+            if(doOnce == true)
+            {
+                rockObject = Instantiate(fallingRockSprite, new Vector2(transform.position.x, transform.position.y + yMulti), transform.rotation);
+                rockObject.GetComponent<RockFall>().ShadowsPos(gameObject.transform.position);
+            }
+
+            if(doOnce)
+            {
+                doOnce = false;
+
+                if(big)
+                {
+                    rockObject.transform.localScale = rockObject.transform.localScale * 3;
+                }
+            }
+
+
             spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, risingAlpha);
 
-            if (shatter)
+
+
+            if(risingAlpha >= 0.86f)
             {
-                Instantiate(rockCluster,transform.position,transform.rotation);
+
+                risingAlpha = 1;
+                spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, risingAlpha);
+                CancelInvoke();
+
+                if (shatter)
+                {
+                    Instantiate(rockCluster, transform.position, transform.rotation);
+                }
+                Destroy(gameObject);
             }
 
-            CancelInvoke();
-            if(big)
-            print("Game object destroyed");
-            Destroy(gameObject);
         }
         else
         {
             spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, risingAlpha);
         }
-        
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+        if(collision.tag == "Player")
+        {
+            insideShadow = true;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+
+        if (collision.tag == "Player")
+        {
+            insideShadow = true;
+        }
+        
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+
+        if (collision.tag == "Player")
+        {
+            insideShadow = false;
+        }
+        
     }
 }
