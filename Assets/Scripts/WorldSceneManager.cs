@@ -77,7 +77,7 @@ public class WorldSceneManager : MonoBehaviour {
     }
 
     
-    public void NextScene()
+    public static void  NextScene()
     {
         if (SceneManager.GetActiveScene().buildIndex==SceneManager.sceneCountInBuildSettings-1)
         {

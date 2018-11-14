@@ -81,7 +81,7 @@ public class WaterStageManager : MonoBehaviour {
 
         if (LeversActivated == 3)
         {
-            worldSceneManagerScript.NextScene();
+            WorldSceneManager.NextScene();
         }
     }
 
@@ -89,7 +89,7 @@ public class WaterStageManager : MonoBehaviour {
     {
         if (whirlpoolDestroyed>=2)
         {
-            worldSceneManagerScript.NextScene();
+            WorldSceneManager.NextScene();
 
         }
     }
@@ -98,7 +98,7 @@ public class WaterStageManager : MonoBehaviour {
     {
         if (inhaleScript.inhaledEnemies >= 20)
         {
-            worldSceneManagerScript.NextScene();
+            WorldSceneManager.NextScene();
 
         }
     }
