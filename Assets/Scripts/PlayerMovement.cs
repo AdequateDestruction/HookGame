@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public bool notTeleported;
-
     public int currentState;                        // Current possible states of the player: 0 = Moving, 1 = Pulled, 2 = Pulling, 3 = Ripping, 4 = Death
     public int currentHealth;                       // Health variables, changed on Start based on difficulty
     public int maxHealth;
