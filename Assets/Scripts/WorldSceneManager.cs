@@ -86,7 +86,9 @@ public class WorldSceneManager : MonoBehaviour {
 
     }
 
-    
+    /// <summary>
+    /// Always loads next scene in buildindex
+    /// </summary>
     public static void NextScene()
     {
         if (SceneManager.GetActiveScene().buildIndex==SceneManager.sceneCountInBuildSettings-1)
@@ -111,13 +113,19 @@ public class WorldSceneManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Loads InteractiveMenu scene
+    /// </summary>
     public static void LoadInteractiveMenu()
     {
         SceneManager.LoadScene(INTERACTIVEMENU);
 
     }
 
-    public static void loadBreakRoom()
+    /// <summary>
+    /// Loads Breakroom scene & saves currentscene buildIndex to variable LASTSCENEVISITED.
+    /// </summary>
+    public static void LoadBreakRoom()
     {
         LASTSCENEVISITED = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(BREAKROOM);
@@ -125,7 +133,9 @@ public class WorldSceneManager : MonoBehaviour {
     }
 
 
-
+    /// <summary>
+    /// When function LoadBreakRoom() is used saves currentscene index. LoadNextScene() uses index+1 to load next scene.
+    /// </summary>
     public static void LoadNextScene()
     {
         SceneManager.LoadScene(LASTSCENEVISITED+1);
