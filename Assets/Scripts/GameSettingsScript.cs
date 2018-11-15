@@ -21,6 +21,7 @@ public class GameSettingsScript : MonoBehaviour
     public float boss1Time, boss2Time, boss3Time;
     ThirdBossSM thirdBoss;
     BossScript firstBoss;
+    inhale secondInhale;
     Text timerText;
 
     void Awake()
@@ -49,34 +50,6 @@ public class GameSettingsScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(timerText == null)
-        {
-            timerText = GameObject.FindGameObjectWithTag("TimerText").GetComponent<Text>();
-        }
-
-        //third boss time management
-        if (thirdBoss == null && SceneManager.GetActiveScene().name == "ThirdBoss")
-        {
-            thirdBoss = GameObject.FindGameObjectWithTag("Boss").GetComponent<ThirdBossSM>();
-            print(thirdBoss);
-        }
-
-        if (thirdBoss != null)
-        {
-            if(thirdBoss.thirdPhaseHP > 0)
-            {
-                print(boss3Time);
-                boss3Time += Time.deltaTime;
-                //timerText.text = (int)Mathf.RoundToInt(boss3Time).ToString();
-
-            }
-
-            if(thirdBoss.playerDead == true && thirdBoss.thirdPhaseHP > 0)
-            {
-                boss3Time = 0;
-            }
-        }
-        //////////////////////////////////////////////
 
         if(firstBoss == null && SceneManager.GetActiveScene().name == "Main")
         {
@@ -96,5 +69,53 @@ public class GameSettingsScript : MonoBehaviour
                 boss1Time = 0;
             }
         }
+
+
+        if(secondInhale == null && SceneManager.GetActiveScene().name == "Stage2Phase2")
+        {
+            secondInhale = GameObject.FindGameObjectWithTag("Boss").GetComponent<inhale>();
+        }
+
+        if(secondInhale != null)
+        {
+            if(secondInhale.inhaledEnemies < 20)
+            {
+                boss2Time += Time.deltaTime;
+            }
+
+            
+        }
+
+
+        if(timerText == null || SceneManager.GetActiveScene().name != WorldSceneManager.INTERACTIVEMENU)
+        {
+            timerText = GameObject.FindGameObjectWithTag("TimerText").GetComponent<Text>();
+        }
+
+        //third boss time management
+        if (thirdBoss == null && SceneManager.GetActiveScene().name == "ThirdBoss")
+        {
+            thirdBoss = GameObject.FindGameObjectWithTag("Boss").GetComponent<ThirdBossSM>();
+            print(thirdBoss);
+        }
+
+        if (thirdBoss != null)
+        {
+            if(thirdBoss.thirdPhaseHP > 0)
+            {
+                print(boss3Time);
+                boss3Time += Time.deltaTime;
+                timerText.text = Mathf.RoundToInt((int)boss3Time).ToString();
+
+            }
+
+            if(thirdBoss.playerDead == true && thirdBoss.thirdPhaseHP > 0)
+            {
+                boss3Time = 0;
+            }
+        }
+        //////////////////////////////////////////////
+
+
     }
 }
