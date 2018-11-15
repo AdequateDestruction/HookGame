@@ -11,7 +11,7 @@ public class WorldSceneManager : MonoBehaviour {
     public bool Out;
     public bool In;
 
-    static string INTERACTIVEMENU, BREAKROOM;
+    public static string INTERACTIVEMENU, BREAKROOM;
     static int LASTSCENEVISITED;
 
 
