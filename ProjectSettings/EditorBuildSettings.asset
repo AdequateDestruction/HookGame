@@ -5,28 +5,28 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: Assets/MainMenu.unity
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
     guid: 1e9fc8fd2035ec743a2447a8a0968fd2
   - enabled: 1
     path: Assets/Scenes/InteractiveMainMenu.unity
     guid: 31746b49d20f65345b6bbd1bae5ffe78
   - enabled: 1
-    path: Assets/Main.unity
+    path: Assets/Scenes/Main.unity
     guid: f60e299f2ae744246b3f1ae659693c0b
-  - enabled: 0
-    path: Assets/Stage2Phase1.unity
+  - enabled: 1
+    path: Assets/Scenes/Stage2Phase1.unity
     guid: a07a5c72761e04c4e840a195fa798cce
-  - enabled: 0
-    path: Assets/Stage2Phase2.unity
+  - enabled: 1
+    path: Assets/Scenes/Stage2Phase2.unity
     guid: cb5e8300f74d6c64c8f3208f6e953c55
-  - enabled: 0
-    path: Assets/Stage2Phase3.unity
+  - enabled: 1
+    path: Assets/Scenes/Stage2Phase3.unity
     guid: 611debab06ce17d4c9d2220f24e2f5a7
-  - enabled: 0
-    path: Assets/ThirdBoss.unity
+  - enabled: 1
+    path: Assets/Scenes/ThirdBoss.unity
     guid: 01d07757b5461e742bde66d2ee13a53b
+  - enabled: 1
+    path: Assets/Scenes/BreakRoom.unity
+    guid: 4798da5fd2f45b84da977a10de7c3aca
   m_configObjects: {}

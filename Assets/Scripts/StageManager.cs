@@ -309,11 +309,12 @@ public class StageManager : MonoBehaviour
     {
         if (_index == 0) // Restart level
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         else if (_index == 1) // Return to Main Menu
         {
             SceneManager.LoadScene(0);
+            //WorldSceneManager.NextScene();
         }
     }
 

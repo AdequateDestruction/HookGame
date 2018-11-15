@@ -452,7 +452,7 @@ public class ThirdBossSM : MonoBehaviour {
     IEnumerator ChangeScene()
     {
         //Miron change scene functio tänne
-        WorldSceneManager.NextScene();
+        WorldSceneManager.loadBreakRoom();
         yield return new WaitForSeconds(4f);
     }
 

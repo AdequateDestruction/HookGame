@@ -25,7 +25,8 @@ public class StartPortal : MonoBehaviour {
         {
             if (collision.gameObject.tag == "Player")
             {
-                SceneManager.LoadScene("Main");
+                //SceneManager.LoadScene("Main");
+                WorldSceneManager.NextScene();
             }
         }
 

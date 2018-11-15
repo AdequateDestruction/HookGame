@@ -10,7 +10,11 @@ public class WorldSceneManager : MonoBehaviour {
     Fade fade;
     public bool Out;
     public bool In;
-    
+
+    static string INTERACTIVEMENU, BREAKROOM;
+    static int LASTSCENEVISITED;
+
+
 
     // Setting a static instance and checking it for DontDestroyOnLoad purposes
     public static WorldSceneManager Instance
@@ -30,54 +34,60 @@ public class WorldSceneManager : MonoBehaviour {
             instance = this;
         }
         DontDestroyOnLoad(this.gameObject);
+
+        INTERACTIVEMENU = "InteractiveMainMenu";
+        BREAKROOM = "BreakRoom";
     }
 
 
     void Start ()
     {
 
-        fade = this.transform.GetChild(0).GetComponent<Fade>();
+        //fade = this.transform.GetChild(0).GetComponent<Fade>();
 	}
 
 
     void Update ()
     {
+
+
+
         //DEBUG
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            In = true;
+            NextScene();
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            In = true;
+            DebugPreviousScene();
         }
-        Debug.Log(fade.fade.a);
 
-        if (In)
-        {
-            fade.FadeIn();
-            if (fade.fade.a >= 1)
-            {
-                NextScene();
-                In = false;
-                Out = true;
-                fade.elapsedTime = 0;
-            }
-        }
-        if (Out)
-        {
-            fade.FadeOut();
-            if (fade.fade.a <=0.1f)
-            {
-                Out = false;
-                fade.elapsedTime = 0;
-            }
-        }
+        //TODO function for fade that uses coroutine for fading
+        //if (In)
+        //{
+        //    fade.FadeIn();
+        //    if (fade.fade.a >= 1)
+        //    {
+        //        NextScene();
+        //        In = false;
+        //        Out = true;
+        //        fade.elapsedTime = 0;
+        //    }
+        //}
+        //if (Out)
+        //{
+        //    fade.FadeOut();
+        //    if (fade.fade.a <=0.1f)
+        //    {
+        //        Out = false;
+        //        fade.elapsedTime = 0;
+        //    }
+        //}
 
     }
 
     
-    public static void  NextScene()
+    public static void NextScene()
     {
         if (SceneManager.GetActiveScene().buildIndex==SceneManager.sceneCountInBuildSettings-1)
         {
@@ -88,7 +98,7 @@ public class WorldSceneManager : MonoBehaviour {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
-    void PreviousScene()
+    void DebugPreviousScene()
     {
         if (SceneManager.GetActiveScene().buildIndex ==0)
         {
@@ -100,4 +110,26 @@ public class WorldSceneManager : MonoBehaviour {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
     }
+
+    public static void LoadInteractiveMenu()
+    {
+        SceneManager.LoadScene(INTERACTIVEMENU);
+
+    }
+
+    public static void loadBreakRoom()
+    {
+        LASTSCENEVISITED = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(BREAKROOM);
+
+    }
+
+
+
+    public static void LoadNextScene()
+    {
+        SceneManager.LoadScene(LASTSCENEVISITED+1);
+
+    }
+
 }

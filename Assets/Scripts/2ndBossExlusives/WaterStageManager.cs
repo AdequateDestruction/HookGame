@@ -18,7 +18,7 @@ public class WaterStageManager : MonoBehaviour {
     string toBeLoaded;
     bool loadingOut;
     bool loadingIn;
-    Fade fadeScript;
+    //Fade fadeScript;
 
 
     // Use this for initialization
@@ -26,7 +26,7 @@ public class WaterStageManager : MonoBehaviour {
     {
         worldSceneManagerScript = GameObject.Find("WorldSceneManager").GetComponent<WorldSceneManager>();
         playerMovementScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
-        fadeScript = GameObject.Find("fade").GetComponent<Fade>();
+        //fadeScript = GameObject.Find("fade").GetComponent<Fade>();
 
         PHASE1 = "Stage2Phase1"; PHASE2 = "Stage2Phase2"; PHASE3 = "Stage2Phase3";
 
@@ -98,7 +98,7 @@ public class WaterStageManager : MonoBehaviour {
     {
         if (inhaleScript.inhaledEnemies >= 20)
         {
-            WorldSceneManager.NextScene();
+            WorldSceneManager.loadBreakRoom();
 
         }
     }

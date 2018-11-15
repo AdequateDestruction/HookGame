@@ -66,6 +66,10 @@ public class BossScript : MonoBehaviour
         {
             Stage1TakeDamage();
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            BossDeath();
+        }
 
         // Basic state machine for boss behaviour, checks the current stage of the fight, then the state the boss is in, acts accordingly
         if (currentStage == 1)
@@ -378,6 +382,7 @@ public class BossScript : MonoBehaviour
         bossAnimator.Play("BossDeathAnimation");
         deathSounds[2].Play();
         deathSounds[0].Play();
+        WorldSceneManager.loadBreakRoom();
     }
 
     public void PlayerDead()
