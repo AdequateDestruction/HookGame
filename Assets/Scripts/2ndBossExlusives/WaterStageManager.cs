@@ -98,7 +98,7 @@ public class WaterStageManager : MonoBehaviour {
     {
         if (inhaleScript.inhaledEnemies >= 20)
         {
-            WorldSceneManager.loadBreakRoom();
+            WorldSceneManager.LoadBreakRoom();
 
         }
     }
