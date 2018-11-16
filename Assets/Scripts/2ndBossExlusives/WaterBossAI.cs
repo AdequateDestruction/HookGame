@@ -40,12 +40,14 @@ public class WaterBossAI : MonoBehaviour {
 
     public GameObject inHale;
     public List<Transform> corners;
+    public Transform lastCorner;
     public bool turned;
 
     Animator waterBossAnimator;
     //rotation in 360 degrees
     float trueAngle;
 
+    public GameObject whirlpools;
 
     StateMachine sm = new StateMachine();
     public StateMachine SM { get { return sm; } }
@@ -58,6 +60,8 @@ public class WaterBossAI : MonoBehaviour {
 
     void Start()
     {
+        inHale = transform.GetChild(5).gameObject;
+        inHale.gameObject.SetActive(false);
         particle= transform.GetChild(4).gameObject.GetComponent<ParticleSystem>();
         bossVisual = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
         waterStagemanagerScript = GameObject.Find("WaterStageManager").GetComponent<WaterStageManager>();
@@ -71,15 +75,14 @@ public class WaterBossAI : MonoBehaviour {
 
         StartCoroutine(AI());
 
-        //Find corners in phase 3
-        if (SceneManager.GetActiveScene().name == waterStagemanagerScript.PHASE3)
-        {
+        //Find corners in phase2_3
+        //if (SceneManager.GetActiveScene().name == waterStagemanagerScript.PHASE2_3)
+        //{
             for (int i = 0; i < GameObject.Find("RandomCorners").transform.childCount; i++)
             {
                 corners.Add(GameObject.Find("RandomCorners").transform.GetChild(i));
             }
-            sm.SetNextState("ToCorner");
-        }
+        //}
     }
     
     private void Update()
@@ -121,21 +124,22 @@ public class WaterBossAI : MonoBehaviour {
         RaycastHit2D hit = Physics2D.Raycast(rayCastStart.position, rayCastEnd.position - rayCastStart.position);
         if (SM.CurrentState=="Moving"&&hit.collider!=null&&hit.collider.gameObject.name=="Player")
         {
-            if (SceneManager.GetActiveScene().name==waterStagemanagerScript.PHASE2_3)
+            if (waterStagemanagerScript.whirlpoolDestroyed<2)
             {
                 SM.SetNextState("Breath");
-                playerHit = true;
+                playerHit = true;         
             }
-            else if (SceneManager.GetActiveScene().name == waterStagemanagerScript.PHASE3)
+            else if (waterStagemanagerScript.whirlpoolDestroyed>=2)
             {
-                SM.SetNextState("InHale");
+                SM.SetNextState("Breath");
             }
         }
 
         if (SM.CurrentState== "ToCorner"&& hit.collider != null && hit.collider.gameObject.name == "Center")
         {
-            turned = true;
+            turned = true; 
             SM.SetNextState("InHale");
+            Debug.Log("3");
         }
     }
 
@@ -166,7 +170,7 @@ public class WaterBossAI : MonoBehaviour {
     void WaterBossAnimations()
     {
         trueAngle = transform.rotation.eulerAngles.z;
-        Debug.Log(trueAngle);
+        //Debug.Log(trueAngle);
         if (trueAngle > 30 && trueAngle < 120)
         {
             //up

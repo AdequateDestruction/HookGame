@@ -301,9 +301,8 @@ public class WaterToCorner : State
             if (waterBossAI.turned)
             {
                 Debug.Log("Done");
-                waterBossAI.SM.SetNextState("InHale");
             }
-                    }
+        }
         else if (!travelled)
         {
             //moves and rotates towards corner
@@ -315,6 +314,7 @@ public class WaterToCorner : State
             }
     public override void Exit()
     {
+        waterBossAI.lastCorner = corner;
         waterBossAI.turned = false;
         travelled = false;
     }

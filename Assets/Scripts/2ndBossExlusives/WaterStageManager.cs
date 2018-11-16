@@ -8,6 +8,8 @@ public class WaterStageManager : MonoBehaviour {
 
     PlayerMovement playerMovementScript;
     WorldSceneManager worldSceneManagerScript;
+    WaterBossAI waterBossAiScript;
+
     inhale inhaleScript;
     //Phase1
     GameObject cols;
@@ -18,12 +20,15 @@ public class WaterStageManager : MonoBehaviour {
     string toBeLoaded;
     bool loadingOut;
     bool loadingIn;
+
+    bool doOnce;
     //Fade fadeScript;
 
 
     // Use this for initialization
     void Start ()
     {
+        waterBossAiScript = GameObject.Find("WaterBoss").GetComponent<WaterBossAI>();
         playerMovementScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
         PHASE1 = "Stage2Phase1"; PHASE2_3 = "Stage2Phase2"; PHASE3 = "Stage2Phase3";
 
@@ -76,10 +81,12 @@ public class WaterStageManager : MonoBehaviour {
 
     public void Phase2_3()
     {
-        if (whirlpoolDestroyed>=2)
+        if (whirlpoolDestroyed>=2&&!doOnce)
         {
-            WorldSceneManager.NextScene();
-
+            //WorldSceneManager.NextScene();
+            waterBossAiScript.SM.SetNextState("ToCorner");
+            waterBossAiScript.whirlpools.SetActive(false);
+            doOnce = true;
         }
         if (inhaleScript.inhaledEnemies >= 20)
         {
