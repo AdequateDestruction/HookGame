@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class WaterStageManager : MonoBehaviour {
-    public string PHASE1, PHASE2, PHASE3;
+    public string PHASE1, PHASE2_3, PHASE3;
 
     PlayerMovement playerMovementScript;
     WorldSceneManager worldSceneManagerScript;
@@ -24,21 +24,14 @@ public class WaterStageManager : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        worldSceneManagerScript = GameObject.Find("WorldSceneManager").GetComponent<WorldSceneManager>();
         playerMovementScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
-        //fadeScript = GameObject.Find("fade").GetComponent<Fade>();
-
-        PHASE1 = "Stage2Phase1"; PHASE2 = "Stage2Phase2"; PHASE3 = "Stage2Phase3";
+        PHASE1 = "Stage2Phase1"; PHASE2_3 = "Stage2Phase2"; PHASE3 = "Stage2Phase3";
 
         if (SceneManager.GetActiveScene().name == PHASE1)
         {
             cols = GameObject.Find("Cols");
         }
-        else if (SceneManager.GetActiveScene().name == PHASE2)
-        {
-
-        }
-        else if (SceneManager.GetActiveScene().name == PHASE3)
+        else if (SceneManager.GetActiveScene().name == PHASE2_3)
         {
             inhaleScript = GameObject.Find("WaterBoss").transform.GetChild(5).GetComponent<inhale>();
             GameObject.Find("WaterBoss").transform.GetChild(5).gameObject.SetActive(false);
@@ -51,13 +44,9 @@ public class WaterStageManager : MonoBehaviour {
         {
             Phase1();
         }
-        else if (SceneManager.GetActiveScene().name == PHASE2)
+        else if (SceneManager.GetActiveScene().name == PHASE2_3)
         {
-            Phase2();
-        }
-        else if (SceneManager.GetActiveScene().name == PHASE3)
-        {
-            Phase3();
+            Phase2_3();
         }
 
         //DEBUG
@@ -85,24 +74,19 @@ public class WaterStageManager : MonoBehaviour {
         }
     }
 
-    public void Phase2()
+    public void Phase2_3()
     {
         if (whirlpoolDestroyed>=2)
         {
             WorldSceneManager.NextScene();
 
         }
-    }
-    
-    public void Phase3()
-    {
         if (inhaleScript.inhaledEnemies >= 20)
         {
             WorldSceneManager.LoadBreakRoom();
 
         }
     }
-
         //DEBUG
     public void Nextphase()
     {

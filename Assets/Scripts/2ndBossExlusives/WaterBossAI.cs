@@ -30,7 +30,6 @@ public class WaterBossAI : MonoBehaviour {
     [SerializeField]
     public int killsToTrigger=1;
 
-
     int invulFlashCounter;
     SpriteRenderer bossVisual;
     [SerializeField]
@@ -39,10 +38,14 @@ public class WaterBossAI : MonoBehaviour {
     public bool invulnerable;
     public float invulnerableTimer;
 
-
     public GameObject inHale;
     public List<Transform> corners;
     public bool turned;
+
+    Animator waterBossAnimator;
+    //rotation in 360 degrees
+    float trueAngle;
+
 
     StateMachine sm = new StateMachine();
     public StateMachine SM { get { return sm; } }
@@ -58,6 +61,7 @@ public class WaterBossAI : MonoBehaviour {
         particle= transform.GetChild(4).gameObject.GetComponent<ParticleSystem>();
         bossVisual = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
         waterStagemanagerScript = GameObject.Find("WaterStageManager").GetComponent<WaterStageManager>();
+        waterBossAnimator = transform.GetChild(0).GetComponent<Animator>();
         col = GetComponent<Collider2D>();
         rayCastEnd = transform.GetChild(1);
         rayCastStart = transform.GetChild(2);
@@ -77,13 +81,13 @@ public class WaterBossAI : MonoBehaviour {
             sm.SetNextState("ToCorner");
         }
     }
-
+    
     private void Update()
     {
         //Debug.DrawRay(rayCastStart.position, rayCastEnd.position- rayCastStart.position, Color.red, 1f);
 
         //if enough minibosses killed starts to attack player
-        if (SceneManager.GetActiveScene().name == waterStagemanagerScript.PHASE2&&minibossKilled >= killsToTrigger&&!frenzyed)
+        if (SceneManager.GetActiveScene().name == waterStagemanagerScript.PHASE2_3&&minibossKilled >= killsToTrigger&&!frenzyed)
         {
             sm.SetNextState("Moving");
             frenzyed = true;
@@ -112,11 +116,12 @@ public class WaterBossAI : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        WaterBossAnimations();
         //when raycast hits player when moving, changes state
         RaycastHit2D hit = Physics2D.Raycast(rayCastStart.position, rayCastEnd.position - rayCastStart.position);
         if (SM.CurrentState=="Moving"&&hit.collider!=null&&hit.collider.gameObject.name=="Player")
         {
-            if (SceneManager.GetActiveScene().name==waterStagemanagerScript.PHASE2)
+            if (SceneManager.GetActiveScene().name==waterStagemanagerScript.PHASE2_3)
             {
                 SM.SetNextState("Breath");
                 playerHit = true;
@@ -125,14 +130,12 @@ public class WaterBossAI : MonoBehaviour {
             {
                 SM.SetNextState("InHale");
             }
-
         }
 
         if (SM.CurrentState== "ToCorner"&& hit.collider != null && hit.collider.gameObject.name == "Center")
         {
             turned = true;
             SM.SetNextState("InHale");
-
         }
     }
 
@@ -158,6 +161,32 @@ public class WaterBossAI : MonoBehaviour {
         sm.AddState(new WaterWhirlpool("Whirlpool", this));
         sm.AddState(new WaterInHale("InHale", this));
         sm.AddState(new WaterToCorner("ToCorner", this));
+    }
+
+    void WaterBossAnimations()
+    {
+        trueAngle = transform.rotation.eulerAngles.z;
+        Debug.Log(trueAngle);
+        if (trueAngle > 30 && trueAngle < 120)
+        {
+            //up
+            waterBossAnimator.Play("WaterBossMovementUp");
+        }
+        else if (trueAngle > 120 && trueAngle < 210)
+        {
+            //left
+            waterBossAnimator.Play("WaterBossMovementLeft");
+        }
+        else if (trueAngle > 210 && trueAngle < 300)
+        {
+            //down
+            waterBossAnimator.Play("WaterBossMovementDown");
+        }
+        else if (trueAngle > 300 && trueAngle < 360 || trueAngle > 0 && trueAngle < 30)
+        {
+            //right
+            waterBossAnimator.Play("WaterBossMovementRight");
+        }
     }
 
     //"threading"
