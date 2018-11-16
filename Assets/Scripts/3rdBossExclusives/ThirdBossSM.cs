@@ -14,6 +14,7 @@ public class ThirdBossSM : MonoBehaviour {
     bool playerRangeCheckInProg = false;
     SpriteRenderer lavaSpriteRenderer;
     float risingAlpha = 0, lavaTimer = 0, magmaBreathTimer = 0, lavaOverflowTimer; // all of the timer variables
+    float trueAngle;
     ParticleSystem magmaParticle;
     PlayerMovement player;
     Pathfinding.AIPath aiPath;
@@ -154,6 +155,8 @@ public class ThirdBossSM : MonoBehaviour {
             currentState = "PlayerDead";
             playerDead = true;
         }
+
+        MovingAnimationVariants();
 
         if(Input.GetKeyDown(KeyCode.H))//Cheat for easier testing, DISABLE ON RELEASE
         {
@@ -423,6 +426,11 @@ public class ThirdBossSM : MonoBehaviour {
     /// </summary>
     void StopMoving()
     {
+        animController.SetBool("MovingUp", false);
+        animController.SetBool("MovingDown", false);
+        animController.SetBool("MovingLeft", false);
+        animController.SetBool("MovingRight", false);
+
         print("Stop move");
         aiPath.canMove = false;
         aiPath.canSearch = false;
@@ -465,6 +473,52 @@ public class ThirdBossSM : MonoBehaviour {
         WorldSceneManager.LoadInteractiveMenu();
     }
 
+    void MovingAnimationVariants()
+    {
+        if(moveAnimationActive)
+        {
+            trueAngle = transform.rotation.eulerAngles.z;
+            Debug.Log(trueAngle);
+
+
+            if (trueAngle > 30 && trueAngle < 120)
+            {
+                //up
+                animController.SetBool("MovingDown", false);
+                animController.SetBool("MovingLeft", true);
+                animController.SetBool("MovingRight", false);
+                animController.SetBool("MovingUp", false);
+            }
+            else if (trueAngle > 120 && trueAngle < 210)//down
+            {
+                //left
+                animController.SetBool("MovingDown", true);
+                animController.SetBool("MovingRight", false);
+                animController.SetBool("MovingUp", false);
+                animController.SetBool("MovingLeft", false);
+            }
+            else if (trueAngle > 210 && trueAngle < 300)
+            {
+                //down
+                animController.SetBool("MovingLeft", false);
+                animController.SetBool("MovingRight", true);
+                animController.SetBool("MovingUp", false);
+                animController.SetBool("MovingDown", false);
+            }
+            else if (trueAngle > 300 && trueAngle < 360 || trueAngle > 0 && trueAngle < 30)//up
+            {
+                //right
+                animController.SetBool("MovingDown", false);
+                animController.SetBool("MovingLeft", false);
+                animController.SetBool("MovingUp", true);
+                animController.SetBool("MovingRight", false);
+            }
+        }
+        
+
+    }
+
+
     /// <summary>
     /// Is used for the play again button on deathcanvas
     /// </summary>
@@ -472,7 +526,6 @@ public class ThirdBossSM : MonoBehaviour {
     {
         SceneManager.LoadScene("ThirdBoss");
     }
-
 
 
     /// <summary>

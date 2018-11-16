@@ -89,10 +89,10 @@ TextureImporter:
       name: Fire_Boss_Boss_Fire_Walk_Down_0
       rect:
         serializedVersion: 2
-        x: 1398
-        y: 147
-        width: 450
-        height: 364
+        x: 1396
+        y: 166
+        width: 432
+        height: 366
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -100,7 +100,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c17dce11836b0e4db618c5594d6c605
+      spriteID: b156b09dd1f5cc6408ca75056d8cdba7
       vertices: []
       indices: 
       edges: []
@@ -109,10 +109,10 @@ TextureImporter:
       name: Fire_Boss_Boss_Fire_Walk_Down_1
       rect:
         serializedVersion: 2
-        x: 2011
-        y: 183
-        width: 450
-        height: 364
+        x: 1975
+        y: 170
+        width: 424
+        height: 358
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -120,7 +120,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfc9708b5979cbf41be705e9c6142776
+      spriteID: 4f78abb6e9500cd4a949645f7e557e7e
       vertices: []
       indices: 
       edges: []
@@ -129,10 +129,10 @@ TextureImporter:
       name: Fire_Boss_Boss_Fire_Walk_Down_2
       rect:
         serializedVersion: 2
-        x: 2672
-        y: 143
-        width: 450
-        height: 364
+        x: 2538
+        y: 152
+        width: 442
+        height: 368
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,7 +140,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 931d66d7edcae2c41a4c2756c27a5a64
+      spriteID: 5c195c3e1d897524ea10823b467a5c76
       vertices: []
       indices: 
       edges: []
@@ -149,18 +149,18 @@ TextureImporter:
       name: Fire_Boss_Boss_Fire_Walk_Down_3
       rect:
         serializedVersion: 2
-        x: 3346
-        y: 145
-        width: 450
-        height: 364
+        x: 3099
+        y: 143
+        width: 430
+        height: 378
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 2, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8189598bc138dad4b8c91f96efae3297
+      spriteID: 0bd047e0ee26983419c7c2092dcba56d
       vertices: []
       indices: 
       edges: []
