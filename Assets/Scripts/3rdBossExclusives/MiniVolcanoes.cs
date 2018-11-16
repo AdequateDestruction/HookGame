@@ -63,10 +63,23 @@ public class MiniVolcanoes : MonoBehaviour {
             newProjectile = Instantiate(projectileShadow);
             newProjectile.GetComponent<SpriteRenderer>().color = new Color(newProjectile.GetComponent<SpriteRenderer>().color.r, newProjectile.GetComponent<SpriteRenderer>().color.g, newProjectile.GetComponent<SpriteRenderer>().color.b, 0); //this line is horrible
             newProjectile.transform.position = spawnPos;
+
+            if(boss)
+            {
+                ThirdBossSM.animController.SetBool("PlayRockShootAnim", true);
+                StartCoroutine(ShootAnimation());
+            }
         }
-
-
     }
+
+    IEnumerator ShootAnimation()
+    {
+        yield return new WaitForSeconds(0.45f);
+        ThirdBossSM.animController.SetBool("PlayRockShootAnim", false);
+    }
+    
+        
+    
 
     public void DestroyTentacle()
     {

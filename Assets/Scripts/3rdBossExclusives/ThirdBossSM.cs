@@ -18,6 +18,8 @@ public class ThirdBossSM : MonoBehaviour {
     PlayerMovement player;
     Pathfinding.AIPath aiPath;
     Pathfinding.AIDestinationSetter aiSetter;
+    public static Animator animController;
+    public static ThirdBossSM thirdBossRef;
     public int secondPhaseHP = 3, thirdPhaseHP = 4; //public so timer can check when boss dies on phase 4
 
     //Public variables, usually for balancing or for ease of use access to other objects
@@ -40,6 +42,9 @@ public class ThirdBossSM : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         aiPath = gameObject.GetComponent<Pathfinding.AIPath>();
         aiSetter = gameObject.GetComponent<Pathfinding.AIDestinationSetter>();
+        thirdBossRef = gameObject.GetComponent<ThirdBossSM>();
+        animController = gameObject.GetComponentInChildren<Animator>();
+        //animController.Play()
     }
 
     //To ensure different framerates don't affect the boss
@@ -124,7 +129,9 @@ public class ThirdBossSM : MonoBehaviour {
         {
             idleCollision.SetActive(true);
             walkingCollision.SetActive(false);
-            bossSpriteChild.GetComponent<SpriteRenderer>().sprite = idleSprite;
+            //bossSpriteChild.GetComponent<SpriteRenderer>().sprite = idleSprite;
+            //animController.StartPlayback();
+            animController.SetBool("Moving", false);
         }
 
         if(currentState == "3rdState" && moveAnimationActive
@@ -132,7 +139,8 @@ public class ThirdBossSM : MonoBehaviour {
         {
             walkingCollision.SetActive(true);
             idleCollision.SetActive(false);
-            bossSpriteChild.GetComponent<SpriteRenderer>().sprite = walkingSprite;
+            //bossSpriteChild.GetComponent<SpriteRenderer>().sprite = walkingSprite;
+            animController.SetBool("Moving", true);
         }
 
         if(playerRangeCheckInProg == true && currentState == "3rdState")//if player range check is in progress tick the function
@@ -180,7 +188,7 @@ public class ThirdBossSM : MonoBehaviour {
                 ThirdState();
                 break;
             case "BossDeadState":
-
+                BossDead();
             break;
             case "PlayerDead":
 
@@ -444,6 +452,7 @@ public class ThirdBossSM : MonoBehaviour {
         lavaOverflowActive = false;
         LavaOverflowParticleSys.GetComponent<ParticleSystem>().Stop();
         lavaActive = false;
+        StartCoroutine(ChangeScene());
         //boss death animation here probably as well as some other stuff if neccessary
 
 
@@ -452,8 +461,8 @@ public class ThirdBossSM : MonoBehaviour {
     IEnumerator ChangeScene()
     {
         //Miron change scene functio tänne
-        WorldSceneManager.loadBreakRoom();
         yield return new WaitForSeconds(4f);
+        WorldSceneManager.LoadInteractiveMenu();
     }
 
     /// <summary>
@@ -469,8 +478,8 @@ public class ThirdBossSM : MonoBehaviour {
     /// <summary>
     /// Used for the quit button in deathcanvas, should be moved to load mainmenu once InteractiveMainMenu is done
     /// </summary>
-    public void ExitApplication()
+    public void ToMenu()
     {
-        Application.Quit();
+        WorldSceneManager.LoadInteractiveMenu();
     }
 }
