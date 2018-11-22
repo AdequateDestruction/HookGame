@@ -92,13 +92,17 @@ public class Whirlpool : MonoBehaviour {
         }
         if (explosionTimer>explosionTime*2&&exploded&&!doOnce)
         {
-            waterBossAIScript.SM.SetNextState("Idle");
+           
             destroyed = true;
             active = false;
             explosion.SetActive(false);
             col.enabled = !col.enabled;
             doOnce = true;
             propellerAnim.SetBool("Destroyed", true);
+            Debug.Log("here2");
+            waterBossAIScript.SM.SetNextState("Idle");
+            waterStagemanagerScript.whirlpoolDestroyed++;
+
             //this.gameObject.SetActive(false);
         }
     }
@@ -108,6 +112,7 @@ public class Whirlpool : MonoBehaviour {
         if (collision.tag=="Player")
         {
             collision.GetComponent<PlayerMovement>().moveSpeed = tempPlayerSpeed/2;
+            playerMovementScript.TakeDamage();
         }
         if (collision.tag=="MiniBoss")
         {
@@ -129,6 +134,8 @@ public class Whirlpool : MonoBehaviour {
         if (collision.tag=="Player")
         {
             collision.transform.position = Vector2.MoveTowards(collision.transform.position, this.transform.position, suckSpeed * Time.deltaTime);
+            //Debug.Log(Vector2.Distance(collision.transform.position, this.transform.position));
+            
         }
     }
 
@@ -138,10 +145,5 @@ public class Whirlpool : MonoBehaviour {
         {           
             collision.GetComponent<PlayerMovement>().moveSpeed = tempPlayerSpeed;
         }
-    }
-
-    private void OnDisable()
-    {
-        waterStagemanagerScript.whirlpoolDestroyed++;
     }
 }

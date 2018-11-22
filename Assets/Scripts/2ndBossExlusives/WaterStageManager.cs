@@ -22,8 +22,15 @@ public class WaterStageManager : MonoBehaviour {
     bool loadingIn;
 
     bool doOnce;
-    //Fade fadeScript;
 
+
+    //RandomIndex for toCorner WaterBossState
+    [SerializeField]
+    int randomAmount=10;
+    public List<int> randomIndex;
+    public int index;
+    int temp=0;
+    int numberInsert;
 
     // Use this for initialization
     void Start ()
@@ -41,6 +48,17 @@ public class WaterStageManager : MonoBehaviour {
             inhaleScript = GameObject.Find("WaterBoss").transform.GetChild(5).GetComponent<inhale>();
             GameObject.Find("WaterBoss").transform.GetChild(5).gameObject.SetActive(false);
         }
+        //RandomIndex for toCorner WaterBossState
+        for (int i = 0; i < randomAmount; i++)
+        {
+            do
+            {
+                numberInsert = Random.Range(0, waterBossAiScript.corners.Count);
+            } while (numberInsert == temp);
+
+            temp = numberInsert;
+            randomIndex.Add(numberInsert);
+        }
     }
 	
 	void Update ()
@@ -55,10 +73,7 @@ public class WaterStageManager : MonoBehaviour {
         }
 
         //DEBUG
-        Nextphase();
-
-
-
+        Debug();
     }
 
     public void Phase1()
@@ -83,9 +98,10 @@ public class WaterStageManager : MonoBehaviour {
     {
         if (whirlpoolDestroyed>=1&&!doOnce)
         {
+            UnityEngine.Debug.Log("here");
             //WorldSceneManager.NextScene();
             waterBossAiScript.SM.SetNextState("ToCorner");
-            waterBossAiScript.whirlpools.SetActive(false);
+            //waterBossAiScript.whirlpools.SetActive(false);
             doOnce = true;
         }
         if (inhaleScript.inhaledEnemies >= 20)
@@ -95,12 +111,16 @@ public class WaterStageManager : MonoBehaviour {
         }
     }
         //DEBUG
-    public void Nextphase()
+    public void Debug()
     {
 
         if (Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();
+        }
+        if (Input.GetKey(KeyCode.P))
+        {
+            whirlpoolDestroyed++;
         }
     }
 
