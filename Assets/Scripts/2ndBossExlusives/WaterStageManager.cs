@@ -81,7 +81,7 @@ public class WaterStageManager : MonoBehaviour {
 
     public void Phase2_3()
     {
-        if (whirlpoolDestroyed>=2&&!doOnce)
+        if (whirlpoolDestroyed>=1&&!doOnce)
         {
             //WorldSceneManager.NextScene();
             waterBossAiScript.SM.SetNextState("ToCorner");

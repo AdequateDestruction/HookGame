@@ -11,8 +11,13 @@ public class Whirlpool : MonoBehaviour {
     WaterBossAI waterBossAIScript;
     WaterStageManager waterStagemanagerScript;
     SpriteRenderer spriteRenderer;
-    ParticleSystem explosion;
+    public GameObject explosion;
+    Animator propellerAnim;
     Collider2D col;
+    public bool active;
+    public bool destroyed;
+    bool doOnce;
+    
 
     [SerializeField]
     float suckSpeed, repeateTimeMax = 5, repeateTimeMin=1, explosionTime = 3, invulnerableCD;
@@ -25,26 +30,50 @@ public class Whirlpool : MonoBehaviour {
         waterStagemanagerScript = GameObject.Find("WaterStageManager").GetComponent<WaterStageManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
-        explosion = GetComponent<ParticleSystem>();
+        explosion = transform.GetChild(1).gameObject;
+        propellerAnim = transform.GetChild(0).GetComponent<Animator>();
 
+        explosion.SetActive(false);
         repeateTime = Random.Range(repeateTimeMin, repeateTimeMax);
+
     }
 
     void Update ()
     {
+
+
         //Random whirlpool activation
         timer += Time.deltaTime;
         if (timer>repeateTime&&!somethingInWhirlpool)
         {
-            spriteRenderer.enabled = !spriteRenderer.enabled;
-            col.enabled = !col.enabled;
-            timer = 0;
+            if (!destroyed)
+            {
+                if (active)
+                {
+                    active = false;
+                    propellerAnim.speed = 1;
+
+                }
+                else
+                {
+                    active = true;
+                    propellerAnim.speed = 10;
+                }
+                col.enabled = !col.enabled;
+                timer = 0;
+            }
+            //spriteRenderer.enabled = !spriteRenderer.enabled;
+   
         }
 
         //explosion activation
         if (explosionTimer>explosionTime&&somethingInWhirlpool)
         {
-            explosion.Play();
+            if (!doOnce)
+            {
+                explosion.SetActive(true);
+            }
+
             exploded = true;
             waterBossAIScript.invulnerableTimer = Time.time + invulnerableCD;
             waterBossAIScript.invulnerable = true;
@@ -52,17 +81,25 @@ public class Whirlpool : MonoBehaviour {
         }
         else if (somethingInWhirlpool)
         {
+
             explosionTimer += Time.deltaTime;
         }
         if (exploded)
         {
+
             explosionTimer += Time.deltaTime;
 
         }
-        if (explosionTimer>explosionTime*2&&exploded)
+        if (explosionTimer>explosionTime*2&&exploded&&!doOnce)
         {
             waterBossAIScript.SM.SetNextState("Idle");
-            this.gameObject.SetActive(false);
+            destroyed = true;
+            active = false;
+            explosion.SetActive(false);
+            col.enabled = !col.enabled;
+            doOnce = true;
+            propellerAnim.SetBool("Destroyed", true);
+            //this.gameObject.SetActive(false);
         }
     }
 

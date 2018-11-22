@@ -39,6 +39,7 @@ public class WaterBossAI : MonoBehaviour {
     public float invulnerableTimer;
 
     public GameObject inHale;
+    public inhale inhaleScript;
     public List<Transform> corners;
     public Transform lastCorner;
     public bool turned;
@@ -72,6 +73,7 @@ public class WaterBossAI : MonoBehaviour {
         player = GameObject.Find("Player");
         rb = GetComponent<Rigidbody2D>();
         corners = new List<Transform>();
+        inhaleScript = inHale.GetComponent<inhale>();
 
         StartCoroutine(AI());
 

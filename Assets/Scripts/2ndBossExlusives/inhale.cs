@@ -9,6 +9,7 @@ public class inhale : MonoBehaviour {
 
     [SerializeField]
     float suckSpeed;
+    public float suckTime;
 
     public int inhaledEnemies;
 

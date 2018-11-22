@@ -91,6 +91,7 @@ public class miniBossAI : MonoBehaviour {
         if (isDead)
         {
             //reset enemy for pooling
+            animator.SetBool("Dead", false);
             isDead = false;
             doOnce = false;
             timer = 0;

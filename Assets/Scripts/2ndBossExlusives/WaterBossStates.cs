@@ -253,7 +253,7 @@ public class WaterInHale : State
     {
         waterBossAI.rb.velocity = Vector2.zero;
         timer += Time.deltaTime;
-        if (timer > 3)
+        if (timer > waterBossAI.inhaleScript.suckTime)
         {
             waterBossAI.SM.SetNextState("ToCorner");
         }
@@ -288,7 +288,7 @@ public class WaterToCorner : State
 
     public override void Update()
     {
-        //rotates towards center
+        //rotates towards center, complete when raycast hits center collider
         if (Vector2.Distance(corner.position, waterBossAI.transform.position) < 0.8f)
         {
             travelled = true;
@@ -296,12 +296,6 @@ public class WaterToCorner : State
             Vector3 dir = Vector3.zero - waterBossAI.transform.position;
             angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             waterBossAI.transform.rotation = Quaternion.Slerp(waterBossAI.transform.localRotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * waterBossAI.rotateSpeed);
-
-            //raycast hits center
-            if (waterBossAI.turned)
-            {
-                Debug.Log("Done");
-            }
         }
         else if (!travelled)
         {
