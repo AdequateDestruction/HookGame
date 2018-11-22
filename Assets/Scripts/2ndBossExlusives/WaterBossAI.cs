@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class WaterBossAI : MonoBehaviour {
 
-    WaterStageManager waterStagemanagerScript;
+    public PlayerMovement playerMovementScript;
+    public WaterStageManager waterStagemanagerScript;
     public ParticleSystem particle;
     [SerializeField]
     public float WhirlpoolRotSpeed;
@@ -74,6 +75,7 @@ public class WaterBossAI : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         corners = new List<Transform>();
         inhaleScript = inHale.GetComponent<inhale>();
+        playerMovementScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
 
         StartCoroutine(AI());
 
@@ -136,7 +138,7 @@ public class WaterBossAI : MonoBehaviour {
                 SM.SetNextState("Breath");
             }
         }
-
+        //TODO FIX BUG!!!! uses inhale state always when hitting center. Doesn't move to the next corner 
         if (SM.CurrentState== "ToCorner"&& hit.collider != null && hit.collider.gameObject.name == "Center")
         {
             turned = true; 
@@ -152,6 +154,10 @@ public class WaterBossAI : MonoBehaviour {
         {
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0f;
+        }
+        if (collision.gameObject.tag=="Player")
+        {
+            playerMovementScript.TakeDamage();
         }
     }
 
