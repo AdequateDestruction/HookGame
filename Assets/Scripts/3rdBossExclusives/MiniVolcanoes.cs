@@ -14,7 +14,7 @@ public class MiniVolcanoes : MonoBehaviour {
 
     public float maxRange = 3, minRange = -3, randomInvokeMin = 0.05f, randomInvokeMax = 0.9f, invokeRepeat = 1;
     public bool stopShooting, boss = false;
-
+    public int volcanoHP = 3;
 
 
     AudioSource despawnSource;
@@ -37,7 +37,10 @@ public class MiniVolcanoes : MonoBehaviour {
 
     public void hookHit()
     {
-        if (!despawning && !boss)
+        if (volcanoHP > 0)
+            volcanoHP = volcanoHP - 1;
+
+        if (!despawning && !boss && volcanoHP <= 0)
         {
             StartCoroutine(TentacleDeSpawn());
         }

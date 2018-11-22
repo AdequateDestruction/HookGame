@@ -103,7 +103,7 @@ public class GameSettingsScript : MonoBehaviour
         {
             if(thirdBoss.thirdPhaseHP > 0)
             {
-                print(boss3Time);
+                //print(boss3Time);
                 boss3Time += Time.deltaTime;
                 timerText.text = Mathf.RoundToInt((int)boss3Time).ToString();
 
