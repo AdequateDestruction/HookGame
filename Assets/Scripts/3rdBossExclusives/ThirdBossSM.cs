@@ -124,12 +124,12 @@ public class ThirdBossSM : MonoBehaviour {
             magmaBreathActive = false;
             magmaParticle.Stop();
         }
-
+        
         if(currentState == "3rdState" && idleAnimationActive
             && bossSpriteChild.GetComponent<SpriteRenderer>().sprite != idleSprite) //change to idle animation once idleAnimationActive is set to true
         {
-            idleCollision.SetActive(true);
-            walkingCollision.SetActive(false);
+            /*idleCollision.SetActive(true);
+            walkingCollision.SetActive(false);*/
             //bossSpriteChild.GetComponent<SpriteRenderer>().sprite = idleSprite;
             //animController.StartPlayback();
             animController.SetBool("Moving", false);
@@ -138,12 +138,12 @@ public class ThirdBossSM : MonoBehaviour {
         if(currentState == "3rdState" && moveAnimationActive
             && bossSpriteChild.GetComponent<SpriteRenderer>().sprite != walkingSprite) //Change to walking animation once walkingAnimationActive is true
         {
-            walkingCollision.SetActive(true);
-            idleCollision.SetActive(false);
+            /*walkingCollision.SetActive(true);
+            idleCollision.SetActive(false);*/
             //bossSpriteChild.GetComponent<SpriteRenderer>().sprite = walkingSprite;
             animController.SetBool("Moving", true);
         }
-
+        
         if(playerRangeCheckInProg == true && currentState == "3rdState")//if player range check is in progress tick the function
         {
             CheckPlayerProximity();
@@ -157,6 +157,7 @@ public class ThirdBossSM : MonoBehaviour {
         }
 
         MovingAnimationVariants();
+        BossVsPlayerPos();
 
         if(Input.GetKeyDown(KeyCode.H))//Cheat for easier testing, DISABLE ON RELEASE
         {
@@ -475,6 +476,7 @@ public class ThirdBossSM : MonoBehaviour {
 
     void MovingAnimationVariants()
     {
+        /*
         if(moveAnimationActive)
         {
             trueAngle = transform.rotation.eulerAngles.z;
@@ -484,24 +486,24 @@ public class ThirdBossSM : MonoBehaviour {
             if (trueAngle > 30 && trueAngle < 120)
             {
                 //up
-                animController.SetBool("MovingDown", false);
-                animController.SetBool("MovingLeft", true);
-                animController.SetBool("MovingRight", false);
+                animController.SetBool("MovingDown", true);
+                animController.SetBool("MovingLeft", false);
+                animController.SetBool("MovingRight", false);//down
                 animController.SetBool("MovingUp", false);
             }
-            else if (trueAngle > 120 && trueAngle < 210)//down
+            else if (trueAngle > 120 && trueAngle < 210)
             {
                 //left
-                animController.SetBool("MovingDown", true);
-                animController.SetBool("MovingRight", false);
+                animController.SetBool("MovingDown", false); // right
+                animController.SetBool("MovingRight", true);
                 animController.SetBool("MovingUp", false);
                 animController.SetBool("MovingLeft", false);
             }
             else if (trueAngle > 210 && trueAngle < 300)
             {
                 //down
-                animController.SetBool("MovingLeft", false);
-                animController.SetBool("MovingRight", true);
+                animController.SetBool("MovingLeft", true);//left
+                animController.SetBool("MovingRight", false);
                 animController.SetBool("MovingUp", false);
                 animController.SetBool("MovingDown", false);
             }
@@ -510,14 +512,67 @@ public class ThirdBossSM : MonoBehaviour {
                 //right
                 animController.SetBool("MovingDown", false);
                 animController.SetBool("MovingLeft", false);
-                animController.SetBool("MovingUp", true);
+                animController.SetBool("MovingUp", true);//up
                 animController.SetBool("MovingRight", false);
             }
-        }
+        }*/
+
+
+
+        
         
 
     }
 
+
+    void BossVsPlayerPos()
+    {
+        if(moveAnimationActive)
+        {
+            if((gameObject.transform.position.x + player.transform.position.x) > (gameObject.transform.position.y + player.transform.position.y))
+            {
+            
+                if (gameObject.transform.position.x > player.transform.position.x)
+                {
+                    animController.SetBool("MovingDown", true);
+                    animController.SetBool("MovingLeft", false);
+                    animController.SetBool("MovingUp", false);
+                    animController.SetBool("MovingRight", false);
+                    print("Play down animation");
+                }
+                else if (gameObject.transform.position.x < player.transform.position.x)
+                {
+                    animController.SetBool("MovingDown", false);
+                    animController.SetBool("MovingLeft", false);
+                    animController.SetBool("MovingUp", false);
+                    animController.SetBool("MovingRight", true);
+                    print("Play right animation");
+                }
+
+            }
+            else if((gameObject.transform.position.x + player.transform.position.x) < (gameObject.transform.position.y + player.transform.position.y))
+            {
+                if (gameObject.transform.position.y > player.transform.position.y)
+                {
+                    animController.SetBool("MovingDown", false);
+                    animController.SetBool("MovingLeft", true);
+                    animController.SetBool("MovingUp", false);
+                    animController.SetBool("MovingRight", false);
+                    print("Play left animation");
+                }
+                else if (gameObject.transform.position.y < player.transform.position.y)
+                {
+                    animController.SetBool("MovingDown", false);
+                    animController.SetBool("MovingLeft", false);
+                    animController.SetBool("MovingUp", true);
+                    animController.SetBool("MovingRight", false);
+                    print("Play up animation");
+                }
+            }
+
+        }
+
+    }
 
     /// <summary>
     /// Is used for the play again button on deathcanvas
