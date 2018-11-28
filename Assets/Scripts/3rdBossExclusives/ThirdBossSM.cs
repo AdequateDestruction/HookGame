@@ -14,10 +14,13 @@ public class ThirdBossSM : MonoBehaviour {
     bool playerRangeCheckInProg = false;
     SpriteRenderer lavaSpriteRenderer;
     float risingAlpha = 0, lavaTimer = 0, magmaBreathTimer = 0, lavaOverflowTimer; // all of the timer variables
+    float trueAngle;
     ParticleSystem magmaParticle;
     PlayerMovement player;
     Pathfinding.AIPath aiPath;
     Pathfinding.AIDestinationSetter aiSetter;
+    public static Animator animController;
+    public static ThirdBossSM thirdBossRef;
     public int secondPhaseHP = 3, thirdPhaseHP = 4; //public so timer can check when boss dies on phase 4
 
     //Public variables, usually for balancing or for ease of use access to other objects
@@ -40,6 +43,9 @@ public class ThirdBossSM : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         aiPath = gameObject.GetComponent<Pathfinding.AIPath>();
         aiSetter = gameObject.GetComponent<Pathfinding.AIDestinationSetter>();
+        thirdBossRef = gameObject.GetComponent<ThirdBossSM>();
+        animController = gameObject.GetComponentInChildren<Animator>();
+        //animController.Play()
     }
 
     //To ensure different framerates don't affect the boss
@@ -118,23 +124,26 @@ public class ThirdBossSM : MonoBehaviour {
             magmaBreathActive = false;
             magmaParticle.Stop();
         }
-
+        
         if(currentState == "3rdState" && idleAnimationActive
             && bossSpriteChild.GetComponent<SpriteRenderer>().sprite != idleSprite) //change to idle animation once idleAnimationActive is set to true
         {
-            idleCollision.SetActive(true);
-            walkingCollision.SetActive(false);
-            bossSpriteChild.GetComponent<SpriteRenderer>().sprite = idleSprite;
+            /*idleCollision.SetActive(true);
+            walkingCollision.SetActive(false);*/
+            //bossSpriteChild.GetComponent<SpriteRenderer>().sprite = idleSprite;
+            //animController.StartPlayback();
+            animController.SetBool("Moving", false);
         }
 
         if(currentState == "3rdState" && moveAnimationActive
             && bossSpriteChild.GetComponent<SpriteRenderer>().sprite != walkingSprite) //Change to walking animation once walkingAnimationActive is true
         {
-            walkingCollision.SetActive(true);
-            idleCollision.SetActive(false);
-            bossSpriteChild.GetComponent<SpriteRenderer>().sprite = walkingSprite;
+            /*walkingCollision.SetActive(true);
+            idleCollision.SetActive(false);*/
+            //bossSpriteChild.GetComponent<SpriteRenderer>().sprite = walkingSprite;
+            animController.SetBool("Moving", true);
         }
-
+        
         if(playerRangeCheckInProg == true && currentState == "3rdState")//if player range check is in progress tick the function
         {
             CheckPlayerProximity();
@@ -146,6 +155,9 @@ public class ThirdBossSM : MonoBehaviour {
             currentState = "PlayerDead";
             playerDead = true;
         }
+
+        MovingAnimationVariants();
+        BossVsPlayerPos();
 
         if(Input.GetKeyDown(KeyCode.H))//Cheat for easier testing, DISABLE ON RELEASE
         {
@@ -180,7 +192,7 @@ public class ThirdBossSM : MonoBehaviour {
                 ThirdState();
                 break;
             case "BossDeadState":
-
+                BossDead();
             break;
             case "PlayerDead":
 
@@ -415,6 +427,11 @@ public class ThirdBossSM : MonoBehaviour {
     /// </summary>
     void StopMoving()
     {
+        animController.SetBool("MovingUp", false);
+        animController.SetBool("MovingDown", false);
+        animController.SetBool("MovingLeft", false);
+        animController.SetBool("MovingRight", false);
+
         print("Stop move");
         aiPath.canMove = false;
         aiPath.canSearch = false;
@@ -444,6 +461,7 @@ public class ThirdBossSM : MonoBehaviour {
         lavaOverflowActive = false;
         LavaOverflowParticleSys.GetComponent<ParticleSystem>().Stop();
         lavaActive = false;
+        StartCoroutine(ChangeScene());
         //boss death animation here probably as well as some other stuff if neccessary
 
 
@@ -452,8 +470,108 @@ public class ThirdBossSM : MonoBehaviour {
     IEnumerator ChangeScene()
     {
         //Miron change scene functio tänne
-        WorldSceneManager.loadBreakRoom();
         yield return new WaitForSeconds(4f);
+        WorldSceneManager.LoadInteractiveMenu();
+    }
+
+    void MovingAnimationVariants()
+    {
+        /*
+        if(moveAnimationActive)
+        {
+            trueAngle = transform.rotation.eulerAngles.z;
+            Debug.Log(trueAngle);
+
+
+            if (trueAngle > 30 && trueAngle < 120)
+            {
+                //up
+                animController.SetBool("MovingDown", true);
+                animController.SetBool("MovingLeft", false);
+                animController.SetBool("MovingRight", false);//down
+                animController.SetBool("MovingUp", false);
+            }
+            else if (trueAngle > 120 && trueAngle < 210)
+            {
+                //left
+                animController.SetBool("MovingDown", false); // right
+                animController.SetBool("MovingRight", true);
+                animController.SetBool("MovingUp", false);
+                animController.SetBool("MovingLeft", false);
+            }
+            else if (trueAngle > 210 && trueAngle < 300)
+            {
+                //down
+                animController.SetBool("MovingLeft", true);//left
+                animController.SetBool("MovingRight", false);
+                animController.SetBool("MovingUp", false);
+                animController.SetBool("MovingDown", false);
+            }
+            else if (trueAngle > 300 && trueAngle < 360 || trueAngle > 0 && trueAngle < 30)//up
+            {
+                //right
+                animController.SetBool("MovingDown", false);
+                animController.SetBool("MovingLeft", false);
+                animController.SetBool("MovingUp", true);//up
+                animController.SetBool("MovingRight", false);
+            }
+        }*/
+
+
+
+        
+        
+
+    }
+
+
+    void BossVsPlayerPos()
+    {
+        if(moveAnimationActive)
+        {
+            if((gameObject.transform.position.x + player.transform.position.x) > (gameObject.transform.position.y + player.transform.position.y))
+            {
+            
+                if (gameObject.transform.position.x > player.transform.position.x)
+                {
+                    animController.SetBool("MovingDown", true);
+                    animController.SetBool("MovingLeft", false);
+                    animController.SetBool("MovingUp", false);
+                    animController.SetBool("MovingRight", false);
+                    print("Play down animation");
+                }
+                else if (gameObject.transform.position.x < player.transform.position.x)
+                {
+                    animController.SetBool("MovingDown", false);
+                    animController.SetBool("MovingLeft", false);
+                    animController.SetBool("MovingUp", false);
+                    animController.SetBool("MovingRight", true);
+                    print("Play right animation");
+                }
+
+            }
+            else if((gameObject.transform.position.x + player.transform.position.x) < (gameObject.transform.position.y + player.transform.position.y))
+            {
+                if (gameObject.transform.position.y > player.transform.position.y)
+                {
+                    animController.SetBool("MovingDown", false);
+                    animController.SetBool("MovingLeft", true);
+                    animController.SetBool("MovingUp", false);
+                    animController.SetBool("MovingRight", false);
+                    print("Play left animation");
+                }
+                else if (gameObject.transform.position.y < player.transform.position.y)
+                {
+                    animController.SetBool("MovingDown", false);
+                    animController.SetBool("MovingLeft", false);
+                    animController.SetBool("MovingUp", true);
+                    animController.SetBool("MovingRight", false);
+                    print("Play up animation");
+                }
+            }
+
+        }
+
     }
 
     /// <summary>
@@ -465,12 +583,11 @@ public class ThirdBossSM : MonoBehaviour {
     }
 
 
-
     /// <summary>
     /// Used for the quit button in deathcanvas, should be moved to load mainmenu once InteractiveMainMenu is done
     /// </summary>
-    public void ExitApplication()
+    public void ToMenu()
     {
-        Application.Quit();
+        WorldSceneManager.LoadInteractiveMenu();
     }
 }

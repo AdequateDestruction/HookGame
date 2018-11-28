@@ -382,7 +382,7 @@ public class BossScript : MonoBehaviour
         bossAnimator.Play("BossDeathAnimation");
         deathSounds[2].Play();
         deathSounds[0].Play();
-        WorldSceneManager.loadBreakRoom();
+        WorldSceneManager.LoadBreakRoom();
     }
 
     public void PlayerDead()

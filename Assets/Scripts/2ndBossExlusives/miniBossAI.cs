@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class miniBossAI : MonoBehaviour {
 
+    Collider2D col;
     GameObject Parent;
     Animator animator;
     GameObject visual;
@@ -24,6 +25,7 @@ public class miniBossAI : MonoBehaviour {
         animator = GetComponent<Animator>();
         Parent = transform.parent.gameObject;
         visual = transform.parent.GetChild(1).gameObject;
+        col = GetComponent<Collider2D>();
 
         //if phase is NOT phase1
         if (SceneManager.GetActiveScene().name!=waterStageManagerScript.PHASE1)
@@ -50,6 +52,7 @@ public class miniBossAI : MonoBehaviour {
                     waterBossScript.minibossKilled++;
                     animator.SetBool("Dead", true);
                 }
+                this.gameObject.tag = "Untagged";
                 visual.SetActive(false);
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 GetComponent<Rigidbody2D>().angularVelocity = 0f;
@@ -91,6 +94,9 @@ public class miniBossAI : MonoBehaviour {
         if (isDead)
         {
             //reset enemy for pooling
+            this.gameObject.tag = "MiniBoss";
+
+            animator.SetBool("Dead", false);
             isDead = false;
             doOnce = false;
             timer = 0;

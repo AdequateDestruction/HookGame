@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class WaterStageManager : MonoBehaviour {
-    public string PHASE1, PHASE2, PHASE3;
+    public string PHASE1, PHASE2_3, PHASE3;
 
     PlayerMovement playerMovementScript;
     WorldSceneManager worldSceneManagerScript;
+    WaterBossAI waterBossAiScript;
+
     inhale inhaleScript;
     //Phase1
     GameObject cols;
@@ -18,30 +20,44 @@ public class WaterStageManager : MonoBehaviour {
     string toBeLoaded;
     bool loadingOut;
     bool loadingIn;
-    //Fade fadeScript;
 
+    bool doOnce;
+
+
+    //RandomIndex for toCorner WaterBossState
+    [SerializeField]
+    int randomAmount=10;
+    public List<int> randomIndex;
+    public int index;
+    int temp=0;
+    int numberInsert;
 
     // Use this for initialization
     void Start ()
     {
-        worldSceneManagerScript = GameObject.Find("WorldSceneManager").GetComponent<WorldSceneManager>();
+        waterBossAiScript = GameObject.Find("WaterBoss").GetComponent<WaterBossAI>();
         playerMovementScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
-        //fadeScript = GameObject.Find("fade").GetComponent<Fade>();
-
-        PHASE1 = "Stage2Phase1"; PHASE2 = "Stage2Phase2"; PHASE3 = "Stage2Phase3";
+        PHASE1 = "Stage2Phase1"; PHASE2_3 = "Stage2Phase2"; PHASE3 = "Stage2Phase3";
 
         if (SceneManager.GetActiveScene().name == PHASE1)
         {
             cols = GameObject.Find("Cols");
         }
-        else if (SceneManager.GetActiveScene().name == PHASE2)
-        {
-
-        }
-        else if (SceneManager.GetActiveScene().name == PHASE3)
+        else if (SceneManager.GetActiveScene().name == PHASE2_3)
         {
             inhaleScript = GameObject.Find("WaterBoss").transform.GetChild(5).GetComponent<inhale>();
             GameObject.Find("WaterBoss").transform.GetChild(5).gameObject.SetActive(false);
+        }
+        //RandomIndex for toCorner WaterBossState
+        for (int i = 0; i < randomAmount; i++)
+        {
+            do
+            {
+                numberInsert = Random.Range(0, waterBossAiScript.corners.Count);
+            } while (numberInsert == temp);
+
+            temp = numberInsert;
+            randomIndex.Add(numberInsert);
         }
     }
 	
@@ -51,20 +67,13 @@ public class WaterStageManager : MonoBehaviour {
         {
             Phase1();
         }
-        else if (SceneManager.GetActiveScene().name == PHASE2)
+        else if (SceneManager.GetActiveScene().name == PHASE2_3)
         {
-            Phase2();
-        }
-        else if (SceneManager.GetActiveScene().name == PHASE3)
-        {
-            Phase3();
+            Phase2_3();
         }
 
         //DEBUG
-        Nextphase();
-
-
-
+        Debug();
     }
 
     public void Phase1()
@@ -85,31 +94,33 @@ public class WaterStageManager : MonoBehaviour {
         }
     }
 
-    public void Phase2()
+    public void Phase2_3()
     {
-        if (whirlpoolDestroyed>=2)
+        if (whirlpoolDestroyed>=1&&!doOnce)
         {
-            WorldSceneManager.NextScene();
-
+            UnityEngine.Debug.Log("here");
+            //WorldSceneManager.NextScene();
+            waterBossAiScript.SM.SetNextState("ToCorner");
+            //waterBossAiScript.whirlpools.SetActive(false);
+            doOnce = true;
         }
-    }
-    
-    public void Phase3()
-    {
         if (inhaleScript.inhaledEnemies >= 20)
         {
-            WorldSceneManager.loadBreakRoom();
+            WorldSceneManager.LoadBreakRoom();
 
         }
     }
-
         //DEBUG
-    public void Nextphase()
+    public void Debug()
     {
 
         if (Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();
+        }
+        if (Input.GetKey(KeyCode.P))
+        {
+            whirlpoolDestroyed++;
         }
     }
 

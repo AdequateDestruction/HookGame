@@ -21,6 +21,7 @@ public class GameSettingsScript : MonoBehaviour
     public float boss1Time, boss2Time, boss3Time;
     ThirdBossSM thirdBoss;
     BossScript firstBoss;
+    inhale secondInhale;
     Text timerText;
 
     void Awake()
@@ -49,7 +50,44 @@ public class GameSettingsScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(timerText == null)
+
+        if(firstBoss == null && SceneManager.GetActiveScene().name == "Main")
+        {
+            firstBoss = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossScript>();
+        }
+
+        if (firstBoss != null)
+        {
+            if (firstBoss.currentStage2HP > 0)
+            {
+                print(boss1Time);
+                boss1Time += Time.deltaTime;
+            }
+
+            if (firstBoss.pMoveScript.currentHealth <= 0 && thirdBoss.thirdPhaseHP > 0)
+            {
+                boss1Time = 0;
+            }
+        }
+
+
+        if(secondInhale == null && SceneManager.GetActiveScene().name == "Stage2Phase2")
+        {
+            secondInhale = GameObject.FindGameObjectWithTag("Boss").GetComponent<inhale>();
+        }
+
+        if(secondInhale != null)
+        {
+            if(secondInhale.inhaledEnemies < 20)
+            {
+                boss2Time += Time.deltaTime;
+            }
+
+            
+        }
+
+
+        if(timerText == null || SceneManager.GetActiveScene().name != WorldSceneManager.INTERACTIVEMENU)
         {
             timerText = GameObject.FindGameObjectWithTag("TimerText").GetComponent<Text>();
         }
@@ -65,9 +103,9 @@ public class GameSettingsScript : MonoBehaviour
         {
             if(thirdBoss.thirdPhaseHP > 0)
             {
-                print(boss3Time);
+                //print(boss3Time);
                 boss3Time += Time.deltaTime;
-                //timerText.text = (int)Mathf.RoundToInt(boss3Time).ToString();
+                timerText.text = Mathf.RoundToInt((int)boss3Time).ToString();
 
             }
 
@@ -78,23 +116,6 @@ public class GameSettingsScript : MonoBehaviour
         }
         //////////////////////////////////////////////
 
-        if(firstBoss == null && SceneManager.GetActiveScene().name == "Main")
-        {
-            firstBoss = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossScript>();
-        }
 
-        if (firstBoss != null)
-        {
-            if (firstBoss.currentStage2HP >= 0)
-            {
-                print(boss1Time);
-                boss1Time += Time.deltaTime;
-            }
-
-            if (firstBoss.pMoveScript.currentHealth <= 0 && thirdBoss.thirdPhaseHP > 0)
-            {
-                boss1Time = 0;
-            }
-        }
     }
 }

@@ -14,7 +14,7 @@ public class MiniVolcanoes : MonoBehaviour {
 
     public float maxRange = 3, minRange = -3, randomInvokeMin = 0.05f, randomInvokeMax = 0.9f, invokeRepeat = 1;
     public bool stopShooting, boss = false;
-
+    public int volcanoHP = 3;
 
 
     AudioSource despawnSource;
@@ -37,7 +37,10 @@ public class MiniVolcanoes : MonoBehaviour {
 
     public void hookHit()
     {
-        if (!despawning && !boss)
+        if (volcanoHP > 0)
+            volcanoHP = volcanoHP - 1;
+
+        if (!despawning && !boss && volcanoHP <= 0)
         {
             StartCoroutine(TentacleDeSpawn());
         }
@@ -63,10 +66,23 @@ public class MiniVolcanoes : MonoBehaviour {
             newProjectile = Instantiate(projectileShadow);
             newProjectile.GetComponent<SpriteRenderer>().color = new Color(newProjectile.GetComponent<SpriteRenderer>().color.r, newProjectile.GetComponent<SpriteRenderer>().color.g, newProjectile.GetComponent<SpriteRenderer>().color.b, 0); //this line is horrible
             newProjectile.transform.position = spawnPos;
+
+            if(boss)
+            {
+                ThirdBossSM.animController.SetBool("PlayRockShootAnim", true);
+                StartCoroutine(ShootAnimation());
+            }
         }
-
-
     }
+
+    IEnumerator ShootAnimation()
+    {
+        yield return new WaitForSeconds(0.45f);
+        ThirdBossSM.animController.SetBool("PlayRockShootAnim", false);
+    }
+    
+        
+    
 
     public void DestroyTentacle()
     {

@@ -34,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
 
     bool animatingHookLaunch;
     int framesSinceLaunch, hookLaunchFrameLimit = 10;
-
     float horizontalM, verticalM;                   // Horizontal and vertical movement Input value
 
     Vector3 mousePosition;
@@ -46,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
     GameObject currentHook;
 
     public GameObject cols;
-
+    static int staticHealth;
     void Start()
     {
         currentState = 0;
@@ -58,6 +57,13 @@ public class PlayerMovement : MonoBehaviour
         preferDirection = animateDown;
     }
 
+    public static int GetPlayer()
+    {
+        
+        //staticHealth = currentHealth;
+        return staticHealth;
+    }
+
     void Update()
     {
         if (currentState != 4 && currentState != 3)
@@ -67,9 +73,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (currentState == 0)                      // Moving
         {
-            
-                moveDirection = NewMoveDirection();     // Check inputs for movement
-            
+
+            moveDirection = NewMoveDirection();     // Check inputs for movement
+
             if (!animatingHookLaunch)               // Unless a hook is being launched, set the animation based on moveDirection
             {
                 SetAnimation();
@@ -113,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (currentState == 4)                 // Death
         {
-            
+
         }
 
         if (invulnerable)                           // Show visual for invulnerability and check timer
@@ -147,6 +153,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
 
     // Checks inputs and sets the movement direction for this frame
     private Vector3 NewMoveDirection()
