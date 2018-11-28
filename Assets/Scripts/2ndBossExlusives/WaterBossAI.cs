@@ -182,22 +182,40 @@ public class WaterBossAI : MonoBehaviour {
         if (trueAngle > 30 && trueAngle < 120)
         {
             //up
-            waterBossAnimator.Play("WaterBossMovementUp");
+            //waterBossAnimator.Play("WaterBossMovementUp");
+            waterBossAnimator.SetBool("Up", true);
+            waterBossAnimator.SetBool("Left", false);
+            waterBossAnimator.SetBool("Right", false);
+            waterBossAnimator.SetBool("Down", false);
+
         }
         else if (trueAngle > 120 && trueAngle < 210)
         {
             //left
-            waterBossAnimator.Play("WaterBossMovementLeft");
+            //waterBossAnimator.Play("WaterBossMovementLeft");
+            waterBossAnimator.SetBool("Up", false);
+            waterBossAnimator.SetBool("Left", true);
+            waterBossAnimator.SetBool("Right", false);
+            waterBossAnimator.SetBool("Down", false);
         }
         else if (trueAngle > 210 && trueAngle < 300)
         {
             //down
-            waterBossAnimator.Play("WaterBossMovementDown");
+            //waterBossAnimator.Play("WaterBossMovementDown");
+            waterBossAnimator.SetBool("Up", false);
+            waterBossAnimator.SetBool("Left", false);
+            waterBossAnimator.SetBool("Right", false);
+            waterBossAnimator.SetBool("Down", true);
         }
         else if (trueAngle > 300 && trueAngle < 360 || trueAngle > 0 && trueAngle < 30)
         {
             //right
-            waterBossAnimator.Play("WaterBossMovementRight");
+            //waterBossAnimator.Play("WaterBossMovementRight");
+            waterBossAnimator.SetBool("Up", false);
+            waterBossAnimator.SetBool("Left", false);
+            waterBossAnimator.SetBool("Right", true);
+            waterBossAnimator.SetBool("Down", false);
+
         }
     }
 

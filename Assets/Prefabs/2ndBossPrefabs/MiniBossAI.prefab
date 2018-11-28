@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4351338259644184}
   - component: {fileID: 212723114381672694}
+  - component: {fileID: 95061883059224428}
   m_Layer: 0
   m_Name: MiniBossVisual
   m_TagString: Untagged
@@ -85,8 +86,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1625975651353342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.18, y: -0.41, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 19.428495, y: -3.6211598, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4067428101687552}
   - {fileID: 4351338259644184}
@@ -101,7 +102,7 @@ Transform:
   m_GameObject: {fileID: 1238084603678294}
   m_LocalRotation: {x: -0.73727727, y: -0.6755903, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4156441388770908}
   m_RootOrder: 1
@@ -140,7 +141,25 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3.93
+  m_Radius: 1.11
+--- !u!95 &95061883059224428
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1238084603678294}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8084789d46c4b3848aaa1a69d81f88dd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!95 &95784166661477148
 Animator:
   serializedVersion: 3
@@ -278,7 +297,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 24ae4ff920e05374c9b4f29971e77b83, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 065336b8ae858c84f97a652f60742cbd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
