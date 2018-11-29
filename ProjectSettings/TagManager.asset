@@ -30,6 +30,10 @@ TagManager:
   - Pillar
   - BossCollider
   - TimerText
+  - BtnRight
+  - BtnLeft
+  - BtnUp
+  - BtnDown
   layers:
   - Default
   - TransparentFX
