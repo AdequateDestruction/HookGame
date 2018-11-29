@@ -26,30 +26,35 @@ public class WaterBossAI : MonoBehaviour {
     [HideInInspector]
     public bool playerHit = false, frenzyed = false;
 
-    public float movementSpeed=1, dashSpeed=5,rotateSpeed = 1;
+    public float movementSpeed=1, rotateSpeed = 1 /*dashSpeed=5,*/;
 
     [SerializeField]
     public int killsToTrigger=1;
 
-    int invulFlashCounter;
     SpriteRenderer bossVisual;
     [SerializeField]
     Color defaultColor, damageColor;
-    [HideInInspector]
-    public bool invulnerable;
-    public float invulnerableTimer;
+    //[HideInInspector]
 
+    //Inhale&goingintotherorner
     public GameObject inHale;
     public inhale inhaleScript;
     public List<Transform> corners;
     public Transform lastCorner;
     public bool turned;
 
+    //invulnerable
+    [SerializeField]
+    float invulnerableCD;
+    bool inPool, invulnerable;
+    float invulnerableTimer;
+    int invulFlashCounter;
+
+
+
     Animator waterBossAnimator;
     //rotation in 360 degrees
     float trueAngle;
-
-    public GameObject whirlpools;
 
     StateMachine sm = new StateMachine();
     public StateMachine SM { get { return sm; } }
@@ -119,6 +124,12 @@ public class WaterBossAI : MonoBehaviour {
                 bossVisual.color = defaultColor;
             }
         }
+
+        if (inPool)
+        {
+            invulnerableTimer = Time.time + invulnerableCD;
+            invulnerable = true;
+        }
     }
 
     private void FixedUpdate()
@@ -159,6 +170,17 @@ public class WaterBossAI : MonoBehaviour {
         {
             playerMovementScript.TakeDamage();
         }
+        if (collision.gameObject.tag=="Whirlpool")
+        {
+            inPool = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Whirlpool")
+        {
+            inPool = false;
+        }
     }
 
     void States()
@@ -166,7 +188,7 @@ public class WaterBossAI : MonoBehaviour {
         //states
         sm.AddState(new WaterIdle("Idle", this));
         sm.AddState(new WaterWaiting("Waiting", this));
-        sm.AddState(new WaterDash("Dash", this));
+        //sm.AddState(new WaterDash("Dash", this));
         sm.AddState(new WaterTurbine("Turbine", this));
         sm.AddState(new WaterMoving("Moving", this));
         sm.AddState(new WaterBreath("Breath", this));
@@ -178,27 +200,7 @@ public class WaterBossAI : MonoBehaviour {
     void WaterBossAnimations()
     {
         trueAngle = transform.rotation.eulerAngles.z;
-        //Debug.Log(trueAngle);
-        if (trueAngle > 30 && trueAngle < 120)
-        {
-            //up
-            waterBossAnimator.Play("WaterBossMovementUp");
-        }
-        else if (trueAngle > 120 && trueAngle < 210)
-        {
-            //left
-            waterBossAnimator.Play("WaterBossMovementLeft");
-        }
-        else if (trueAngle > 210 && trueAngle < 300)
-        {
-            //down
-            waterBossAnimator.Play("WaterBossMovementDown");
-        }
-        else if (trueAngle > 300 && trueAngle < 360 || trueAngle > 0 && trueAngle < 30)
-        {
-            //right
-            waterBossAnimator.Play("WaterBossMovementRight");
-        }
+        waterBossAnimator.SetFloat("Angle", trueAngle);
     }
 
     //"threading"
