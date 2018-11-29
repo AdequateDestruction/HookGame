@@ -21,11 +21,16 @@ public class Menu : MonoBehaviour
     public GameObject HelpPanel;
     public GameObject DifficultyPanel;
     public GameObject HowToPlayPanel;
+    public GameObject EnterNamePanel;
+    public GameObject DisplayErrorPanel;
 
     // loading screen objects
     public GameObject LoadingScreen;
     public Animator loreTextAnimator;
     public Text loadingText;
+
+    //Name text for checking != null and in range of 3-25 characters
+    public Text nameInputText;
 
     void Start()
     {
@@ -55,6 +60,7 @@ public class Menu : MonoBehaviour
         CreditsBtn.SetActive(false);
         HowToBtn.SetActive(false);
         QuitBtn.SetActive(false);
+        EnterNamePanel.SetActive(false);
 
         BackBtn.SetActive(true);
         DifficultyPanel.SetActive(true);
@@ -76,12 +82,14 @@ public class Menu : MonoBehaviour
         QuitBtn.SetActive(true);
         HowToBtn.SetActive(true);
         BackBtn.SetActive(false);
-
+    
         CreditsPanel.SetActive(false);
         HelpPanel.SetActive(false);
         SettingsPanel.SetActive(false);
         DifficultyPanel.SetActive(false);
         HowToPlayPanel.SetActive(false);
+        EnterNamePanel.SetActive(false);
+        DisplayErrorPanel.SetActive(false);
     }
 
     //For Credits Button
@@ -133,6 +141,41 @@ public class Menu : MonoBehaviour
 
         BackBtn.SetActive(true);
         SettingsPanel.SetActive(true);
+    }
+
+    public void EnterName()
+    {
+        PlayBtn.SetActive(false);
+        SettingsBtn.SetActive(false);
+        CreditsBtn.SetActive(false);
+        HowToBtn.SetActive(false);
+        QuitBtn.SetActive(false);
+
+        BackBtn.SetActive(true);
+        EnterNamePanel.SetActive(true);
+    }
+
+    public void Apply()
+    {
+
+        if(nameInputText.text.Length >= 3 && nameInputText.text.Length <= 25)
+        {
+            print(nameInputText.text.Length);
+            FindObjectOfType<PlayFabSM>().UpdateDisplayName(nameInputText);
+            Play();
+        }
+        else
+        {
+            DisplayError();
+        }
+        
+    }
+
+    void DisplayError()//Okay Button sets EnterNamePanel active again
+    {
+        EnterNamePanel.SetActive(false);
+
+        DisplayErrorPanel.SetActive(true);
     }
 
     public void ChooseDifficulty(int difficulty)
