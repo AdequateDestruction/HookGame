@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class TentacleScript : MonoBehaviour
+public class MainMenuTentacle : MonoBehaviour
 {
     public float lifeTime;
     public SpriteRenderer tentacleRenderer;
@@ -15,31 +14,21 @@ public class TentacleScript : MonoBehaviour
     AudioSource despawnSource;
     bool despawning;
 
-    [SerializeField]
-    EnemySpawner enemySpawner;
-
     void Start()
     {
         damageCollider.enabled = false;
         blockCollider.enabled = false;
         despawnSource = GetComponent<AudioSource>();
         StartCoroutine(TentacleSpawn());
-        if (SceneManager.GetActiveScene().name == "InteractiveMainMenu")
-        {
-            enemySpawner= GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
-        }
     }
 
     public void hookHit()
     {
         if (!despawning)
         {
+            Debug.Log("Hookhit");
             despawnSource.Play();
             StartCoroutine(TentacleDeSpawn());
-        }
-        if (SceneManager.GetActiveScene().name=="InteractiveMainMenu")
-        {
-            enemySpawner.invoketentacle(3f);
         }
     }
 
@@ -47,13 +36,15 @@ public class TentacleScript : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.gameObject.GetComponent<PlayerMovement>().TakeDamage();
-            if (!despawning)
-            {
-                StartCoroutine(TentacleDeSpawn());
-            }
+            //other.gameObject.GetComponent<PlayerMovement>().TakeDamage();
+            //if (!despawning)
+            //{
+            //    StartCoroutine(TentacleDeSpawn());
+            //}
         }
     }
+
+
 
     private IEnumerator TentacleSpawn()
     {
@@ -67,25 +58,13 @@ public class TentacleScript : MonoBehaviour
 
     private IEnumerator TentacleDeSpawn()
     {
-
-        if (SceneManager.GetActiveScene().name == "InteractiveMainMenu")
-        {
-            StopCoroutine(TentacleSpawn());
-            tentacleAnimator.Play("TentacleDeSpawnAnimation");
-            yield return new WaitForSeconds(1f);
-            this.gameObject.SetActive(false);
-        }
-        else
-        {
-            despawning = true;
-            StopCoroutine(TentacleSpawn());
-            damageCollider.enabled = false;
-            blockCollider.enabled = false;
-            tentacleAnimator.Play("TentacleDeSpawnAnimation");
-            yield return new WaitForSeconds(1f);
-            Destroy(gameObject);
-
-        }
+        despawning = true;
+        StopCoroutine(TentacleSpawn());
+        damageCollider.enabled = false;
+        blockCollider.enabled = false;
+        tentacleAnimator.Play("TentacleDeSpawnAnimation");
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
     }
 
     public void DestroyTentacle()
