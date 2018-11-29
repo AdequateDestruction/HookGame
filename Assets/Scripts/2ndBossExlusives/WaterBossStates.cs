@@ -71,38 +71,38 @@ public class WaterWaiting : State
 
 
 //DASH
-    public class WaterDash : State
-{
-    WaterBossAI waterBossAI;
-    Vector2 dir;
-    float angle;
+//    public class WaterDash : State
+//{
+//    WaterBossAI waterBossAI;
+//    Vector2 dir;
+//    float angle;
 
-    public WaterDash(string stateID, WaterBossAI waterBossAI) : base(stateID)
-    {
-        this.waterBossAI = waterBossAI;
-    }
-    public override void Enter()
-    {
+//    public WaterDash(string stateID, WaterBossAI waterBossAI) : base(stateID)
+//    {
+//        this.waterBossAI = waterBossAI;
+//    }
+//    public override void Enter()
+//    {
 
-    }
-    public override void Update()
-    {
-        //When waterboss has found player with raycast dashes towards player where player is at that moment.
-        if (waterBossAI.playerHit)
-        {
-            waterBossAI.rb.velocity =  waterBossAI.transform.right * waterBossAI.dashSpeed;
-        }
-        else
-        {
-            waterBossAI.transform.rotation = Quaternion.Slerp(waterBossAI.transform.localRotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * waterBossAI.rotateSpeed);
-        }
-    }
-    public override void Exit()
-    {
-        waterBossAI.minibossKilled = 0;
-        waterBossAI.playerHit = false;
-    }
-}
+//    }
+//    public override void Update()
+//    {
+//        //When waterboss has found player with raycast dashes towards player where player is at that moment.
+//        if (waterBossAI.playerHit)
+//        {
+//            waterBossAI.rb.velocity =  waterBossAI.transform.right * waterBossAI.dashSpeed;
+//        }
+//        else
+//        {
+//            waterBossAI.transform.rotation = Quaternion.Slerp(waterBossAI.transform.localRotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * waterBossAI.rotateSpeed);
+//        }
+//    }
+//    public override void Exit()
+//    {
+//        waterBossAI.minibossKilled = 0;
+//        waterBossAI.playerHit = false;
+//    }
+//}
 
 //TURBINE
 //this state is activated from turbine.cs, when boss hits turbine.

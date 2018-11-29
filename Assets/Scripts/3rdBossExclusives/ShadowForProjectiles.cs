@@ -13,6 +13,7 @@ public class ShadowForProjectiles : MonoBehaviour {
     public bool shatter = false;
     public GameObject rockCluster;
     public GameObject fallingRockSprite;
+    public float bigShadowMultiplier = 2;
     
     float yMulti = 5.5f;
     bool doOnce = true;
@@ -27,7 +28,7 @@ public class ShadowForProjectiles : MonoBehaviour {
 
         if(big)
         {
-            spriteRenderer.gameObject.transform.localScale = spriteRenderer.gameObject.transform.localScale * 3;
+            spriteRenderer.gameObject.transform.localScale = spriteRenderer.gameObject.transform.localScale * bigShadowMultiplier;
         }
         
         InvokeRepeating("AlphaChange", invokeStart , invokeRepeat);

@@ -20,7 +20,7 @@ public class Whirlpool : MonoBehaviour {
     
 
     [SerializeField]
-    float suckSpeed, repeateTimeMax = 5, repeateTimeMin=1, explosionTime = 3, invulnerableCD;
+    float suckSpeed, repeateTimeMax = 5, repeateTimeMin=1, explosionTime = 3;
 
     void Start ()
     {
@@ -75,8 +75,6 @@ public class Whirlpool : MonoBehaviour {
             }
 
             exploded = true;
-            waterBossAIScript.invulnerableTimer = Time.time + invulnerableCD;
-            waterBossAIScript.invulnerable = true;
 
         }
         else if (somethingInWhirlpool)

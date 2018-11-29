@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4344454902593766}
   - component: {fileID: 61407858508819198}
-  - component: {fileID: 50445590084308640}
+  - component: {fileID: 50544088959882230}
   m_Layer: 0
   m_Name: DamagedPillar
   m_TagString: StaticBlock
@@ -80,8 +80,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1272372134429750}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.3, y: 5.415, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.93, y: 5.2, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 4089073636428388}
   - {fileID: 4700392271344124}
@@ -101,7 +101,7 @@ Transform:
   m_Father: {fileID: 4344454902593766}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50445590084308640
+--- !u!50 &50544088959882230
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
