@@ -84,6 +84,7 @@ public class WaterBossAI : MonoBehaviour {
         corners = new List<Transform>();
         inhaleScript = inHale.GetComponent<inhale>();
         playerMovementScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        tempLast = 0;
 
         StartCoroutine(AI());
 
@@ -153,13 +154,19 @@ public class WaterBossAI : MonoBehaviour {
                 SM.SetNextState("Breath");
             }
         }
+
+        Debug.Log((hit.collider.gameObject.name)+"<--raycast");
         //uses inhale state always when hitting center. Checks if next corner is reached before using inhale again 
-        if (Vector2.Distance(this.transform.position, corners[waterStagemanagerScript.randomIndex[waterStagemanagerScript.index]].transform.position)<1)
+        //Debug.Log((Vector2.Distance(this.transform.position, corners[waterStagemanagerScript.randomIndex[waterStagemanagerScript.index]].transform.position) )+"<--distance");
+        //Debug.Log((this.transform.position)+"<-- this--corner-->"+ (corners[waterStagemanagerScript.randomIndex[waterStagemanagerScript.index]].transform.position));
+        if (Vector2.Distance(this.transform.position, corners[waterStagemanagerScript.randomIndex[waterStagemanagerScript.index]].transform.position)<1.5)
         {
+            Debug.Log("reached");
             if (SM.CurrentState == "ToCorner" && hit.collider != null && hit.collider.gameObject.name == "Center")
             {
                 turned = true;
                 SM.SetNextState("InHale");
+                Debug.Log("haleddddd");
             }
         }
     }

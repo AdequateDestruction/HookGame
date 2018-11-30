@@ -86,7 +86,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1625975651353342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.428495, y: -3.6211598, z: 0}
+  m_LocalPosition: {x: 3.18, y: -0.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4067428101687552}
@@ -169,7 +169,7 @@ Animator:
   m_GameObject: {fileID: 1517412897473388}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f35602b1ece331842adec0b3e6832890, type: 2}
+  m_Controller: {fileID: 9100000, guid: df5c7614b72b6584ca0efaac6111498e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -189,6 +189,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed1c6cbf1c26be943bb8c5412d5fb04e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eel: 1
+  fishling: 0
+  animator: {fileID: 0}
+  body_Anim: {fileID: 0}
   electricityTime: 5
   isDead: 0
 --- !u!114 &114110204287116390

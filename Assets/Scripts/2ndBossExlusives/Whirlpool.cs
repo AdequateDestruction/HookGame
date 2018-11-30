@@ -13,6 +13,7 @@ public class Whirlpool : MonoBehaviour {
     SpriteRenderer spriteRenderer;
     public GameObject explosion;
     Animator propellerAnim;
+    Animator explosionAnim;
     Collider2D col;
     public bool active, destroyed;
     [SerializeField]
@@ -33,6 +34,7 @@ public class Whirlpool : MonoBehaviour {
         col = GetComponent<Collider2D>();
         explosion = transform.GetChild(1).gameObject;
         propellerAnim = transform.GetChild(0).GetComponent<Animator>();
+        explosionAnim = transform.Find("UnderwaterExplosion").GetComponent<Animator>();
 
         explosion.SetActive(false);
         repeateTime = Random.Range(repeateTimeMin, repeateTimeMax);
@@ -72,7 +74,9 @@ public class Whirlpool : MonoBehaviour {
         {
             if (!doOnce)
             {
-                explosion.SetActive(true);
+                explosionAnim.SetBool("Exploded", true);
+                propellerAnim.speed = 0;
+                //explosion.SetActive(true);
             }
 
             exploded = true;
