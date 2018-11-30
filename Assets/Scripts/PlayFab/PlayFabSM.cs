@@ -33,7 +33,7 @@ public class PlayFabSM : MonoBehaviour
             leaderboardPanel = GameObject.FindGameObjectWithTag("LeaderboardPanel");
             leaderboardScoresObj = GameObject.FindGameObjectWithTag("LeaderboardScores");
             leaderboardNamesObj = GameObject.FindGameObjectWithTag("LeaderboardNames");
-            leaderboardPanel.SetActive(false);
+            //leaderboardPanel.SetActive(false);
         }
 
 
