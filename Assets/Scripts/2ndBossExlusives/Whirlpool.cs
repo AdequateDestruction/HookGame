@@ -14,8 +14,9 @@ public class Whirlpool : MonoBehaviour {
     public GameObject explosion;
     Animator propellerAnim;
     Collider2D col;
-    public bool active;
-    public bool destroyed;
+    public bool active, destroyed;
+    [SerializeField]
+    float speedMax=1,speedMin=10;
     bool doOnce;
     
 
@@ -35,7 +36,7 @@ public class Whirlpool : MonoBehaviour {
 
         explosion.SetActive(false);
         repeateTime = Random.Range(repeateTimeMin, repeateTimeMax);
-
+        //destroy();
     }
 
     void Update ()
@@ -51,13 +52,13 @@ public class Whirlpool : MonoBehaviour {
                 if (active)
                 {
                     active = false;
-                    propellerAnim.speed = 1;
+                    propellerAnim.speed = speedMin;
 
                 }
                 else
                 {
                     active = true;
-                    propellerAnim.speed = 10;
+                    propellerAnim.speed = speedMax;
                 }
                 col.enabled = !col.enabled;
                 timer = 0;
@@ -90,18 +91,8 @@ public class Whirlpool : MonoBehaviour {
         }
         if (explosionTimer>explosionTime*2&&exploded&&!doOnce)
         {
-           
-            destroyed = true;
-            active = false;
-            explosion.SetActive(false);
-            col.enabled = !col.enabled;
-            doOnce = true;
-            propellerAnim.SetBool("Destroyed", true);
-            Debug.Log("here2");
-            waterBossAIScript.SM.SetNextState("Idle");
-            waterStagemanagerScript.whirlpoolDestroyed++;
+            destroy();
 
-            //this.gameObject.SetActive(false);
         }
     }
 
@@ -143,5 +134,23 @@ public class Whirlpool : MonoBehaviour {
         {           
             collision.GetComponent<PlayerMovement>().moveSpeed = tempPlayerSpeed;
         }
+    }
+
+
+    public void destroy()
+    {
+
+        destroyed = true;
+        active = false;
+        explosion.SetActive(false);
+        if (col.enabled)
+        {
+            col.enabled = !col.enabled;
+
+        }
+        doOnce = true;
+        propellerAnim.SetBool("Destroyed", true);
+        waterBossAIScript.SM.SetNextState("Idle");
+        waterStagemanagerScript.whirlpoolDestroyed++;
     }
 }

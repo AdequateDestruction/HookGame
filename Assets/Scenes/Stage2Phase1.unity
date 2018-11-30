@@ -304,6 +304,10 @@ Prefab:
       propertyPath: m_Name
       value: Ground-Catwalk (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 1446063413099430, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
   m_IsPrefabParent: 0
@@ -1492,7 +1496,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.007117316, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1503,7 +1507,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.0142345, y: 1}
   m_EdgeRadius: 0
 --- !u!212 &18756088
 SpriteRenderer:
@@ -1783,6 +1787,10 @@ Prefab:
     - target: {fileID: 1559580503212306, guid: 9cc263c1167478140a571a09460834d9, type: 2}
       propertyPath: m_Name
       value: Ground-All_Lights (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943300639935836, guid: 9cc263c1167478140a571a09460834d9, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9cc263c1167478140a571a09460834d9, type: 2}
@@ -3207,6 +3215,10 @@ Prefab:
       propertyPath: m_Name
       value: Ground-Catwalk (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 1446063413099430, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
   m_IsPrefabParent: 0
@@ -3391,7 +3403,7 @@ RectTransform:
   - {fileID: 892752372}
   - {fileID: 496241390}
   m_Father: {fileID: 1992937128}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4305,7 +4317,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.30145824, y: 0.022946417}
+  m_Offset: {x: 0.25031695, y: 0.022946417}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4316,7 +4328,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.39708352, y: 1.0458928}
+  m_Size: {x: 0.49936613, y: 1.0458928}
   m_EdgeRadius: 0
 --- !u!212 &53530758
 SpriteRenderer:
@@ -4627,7 +4639,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.8687191, y: -0.27449942}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4638,7 +4650,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.7374382, y: 1.5489988}
   m_EdgeRadius: 0
 --- !u!212 &56202852
 SpriteRenderer:
@@ -11482,6 +11494,10 @@ Prefab:
       propertyPath: m_Name
       value: Ground-Catwalk (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 1446063413099430, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
   m_IsPrefabParent: 0
@@ -15066,7 +15082,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.061656445}
+  m_Offset: {x: 0, y: 0.025871456}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -15077,7 +15093,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.8766871}
+  m_Size: {x: 1, y: 1.115256}
   m_EdgeRadius: 0
 --- !u!212 &230250484
 SpriteRenderer:
@@ -16924,7 +16940,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0063764304, y: -0.018700004}
+  m_Offset: {x: -0.005958855, y: -0.018700004}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -16935,7 +16951,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8683958, y: 0.927773}
+  m_Size: {x: 1.0186819, y: 0.927773}
   m_EdgeRadius: 0
 --- !u!212 &275211846
 SpriteRenderer:
@@ -17010,6 +17026,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficultyLevel: 2
+  boss1Time: 0
+  boss2Time: 0
+  boss3Time: 0
 --- !u!4 &276352328
 Transform:
   m_ObjectHideFlags: 0
@@ -18666,6 +18685,10 @@ Prefab:
     - target: {fileID: 1428588298099768, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
       propertyPath: m_Name
       value: Ground-Catwalk (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446063413099430, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
@@ -21684,6 +21707,10 @@ Prefab:
       propertyPath: m_Name
       value: Ground-Catwalk (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 1446063413099430, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
   m_IsPrefabParent: 0
@@ -23510,7 +23537,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.034965396}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -23521,7 +23548,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.0699308}
   m_EdgeRadius: 0
 --- !u!212 &387482119
 SpriteRenderer:
@@ -24414,6 +24441,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe030ae713fa8c147b919b948bf09bfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Out: 0
+  In: 0
 --- !u!4 &404883790
 Transform:
   m_ObjectHideFlags: 0
@@ -27560,6 +27589,10 @@ Prefab:
     - target: {fileID: 1428588298099768, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
       propertyPath: m_Name
       value: Ground-Catwalk (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446063413099430, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
@@ -31381,6 +31414,10 @@ Prefab:
     - target: {fileID: 1428588298099768, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
       propertyPath: m_Name
       value: Ground-Catwalk (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446063413099430, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
@@ -35438,7 +35475,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.043894887, y: -0.025561973}
+  m_Offset: {x: -0.07249348, y: -0.025561988}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -35449,7 +35486,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9122102, y: 1.0511239}
+  m_Size: {x: 1.1449865, y: 1.0511239}
   m_EdgeRadius: 0
 --- !u!212 &577480477
 SpriteRenderer:
@@ -35538,7 +35575,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.23931889}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -35549,7 +35586,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.4786376}
   m_EdgeRadius: 0
 --- !u!212 &581476400
 SpriteRenderer:
@@ -35638,7 +35675,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.08048621, y: 0}
+  m_Offset: {x: -0.08048621, y: -0.015999213}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -35649,7 +35686,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8390276, y: 1}
+  m_Size: {x: 0.8390276, y: 1.0319984}
   m_EdgeRadius: 0
 --- !u!212 &581804460
 SpriteRenderer:
@@ -36330,6 +36367,10 @@ Prefab:
     - target: {fileID: 1559580503212306, guid: 9cc263c1167478140a571a09460834d9, type: 2}
       propertyPath: m_Name
       value: Ground-All_Lights (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943300639935836, guid: 9cc263c1167478140a571a09460834d9, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9cc263c1167478140a571a09460834d9, type: 2}
@@ -40217,7 +40258,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.20705044}
+  m_Offset: {x: 0, y: -0.124699704}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -40228,7 +40269,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.37056607}
+  m_Size: {x: 1, y: 0.6084661}
   m_EdgeRadius: 0
 --- !u!212 &653509009
 SpriteRenderer:
@@ -40391,6 +40432,10 @@ Prefab:
     - target: {fileID: 1428588298099768, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
       propertyPath: m_Name
       value: Ground-Catwalk (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446063413099430, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
@@ -43848,6 +43893,10 @@ Prefab:
     - target: {fileID: 1559580503212306, guid: 9cc263c1167478140a571a09460834d9, type: 2}
       propertyPath: m_Name
       value: Ground-All_Lights (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943300639935836, guid: 9cc263c1167478140a571a09460834d9, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9cc263c1167478140a571a09460834d9, type: 2}
@@ -51896,7 +51945,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.041334063, y: 0}
+  m_Offset: {x: 0.038521305, y: -0.071570635}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -51907,7 +51956,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.94164604, y: 1}
+  m_Size: {x: 1.0147791, y: 1.1431413}
   m_EdgeRadius: 0
 --- !u!212 &853824922
 SpriteRenderer:
@@ -54383,6 +54432,10 @@ Prefab:
     - target: {fileID: 1428588298099768, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
       propertyPath: m_Name
       value: Ground-Catwalk (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446063413099430, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
@@ -59505,7 +59558,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.045431256}
+  m_Offset: {x: 0, y: 0.0022825003}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -59516,7 +59569,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.9091375}
+  m_Size: {x: 1, y: 1.004565}
   m_EdgeRadius: 0
 --- !u!212 &952107943
 SpriteRenderer:
@@ -60197,7 +60250,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.18943189, y: 0}
+  m_Offset: {x: 0.13264817, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -60208,7 +60261,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6211362, y: 1}
+  m_Size: {x: 0.73470366, y: 1}
   m_EdgeRadius: 0
 --- !u!212 &965069545
 SpriteRenderer:
@@ -61999,7 +62052,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.027427256}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -62010,7 +62063,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.0548544}
   m_EdgeRadius: 0
 --- !u!212 &991715778
 SpriteRenderer:
@@ -62372,6 +62425,10 @@ Prefab:
     - target: {fileID: 1559580503212306, guid: 9cc263c1167478140a571a09460834d9, type: 2}
       propertyPath: m_Name
       value: Ground-All_Lights (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943300639935836, guid: 9cc263c1167478140a571a09460834d9, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9cc263c1167478140a571a09460834d9, type: 2}
@@ -65971,7 +66028,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.009171665, y: 0.0094292015}
+  m_Offset: {x: 0.005137861, y: 0.009429216}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -65982,7 +66039,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9816567, y: 0.98114157}
+  m_Size: {x: 1.0102757, y: 0.98114157}
   m_EdgeRadius: 0
 --- !u!212 &1066495103
 SpriteRenderer:
@@ -66811,7 +66868,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.10504487, y: -0.0012730509}
+  m_Offset: {x: 0.11072315, y: -0.0059525967}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -66822,7 +66879,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8887761, y: 0.93634725}
+  m_Size: {x: 1.0137001, y: 1.0018611}
   m_EdgeRadius: 0
 --- !u!212 &1077243116
 SpriteRenderer:
@@ -69256,6 +69313,10 @@ Prefab:
     - target: {fileID: 1428588298099768, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
       propertyPath: m_Name
       value: Ground-Catwalk (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446063413099430, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
@@ -72193,7 +72254,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.05110526, y: -0.38888943}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -72204,7 +72265,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.1022105, y: 1.7777786}
   m_EdgeRadius: 0
 --- !u!212 &1177153114
 SpriteRenderer:
@@ -74297,6 +74358,10 @@ Prefab:
       propertyPath: m_Name
       value: Ground-Catwalk (36)
       objectReference: {fileID: 0}
+    - target: {fileID: 1446063413099430, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
   m_IsPrefabParent: 0
@@ -75064,6 +75129,10 @@ Prefab:
     - target: {fileID: 1428588298099768, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
       propertyPath: m_Name
       value: Ground-Catwalk (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446063413099430, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
@@ -81178,6 +81247,111 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1001 &1354128952
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1992937128}
+    m_Modifications:
+    - target: {fileID: 224488848382046290, guid: 86f2f7ce01588d34aad12fb4ca0e9271,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224488848382046290, guid: 86f2f7ce01588d34aad12fb4ca0e9271,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224488848382046290, guid: 86f2f7ce01588d34aad12fb4ca0e9271,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224488848382046290, guid: 86f2f7ce01588d34aad12fb4ca0e9271,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224488848382046290, guid: 86f2f7ce01588d34aad12fb4ca0e9271,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224488848382046290, guid: 86f2f7ce01588d34aad12fb4ca0e9271,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224488848382046290, guid: 86f2f7ce01588d34aad12fb4ca0e9271,
+        type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224488848382046290, guid: 86f2f7ce01588d34aad12fb4ca0e9271,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224488848382046290, guid: 86f2f7ce01588d34aad12fb4ca0e9271,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 533
+      objectReference: {fileID: 0}
+    - target: {fileID: 224488848382046290, guid: 86f2f7ce01588d34aad12fb4ca0e9271,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224488848382046290, guid: 86f2f7ce01588d34aad12fb4ca0e9271,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 644.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 224488848382046290, guid: 86f2f7ce01588d34aad12fb4ca0e9271,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 168.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 224488848382046290, guid: 86f2f7ce01588d34aad12fb4ca0e9271,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224488848382046290, guid: 86f2f7ce01588d34aad12fb4ca0e9271,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224488848382046290, guid: 86f2f7ce01588d34aad12fb4ca0e9271,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224488848382046290, guid: 86f2f7ce01588d34aad12fb4ca0e9271,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224488848382046290, guid: 86f2f7ce01588d34aad12fb4ca0e9271,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224488848382046290, guid: 86f2f7ce01588d34aad12fb4ca0e9271,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 86f2f7ce01588d34aad12fb4ca0e9271, type: 2}
+  m_IsPrefabParent: 0
+--- !u!224 &1354128953 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224488848382046290, guid: 86f2f7ce01588d34aad12fb4ca0e9271,
+    type: 2}
+  m_PrefabInternal: {fileID: 1354128952}
 --- !u!1 &1354782153
 GameObject:
   m_ObjectHideFlags: 0
@@ -81414,7 +81588,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.008533716, y: 0.06562926}
+  m_Offset: {x: 0.0019731075, y: 0.13528836}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -81425,7 +81599,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.98293257, y: 0.6499772}
+  m_Size: {x: 0.9960538, y: 0.78929543}
   m_EdgeRadius: 0
 --- !u!212 &1357599361
 SpriteRenderer:
@@ -81514,7 +81688,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.07414925, y: -0.0025461316}
+  m_Offset: {x: 0.14228958, y: -0.0048860908}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -81525,7 +81699,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8517015, y: 0.93380105}
+  m_Size: {x: 0.98798215, y: 0.9946357}
   m_EdgeRadius: 0
 --- !u!212 &1357761418
 SpriteRenderer:
@@ -83481,6 +83655,10 @@ Prefab:
       propertyPath: m_Name
       value: Ground-Catwalk (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1446063413099430, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
   m_IsPrefabParent: 0
@@ -84716,6 +84894,10 @@ Prefab:
       propertyPath: m_Name
       value: Ground-Catwalk (37)
       objectReference: {fileID: 0}
+    - target: {fileID: 1446063413099430, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
   m_IsPrefabParent: 0
@@ -84914,7 +85096,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03684485, y: 0.022946298}
+  m_Offset: {x: -0.0228858, y: 0.052486777}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -84925,7 +85107,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9263103, y: 1.0458926}
+  m_Size: {x: 1.0457716, y: 1.1049736}
   m_EdgeRadius: 0
 --- !u!212 &1396687413
 SpriteRenderer:
@@ -87558,7 +87740,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.00000023841858}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -87569,7 +87751,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.7179563}
   m_EdgeRadius: 0
 --- !u!212 &1435075651
 SpriteRenderer:
@@ -88028,6 +88210,10 @@ Prefab:
     - target: {fileID: 1428588298099768, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
       propertyPath: m_Name
       value: Ground-Catwalk (35)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446063413099430, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
@@ -92418,6 +92604,10 @@ Prefab:
       propertyPath: m_Name
       value: Ground-Catwalk (38)
       objectReference: {fileID: 0}
+    - target: {fileID: 1446063413099430, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
   m_IsPrefabParent: 0
@@ -95456,6 +95646,10 @@ Prefab:
     - target: {fileID: 1559580503212306, guid: 9cc263c1167478140a571a09460834d9, type: 2}
       propertyPath: m_Name
       value: Ground-All_Lights (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943300639935836, guid: 9cc263c1167478140a571a09460834d9, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9cc263c1167478140a571a09460834d9, type: 2}
@@ -99875,6 +100069,10 @@ Prefab:
       propertyPath: m_Name
       value: Ground-All_Lights (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 1943300639935836, guid: 9cc263c1167478140a571a09460834d9, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9cc263c1167478140a571a09460834d9, type: 2}
   m_IsPrefabParent: 0
@@ -103852,7 +104050,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.6082803}
+  m_Offset: {x: 0, y: 0.61743045}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -103863,7 +104061,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.0012276}
+  m_Size: {x: 1, y: 2.4587293}
   m_EdgeRadius: 0
 --- !u!212 &1711209087
 SpriteRenderer:
@@ -107851,7 +108049,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.031317636}
+  m_Offset: {x: 0, y: -0.005118519}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -107862,7 +108060,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.9373647}
+  m_Size: {x: 1, y: 0.98976296}
   m_EdgeRadius: 0
 --- !u!212 &1780965143
 SpriteRenderer:
@@ -108766,6 +108964,10 @@ Prefab:
       propertyPath: m_Name
       value: Ground-Catwalk (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1446063413099430, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
   m_IsPrefabParent: 0
@@ -109038,7 +109240,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.09783125}
+  m_Offset: {x: 0, y: -0.09783098}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -109049,7 +109251,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.0055904}
+  m_Size: {x: 1, y: 1.2279353}
   m_EdgeRadius: 0
 --- !u!212 &1802439567
 SpriteRenderer:
@@ -110138,7 +110340,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1992937128}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -111471,7 +111673,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.6428509}
+  m_Offset: {x: 0, y: -1.2499982}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -111482,7 +111684,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.7143763}
+  m_Size: {x: 1, y: 2.5000818}
   m_EdgeRadius: 0
 --- !u!212 &1842270118
 SpriteRenderer:
@@ -118678,10 +118880,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PHASE1: Stage2phase1
-  PHASE2: Stage2phase2
+  PHASE2_3: 
   PHASE3: Stage2phase3
   LeversActivated: 0
   whirlpoolDestroyed: 0
+  randomAmount: 10
+  randomIndex: 
+  index: 0
 --- !u!4 &1948155990
 Transform:
   m_ObjectHideFlags: 0
@@ -120868,6 +121073,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 1354128953}
   - {fileID: 1818825042}
   - {fileID: 39960852}
   m_Father: {fileID: 0}
@@ -121268,6 +121474,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4418533804121102, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446063413099430, guid: ff5728374d33fe54484da6160c7e73bd, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -122082,7 +122292,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.048526853, y: -0.010885119}
+  m_Offset: {x: 0.06556189, y: -0.012795806}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -122093,7 +122303,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0064704, y: 1.0217702}
+  m_Size: {x: 1.2222486, y: 1.094372}
   m_EdgeRadius: 0
 --- !u!212 &2018554458
 SpriteRenderer:
@@ -127219,20 +127429,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAQIezDLmU6SAIAANMEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VMmS2jAQ/RVK50DZgCHklhiG5MBADZPKxRfZbmMVsuSS5GEr/j0t2WCPUznRvNfL60W+ESZ0CYmRaq1YupEpkG8DYm3yZUCo496oYRJhHxGmZQFGseS7OHDr6yFYCZZJVazSA4RSG41wRrkGpJQ0NlogdBuQM/4MFzbkgtZ4bq0rWgtvcEczAWFAta4Px4db7VWJhNOihHTPrtA6B/PRuPGf+KOZcxXYT+Pljaa2guSc6UYPMZfStbsvc1BgG04ZxfacBm8UIJADO+TGiu1Gb7NMg2mUKXpZMoVzqtOSH9LkNldB9bGW90F5ZQsF/tjJqpNu/uGHvqMzJYufj7q+Z2uYnCXHN3pJqDad6XbhZSvdd1M6UX6kMYc/OYhXuVayEimSRlU2tNIwXrZ/n62FOSTHFq+l9sCq/P+ObA931/055KyIn6NHYM+lG7i7AFC4nF8o2N2HblIgalX81vBOD91DaogXprRBqulSWHmxrJR1JSs3M9tNZUKpBDi4EV2CoNxcdpjG9FfY4zple8wLtU+lKd5wj5fQC3Fw6+95PWonT89l6VyeNqDzbWU4E9CKtsQrzimUQtQXpj+TNmpfqYwmnahDxdLPl0XiCST+wg+8YBLE8HU+nC28+Xw2neFNxtNklhF3ekxgm5Tvap3NdHBpok0u8Mwe34jBWtHSHXuq6GnNroXs6GMik/tEAYhtneExIQ0Ki+C7TFcpw/nswRgm3LrJLSJcJkdIo2eiyHW6OhtFozZLREr2IY1FIhK6L0dE7uT+F1BLAwQUAAAICAAAECHsb87LJ20AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9QzNNNRUEovSizIKAaKGII4pZkpIHa0UpJxarKhpaGpgamxaVKqhbmumaWBubmZiZmpoVGSSbJZmlIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAECHswy5lOkgCAADTBAAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAECHsb87LJ20AAAB4AAAACQAkAAAAAAAAAAAAAACVAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAE0DAAAAAA==
+    dataString: UEsDBBQAAAgIAAAQIezk/oApRwIAANkEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VMuS2jAQ/BVK50DZLI+QW2JYkgMLtWwqF19keYxVyJJLkpfHFv+ekWyw49SeEN0zrZ6H/EG4NCUwq/Ra83SjUiDfBsSdyZcBoZ57pZYrhENEuFEFWM3Zd3kQLjZAsJI8U7pYpQeIlLEG4YwKA0hpZV22ROhjQM74M1y4lAuexnN3uuJpEQxueGQgLeg29B54D6ujKskELUpI9/wKbfBkMZrehUMfKLGaJibwHFNCcNO4IfZS+mL3ZQ4aXLkpp1icdxCM5i4jB37IrZPspm+zzIBtjGl6WXKNbap1yQ9lcydWUHOs3b1TUbmbpuHY+6pFN//xw9p2plXx835vGLg7bM7Z8ZVeGDW209wuvGy9h75JJyqONBHwJwf5otZaVTJF0urKpVYGxsv276O0KAd2bPHaag+sys9H5Gq4+erPkeBF4ls5qYG9UL7jfgFA43R+oWG/HqaRQNS5+G3gjR66e9QQz1wbi1RTpXT2ElVpF0pWvmeumspGSkvQXYUSJBX2skMd259hj/s865m6p9Lc3nD3l9BL8XAbHwQ9aqdO9bRGgds0k6vTBky+razgsqvnmBdsVqSkrNfM9FiXt690Rlk371Dx9N8FI8kTsHARToPp0zSBr/PhbBHM57PJDFczmbBZRvwGconFUrGr3TbV4uxkuwMSt+3+pRisNS39zqeantb8WijTRnKZqT3TAHJbKzycg8ZL8H2mq5Rjl/ZgLZd+6uQjJkKxI6TxQyj2pa7OVtO4VYlJyd+VdUhMIv/9iMmN3P4CUEsDBBQAAAgIAAAQIexvzssnbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz1DM001FQSi9KLMgoBooYgjilmSkgdrRSknFqsqGloamBqbFpUqqFua6ZpYG5uZmJmamhUZJJslmaUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAAAQIezk/oApRwIAANkEAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAAQIexvzssnbQAAAHgAAAAJACQAAAAAAAAAAAAAAJQCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAATAMAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
     cacheStartup: 0
   showNavGraphs: 1
-  showUnwalkableNodes: 0
+  showUnwalkableNodes: 1
   debugMode: 0
   debugFloor: 0
   debugRoof: 1
   manualDebugFloorRoof: 0
-  showSearchTree: 0
+  showSearchTree: 1
   unwalkableNodeDebugSize: 0.3
-  logPathResults: 0
+  logPathResults: 1
   maxNearestNodeDistance: 100
   scanOnStartup: 1
   fullGetNearestSearch: 0
@@ -127279,8 +127489,8 @@ MonoBehaviour:
   - 29
   - 30
   - 31
-  heuristic: 2
-  heuristicScale: 1
+  heuristic: 0
+  heuristicScale: 20
   threadCount: -2
   maxFrameTime: 10
   minAreaSize: 0

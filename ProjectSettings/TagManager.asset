@@ -30,6 +30,7 @@ TagManager:
   - Pillar
   - BossCollider
   - TimerText
+  - Whirlpool
   layers:
   - Default
   - TransparentFX
