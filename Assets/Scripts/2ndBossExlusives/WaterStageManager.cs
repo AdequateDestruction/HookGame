@@ -32,11 +32,15 @@ public class WaterStageManager : MonoBehaviour {
     int temp=0;
     int numberInsert;
 
+    private void Awake()
+    {
+        PHASE1 = "Stage2Phase1"; PHASE2_3 = "Stage2Phase2"; PHASE3 = "Stage2Phase3";
+    }
+
     // Use this for initialization
     void Start ()
     {
         playerMovementScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
-        PHASE1 = "Stage2Phase1"; PHASE2_3 = "Stage2Phase2"; PHASE3 = "Stage2Phase3";
 
         if (SceneManager.GetActiveScene().name == PHASE1)
         {

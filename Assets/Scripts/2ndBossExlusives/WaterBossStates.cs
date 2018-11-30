@@ -294,8 +294,10 @@ public class WaterToCorner : State
             waterBossAI.rb.velocity = waterBossAI.transform.right * waterBossAI.movementSpeed;
         }
         //rotates towards center, complete when raycast hits center collider       
-        else if (Vector2.Distance(corner.position, waterBossAI.transform.position) < 0.8f)
+        if (Vector2.Distance(corner.position, waterBossAI.transform.position) < 1.2f)
         {
+            Debug.Log("travelleddd");
+
             travelled = true;
             waterBossAI.rb.velocity = Vector2.zero;
             Vector3 dir = Vector3.zero - waterBossAI.transform.position;
