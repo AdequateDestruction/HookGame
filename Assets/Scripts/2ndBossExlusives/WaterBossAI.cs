@@ -29,7 +29,7 @@ public class WaterBossAI : MonoBehaviour {
     public float movementSpeed=1, rotateSpeed = 1 /*dashSpeed=5,*/;
 
     [SerializeField]
-    public int killsToTrigger=1;
+    int killsToTrigger=1;
 
     SpriteRenderer bossVisual;
     [SerializeField]
@@ -55,6 +55,9 @@ public class WaterBossAI : MonoBehaviour {
     Animator waterBossAnimator;
     //rotation in 360 degrees
     float trueAngle;
+
+    public List<Collider2D> polyCols;
+    int tempLast=0;
 
     StateMachine sm = new StateMachine();
     public StateMachine SM { get { return sm; } }
@@ -84,19 +87,20 @@ public class WaterBossAI : MonoBehaviour {
 
         StartCoroutine(AI());
 
-        //Find corners in phase2_3
-        //if (SceneManager.GetActiveScene().name == waterStagemanagerScript.PHASE2_3)
-        //{
             for (int i = 0; i < GameObject.Find("RandomCorners").transform.childCount; i++)
             {
                 corners.Add(GameObject.Find("RandomCorners").transform.GetChild(i));
             }
-        //}
     }
     
     private void Update()
     {
         //Debug.DrawRay(rayCastStart.position, rayCastEnd.position- rayCastStart.position, Color.red, 1f);
+        //DEBUG
+        if (Input.GetKey(KeyCode.U))
+        {
+            Debug.Log(Vector2.Distance(this.transform.position, corners[waterStagemanagerScript.randomIndex[waterStagemanagerScript.index]].transform.position));   
+        }
 
         //if enough minibosses killed starts to attack player
         if (SceneManager.GetActiveScene().name == waterStagemanagerScript.PHASE2_3&&minibossKilled >= killsToTrigger&&!frenzyed)
@@ -149,12 +153,14 @@ public class WaterBossAI : MonoBehaviour {
                 SM.SetNextState("Breath");
             }
         }
-        //TODO FIX BUG!!!! uses inhale state always when hitting center. Doesn't move to the next corner 
-        if (SM.CurrentState== "ToCorner"&& hit.collider != null && hit.collider.gameObject.name == "Center")
+        //uses inhale state always when hitting center. Checks if next corner is reached before using inhale again 
+        if (Vector2.Distance(this.transform.position, corners[waterStagemanagerScript.randomIndex[waterStagemanagerScript.index]].transform.position)<1)
         {
-            turned = true; 
-            SM.SetNextState("InHale");
-            Debug.Log("3");
+            if (SM.CurrentState == "ToCorner" && hit.collider != null && hit.collider.gameObject.name == "Center")
+            {
+                turned = true;
+                SM.SetNextState("InHale");
+            }
         }
     }
 
@@ -199,8 +205,50 @@ public class WaterBossAI : MonoBehaviour {
 
     void WaterBossAnimations()
     {
+        //calculates angle in 360 degrees and sets it in animator
         trueAngle = transform.rotation.eulerAngles.z;
         waterBossAnimator.SetFloat("Angle", trueAngle);
+
+        //changes collider with current animator state name
+        if (waterBossAnimator.GetCurrentAnimatorStateInfo(0).IsName("WaterBossMovementLeft"))
+        {
+            if (!polyCols[2].isActiveAndEnabled)
+            {
+                polyCols[tempLast].enabled = !polyCols[tempLast].enabled;
+                polyCols[2].enabled = !polyCols[2].enabled;
+                tempLast = 2;
+            }
+            
+        }
+        else if (waterBossAnimator.GetCurrentAnimatorStateInfo(0).IsName("WaterBossMovementDown"))
+        {
+            if (!polyCols[1].isActiveAndEnabled)
+            {
+                polyCols[tempLast].enabled = !polyCols[tempLast].enabled;
+                polyCols[1].enabled = !polyCols[1].enabled;
+                tempLast = 1;
+            }
+        }
+        else if (waterBossAnimator.GetCurrentAnimatorStateInfo(0).IsName("WaterBossMovementRight"))
+        {
+            if (!polyCols[0].isActiveAndEnabled)
+            {
+                polyCols[tempLast].enabled = !polyCols[tempLast].enabled;
+                polyCols[0].enabled = !polyCols[0].enabled;
+                tempLast = 0;
+            }
+        }
+        else if (waterBossAnimator.GetCurrentAnimatorStateInfo(0).IsName("WaterBossMovementUp"))
+        {
+            if (!polyCols[3].isActiveAndEnabled)
+            {
+                polyCols[tempLast].enabled = !polyCols[tempLast].enabled;
+                polyCols[3].enabled = !polyCols[3].enabled;
+                tempLast = 3;
+            }
+        }
+
+
     }
 
     //"threading"

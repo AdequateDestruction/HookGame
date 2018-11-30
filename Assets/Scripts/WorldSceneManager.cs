@@ -11,7 +11,7 @@ public class WorldSceneManager : MonoBehaviour {
     public bool Out;
     public bool In;
 
-    public static string INTERACTIVEMENU, BREAKROOM, MAINMENU;
+    public static string INTERACTIVEMENU, BREAKROOM, MAINMENU, SUBMITSCORESCENE;
     static int LASTSCENEVISITED;
 
 
@@ -38,6 +38,7 @@ public class WorldSceneManager : MonoBehaviour {
         INTERACTIVEMENU = "InteractiveMainMenu";
         BREAKROOM = "BreakRoom";
         MAINMENU = "MainMenu";
+        SUBMITSCORESCENE = "SubmitScoreScene";
     }
 
 
