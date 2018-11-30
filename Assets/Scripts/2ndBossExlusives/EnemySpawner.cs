@@ -20,6 +20,8 @@ public class EnemySpawner : MonoBehaviour {
     [SerializeField]
     float invokeRepeatTime;
 
+    public bool spawnEnemy=true;
+
     void Start ()
     {
         //pooling
@@ -32,8 +34,22 @@ public class EnemySpawner : MonoBehaviour {
             newEnemy.transform.parent = null;
         }
 
-        InvokeRepeating("SpawnEnemy", invokeStartTime, invokeRepeatTime);
-	}
+        if (spawnEnemy)
+        {
+            InvokeRepeating("SpawnEnemy", invokeStartTime, invokeRepeatTime);
+
+        }
+        else 
+        {
+            Invoke("SpawnEnemy", 1f);
+
+        }
+    }
+
+    public void invoketentacle(float time)
+    {
+        Invoke("SpawnEnemy", time);
+    }
 
     public void SpawnEnemy()
     {
@@ -41,6 +57,7 @@ public class EnemySpawner : MonoBehaviour {
         if (newEnemy)
         {
             newEnemy.transform.position = transform.position;
+            newEnemy.transform.rotation = transform.rotation;
             newEnemy.SetActive(true);
         }
 

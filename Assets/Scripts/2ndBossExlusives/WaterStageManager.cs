@@ -35,7 +35,6 @@ public class WaterStageManager : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        waterBossAiScript = GameObject.Find("WaterBoss").GetComponent<WaterBossAI>();
         playerMovementScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
         PHASE1 = "Stage2Phase1"; PHASE2_3 = "Stage2Phase2"; PHASE3 = "Stage2Phase3";
 
@@ -47,17 +46,19 @@ public class WaterStageManager : MonoBehaviour {
         {
             inhaleScript = GameObject.Find("WaterBoss").transform.GetChild(5).GetComponent<inhale>();
             GameObject.Find("WaterBoss").transform.GetChild(5).gameObject.SetActive(false);
-        }
-        //RandomIndex for toCorner WaterBossState
-        for (int i = 0; i < randomAmount; i++)
-        {
-            do
-            {
-                numberInsert = Random.Range(0, waterBossAiScript.corners.Count);
-            } while (numberInsert == temp);
+            waterBossAiScript = GameObject.Find("WaterBoss").GetComponent<WaterBossAI>();
 
-            temp = numberInsert;
-            randomIndex.Add(numberInsert);
+            //RandomIndex for toCorner WaterBossState
+            for (int i = 0; i < randomAmount; i++)
+            {
+                do
+                {
+                    numberInsert = Random.Range(0, waterBossAiScript.corners.Count);
+                } while (numberInsert == temp);
+
+                temp = numberInsert;
+                randomIndex.Add(numberInsert);
+            }
         }
     }
 	
@@ -96,12 +97,10 @@ public class WaterStageManager : MonoBehaviour {
 
     public void Phase2_3()
     {
-        if (whirlpoolDestroyed>=1&&!doOnce)
+        if (whirlpoolDestroyed>=3&&!doOnce)
         {
             UnityEngine.Debug.Log("here");
-            //WorldSceneManager.NextScene();
             waterBossAiScript.SM.SetNextState("ToCorner");
-            //waterBossAiScript.whirlpools.SetActive(false);
             doOnce = true;
         }
         if (inhaleScript.inhaledEnemies >= 20)
@@ -120,7 +119,9 @@ public class WaterStageManager : MonoBehaviour {
         }
         if (Input.GetKey(KeyCode.P))
         {
-            whirlpoolDestroyed++;
+            // whirlpoolDestroyed++;
+            waterBossAiScript.SM.SetNextState("ToCorner");
+
         }
     }
 
