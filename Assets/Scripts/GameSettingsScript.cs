@@ -87,9 +87,14 @@ public class GameSettingsScript : MonoBehaviour
         }
 
 
-        if(timerText == null || SceneManager.GetActiveScene().name != WorldSceneManager.INTERACTIVEMENU)
+        if(timerText == null) 
         {
-            timerText = GameObject.FindGameObjectWithTag("TimerText").GetComponent<Text>();
+            if(SceneManager.GetActiveScene().name != WorldSceneManager.INTERACTIVEMENU && SceneManager.GetActiveScene().name != WorldSceneManager.MAINMENU)
+            {
+                print(SceneManager.GetActiveScene().name);
+                timerText = GameObject.FindGameObjectWithTag("TimerText").GetComponent<Text>();
+            }
+
         }
 
         //third boss time management

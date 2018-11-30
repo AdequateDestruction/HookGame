@@ -98,7 +98,8 @@ MonoBehaviour:
     type: 2}
   fallingRockSprite: {fileID: 1425123218190096, guid: 2cf7c57e07988714a99c6e49e65a4be7,
     type: 2}
-  playerScript: {fileID: 0}
+  bigShadowMultiplier: 2
+  insideShadow: 0
 --- !u!212 &212549136856755592
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -134,7 +135,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 46fa4c04ab075ad44ab1784fa90152fc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ec5c707cdff95e14fa44a162383b783f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

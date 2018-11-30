@@ -4,7 +4,7 @@ using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 
 
 public class PlayFabSM : MonoBehaviour
@@ -15,17 +15,31 @@ public class PlayFabSM : MonoBehaviour
 
     GameObject leaderboardScoresObj;
     GameObject leaderboardNamesObj;
-    GameObject leaderboardPanel;
+    public GameObject leaderboardPanel;
     List<Text> texts = new List<Text>();
     List<PlayerLeaderboardEntry> playerScores = new List<PlayerLeaderboardEntry>();
 
+    GameSettingsScript gameSettings;
+
+    public Text submitScreenName;
+    public Text mainMenuUserName;
+    public Text totalScoreText;
+    public string userName;
 
     public void Start()
     {
-        leaderboardScoresObj = GameObject.FindGameObjectWithTag("LeaderboardScores");
-        leaderboardNamesObj = GameObject.FindGameObjectWithTag("LeaderboardNames");
-        leaderboardPanel = GameObject.FindGameObjectWithTag("LeaderboardPanel");
-        leaderboardPanel.SetActive(false);
+        if (GameObject.FindGameObjectWithTag("LeaderboardPanel") != null)
+        {
+            leaderboardPanel = GameObject.FindGameObjectWithTag("LeaderboardPanel");
+            leaderboardScoresObj = GameObject.FindGameObjectWithTag("LeaderboardScores");
+            leaderboardNamesObj = GameObject.FindGameObjectWithTag("LeaderboardNames");
+            leaderboardPanel.SetActive(false);
+        }
+
+
+        gameSettings = gameObject.GetComponent<GameSettingsScript>();
+        //gameSettings = GameObject
+
         LoginToPlayfab();
     }
 
@@ -60,8 +74,8 @@ public class PlayFabSM : MonoBehaviour
         PlayFabClientAPI.GetLeaderboard(new GetLeaderboardRequest()
         {
             ProfileConstraints = null,
-            Version = 1,
-            StatisticName = "Score",
+            Version = 0,
+            StatisticName = "PlayerName",
             StartPosition = 0,
             MaxResultsCount = 20,
 
@@ -116,7 +130,7 @@ public class PlayFabSM : MonoBehaviour
         
     }
 
-    //for saving a new score, manual check needed so only the highest score is submitted to playfab
+    //for saving a new score, manual check needed so only the highest score is submitted to playfab?
     public void UpdatePlayerStatistics()
     {
         PlayFabClientAPI.UpdatePlayerStatistics(
@@ -154,5 +168,28 @@ public class PlayFabSM : MonoBehaviour
         {
             leaderboardPanel = GameObject.FindGameObjectWithTag("LeaderboardPanel");
         }
+
+        if (SceneManager.GetActiveScene().name == WorldSceneManager.MAINMENU)
+        {
+            userName = mainMenuUserName.text;
+        }
+
+        if(totalScoreText != null)
+        {
+            float totalScore = (gameSettings.boss1Time + gameSettings.boss2Time + gameSettings.boss3Time) * 3;
+            totalScoreText.text = totalScore.ToString();
+            submitScreenName.text = userName;
+        }
+    }
+
+    void FindLeaderboardComponents()
+    {
+        
+        
+        leaderboardPanel = GameObject.FindGameObjectWithTag("LeaderboardPanel");
+        leaderboardScoresObj = GameObject.FindGameObjectWithTag("LeaderboardScores");
+        leaderboardNamesObj = GameObject.FindGameObjectWithTag("LeaderboardNames");
+
+        
     }
 }

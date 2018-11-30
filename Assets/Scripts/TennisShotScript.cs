@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TennisShotScript : MonoBehaviour {
 
@@ -14,7 +15,10 @@ public class TennisShotScript : MonoBehaviour {
 
     void Start()
     {
-        bossTransform = GameObject.FindGameObjectWithTag("Boss").transform;
+        if (SceneManager.GetActiveScene().name != "InteractiveMainMenu")
+        {
+            bossTransform = GameObject.FindGameObjectWithTag("Boss").transform;
+        }
         tShotAnimator = GetComponent<Animator>();
         pongSource = GetComponent<AudioSource>();
         tShotAnimator.Play("PH_TennisShotAnimation");
@@ -30,20 +34,43 @@ public class TennisShotScript : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            other.gameObject.GetComponent<PlayerMovement>().TakeDamage();
-            Destroy(gameObject);
+            if (SceneManager.GetActiveScene().name == "InteractiveMainMenu")
+            {
+                this.gameObject.SetActive(false);
+            }
+            else
+            {
+                other.gameObject.GetComponent<PlayerMovement>().TakeDamage();
+                Destroy(gameObject);
+            }
+
         }
         else if (other.tag == "PullBlock" || other.tag == "StaticBlock" || other.tag == "DeflectBlock")
         {
-            Destroy(gameObject);
+            if (SceneManager.GetActiveScene().name == "InteractiveMainMenu")
+            {
+                this.gameObject.SetActive(false);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
         else if (other.tag == "Boss")
         {
             if (pongedTimes > pongedRequirement)
             {
-                FindObjectOfType<StageManager>().ExposeArmorPiece();
-                FindObjectOfType<ProjectileSpawner>().TennisShotDestroyed();
-                Destroy(gameObject);
+                if (SceneManager.GetActiveScene().name == "InteractiveMainMenu")
+                {
+                    this.gameObject.SetActive(false);
+                }
+                else
+                {
+                    FindObjectOfType<StageManager>().ExposeArmorPiece();
+                    FindObjectOfType<ProjectileSpawner>().TennisShotDestroyed();
+                    Destroy(gameObject);
+                }
+
             }
             else
             {

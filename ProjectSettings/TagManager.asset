@@ -31,6 +31,10 @@ TagManager:
   - BossCollider
   - TimerText
   - Whirlpool
+  - BtnRight
+  - BtnLeft
+  - BtnUp
+  - BtnDown
   layers:
   - Default
   - TransparentFX
