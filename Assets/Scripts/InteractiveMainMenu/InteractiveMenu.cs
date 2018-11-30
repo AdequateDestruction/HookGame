@@ -8,6 +8,7 @@ public class InteractiveMenu : MonoBehaviour {
 
     public Slider slider;
     private bool onButton = false;
+    public GameObject buttondown;
 
 	// Use this for initialization
 	void Start () {
@@ -37,7 +38,8 @@ public class InteractiveMenu : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
-            onButton = true; 
+            onButton = true;
+            buttondown.SetActive(true);
         }
 
         //if (collision.gameObject.tag == "Player" )
@@ -51,6 +53,7 @@ public class InteractiveMenu : MonoBehaviour {
         if (collision.gameObject.tag == "Player")
         {
             onButton = false;
+            buttondown.SetActive(false);
         }
 
         //if (collision.gameObject.tag == "Player")

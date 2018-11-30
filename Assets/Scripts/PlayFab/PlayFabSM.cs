@@ -63,6 +63,11 @@ public class PlayFabSM : MonoBehaviour
         //GetPlayerStatistics();
         //UpdateDisplayName();
         //GetLeaderboardScores();
+        GetLeaderboardBoss1();
+        GetLeaderboardBoss2();
+        GetLeaderboardBoss3();
+        GetLeaderboardTotalScores();
+        ShowSpecificPlayerScore("TotalScore");
     }
 
 
@@ -423,7 +428,7 @@ public class PlayFabSM : MonoBehaviour
 
     public void ShowPlayerCenteredScore()
     {
-        centeredPosition.text = playerCenteredScore[0].Position.ToString();
+        centeredPosition.text = (playerCenteredScore[0].Position +1).ToString();
         centeredScore.text = playerCenteredScore[0].StatValue.ToString();
         centeredName.text = playerCenteredScore[0].DisplayName;
     }

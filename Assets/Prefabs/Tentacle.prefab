@@ -335,6 +335,7 @@ MonoBehaviour:
   tentacleAnimator: {fileID: 95776185681656736}
   damageCollider: {fileID: 61852200020427254}
   blockCollider: {fileID: 61797964366159468}
+  enemySpawner: {fileID: 0}
 --- !u!212 &212486790184084724
 SpriteRenderer:
   m_ObjectHideFlags: 1

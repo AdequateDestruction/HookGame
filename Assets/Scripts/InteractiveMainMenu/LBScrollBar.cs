@@ -7,6 +7,7 @@ public class LBScrollBar : MonoBehaviour {
 
     public Scrollbar scrollbar;
     private bool onButton;
+    public GameObject buttondown;
 
 	// Use this for initialization
 	void Start () {
@@ -34,6 +35,7 @@ public class LBScrollBar : MonoBehaviour {
         if (collision.gameObject.tag == "Player")
         {
             onButton = true;
+            buttondown.SetActive(true);
         }
     }
 
@@ -42,6 +44,7 @@ public class LBScrollBar : MonoBehaviour {
         if (collision.gameObject.tag == "Player")
         {
             onButton = false;
+            buttondown.SetActive(false);
         }
     }
 }

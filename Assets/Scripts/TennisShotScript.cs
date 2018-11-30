@@ -11,6 +11,7 @@ public class TennisShotScript : MonoBehaviour {
 
     Animator tShotAnimator;
     Transform bossTransform;
+    Transform wallTransform;
     AudioSource pongSource;
 
     void Start()
@@ -18,6 +19,10 @@ public class TennisShotScript : MonoBehaviour {
         if (SceneManager.GetActiveScene().name != "InteractiveMainMenu")
         {
             bossTransform = GameObject.FindGameObjectWithTag("Boss").transform;
+        }
+        if (SceneManager.GetActiveScene().name == "InteractiveMainMenu")
+        {
+            wallTransform = GameObject.Find("PongWall").GetComponent<Transform>();
         }
         tShotAnimator = GetComponent<Animator>();
         pongSource = GetComponent<AudioSource>();
@@ -58,7 +63,13 @@ public class TennisShotScript : MonoBehaviour {
         }
         else if (other.tag == "Boss")
         {
-            if (pongedTimes > pongedRequirement)
+            if (SceneManager.GetActiveScene().name == "InteractiveMainMenu")
+            {
+                wallTransform = other.gameObject.GetComponent<Transform>();
+                WallPong();
+            }
+
+             if (pongedTimes > pongedRequirement)
             {
                 if (SceneManager.GetActiveScene().name == "InteractiveMainMenu")
                 {
@@ -93,6 +104,17 @@ public class TennisShotScript : MonoBehaviour {
     {
         tShotAnimator.Play("PH_TennisShotPongAnimation");
         transform.eulerAngles = new Vector3(0, 0, -Mathf.Atan2((bossTransform.position.y - transform.position.y), -(bossTransform.position.x - transform.position.x)) * Mathf.Rad2Deg - 90);
+        moveSpeed = moveSpeed * 1.1f;
+        pongedTimes = pongedTimes + 1;
+        pongSource.Play();
+        pongSource.pitch = pongSource.pitch + 0.1f;
+    }
+
+    private void WallPong()
+    {
+
+        tShotAnimator.Play("PH_TennisShotPongAnimation");
+        transform.eulerAngles = new Vector3(0, 0, -Mathf.Atan2((wallTransform.position.y - transform.position.y), -(wallTransform.position.x - transform.position.x)) * Mathf.Rad2Deg - 90);
         moveSpeed = moveSpeed * 1.1f;
         pongedTimes = pongedTimes + 1;
         pongSource.Play();
