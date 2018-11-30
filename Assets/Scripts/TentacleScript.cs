@@ -57,12 +57,25 @@ public class TentacleScript : MonoBehaviour
 
     private IEnumerator TentacleSpawn()
     {
-        tentacleAnimator.Play("TentacleSpawnAnimation");
-        yield return new WaitForSeconds(1.5f);
-        damageCollider.enabled = true;
-        blockCollider.enabled = true;
-        yield return new WaitForSeconds(lifeTime);
-        StartCoroutine(TentacleDeSpawn());
+
+        if (SceneManager.GetActiveScene().name == "InteractiveMainMenu")
+        {
+            tentacleAnimator.Play("TentacleSpawnAnimation");
+            yield return new WaitForSeconds(1.5f);
+            damageCollider.enabled = true;
+            blockCollider.enabled = true;
+
+        }
+        else
+        {
+            tentacleAnimator.Play("TentacleSpawnAnimation");
+            yield return new WaitForSeconds(1.5f);
+            damageCollider.enabled = true;
+            blockCollider.enabled = true;
+            yield return new WaitForSeconds(lifeTime);
+            StartCoroutine(TentacleDeSpawn());
+        }
+
     }
 
     private IEnumerator TentacleDeSpawn()
