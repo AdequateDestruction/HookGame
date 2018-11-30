@@ -35,15 +35,15 @@ public class InteractiveMenu : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && gameObject.tag == "BtnRight")
+        if (collision.gameObject.tag == "Player")
         {
             onButton = true; 
         }
 
-        if (collision.gameObject.tag == "Player" && gameObject.tag == "BtnLeft")
-        {
-            onButton = true;
-        }
+        //if (collision.gameObject.tag == "Player" )
+        //{
+        //    onButton = true;
+        //}
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -53,9 +53,9 @@ public class InteractiveMenu : MonoBehaviour {
             onButton = false;
         }
 
-        if (collision.gameObject.tag == "Player")
-        {
-            onButton = false;
-        }
+        //if (collision.gameObject.tag == "Player")
+        //{
+        //    onButton = false;
+        //}
     }
 }
