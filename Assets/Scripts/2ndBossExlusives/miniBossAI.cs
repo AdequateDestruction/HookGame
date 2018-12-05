@@ -62,20 +62,24 @@ public class miniBossAI : MonoBehaviour {
                 if (canDo)
                 {
                     waterBossScript.minibossKilled++;
-                    if (eel)
-                    {
+                    //if (eel)
+                    //{
                         animator.SetBool("Dead", true);
 
-                    }
+                    //}
                 }
-                this.gameObject.tag = "Untagged";
-                visual.SetActive(false);
-                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                GetComponent<Rigidbody2D>().angularVelocity = 0f;
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName( "DeadMiniBoss"))
+                {
+                    Debug.Log("dead running");
+                }
+                //this.gameObject.tag = "Untagged";
+                //visual.SetActive(false);
+                //GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                //GetComponent<Rigidbody2D>().angularVelocity = 0f;
 
-                //disables pathfinding/stops moving
-                Parent.GetComponent<Pathfinding.AIPath>().canMove = false;
-                doOnce = true;
+                ////disables pathfinding/stops moving
+                //Parent.GetComponent<Pathfinding.AIPath>().canMove = false;
+                //doOnce = true;
             }
 
             //how long electricity stays on corpse
@@ -90,7 +94,7 @@ public class miniBossAI : MonoBehaviour {
     public void OnCollisionEnter2D(Collision2D collision)
     {
         //kills miniboss when collided with StaticBlock
-        if (collision.gameObject.tag == "StaticBlock")
+        if (collision.gameObject.tag == "Whirlpool")
         {
             //GetComponent<ChildposToParent>().enabled = !GetComponent<ChildposToParent>().enabled;
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;

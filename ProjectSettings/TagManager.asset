@@ -50,7 +50,7 @@ TagManager:
   - Player
   - Floor
   - Walls
-  - 
+  - IgnoreCollision
   - 
   - 
   - 
