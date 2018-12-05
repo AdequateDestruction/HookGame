@@ -89,10 +89,10 @@ TextureImporter:
       name: Fire_Boss_New_Boss_Fire_Walk_Left_0
       rect:
         serializedVersion: 2
-        x: 107
-        y: 225
-        width: 535
-        height: 252
+        x: 0
+        y: 0
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -100,7 +100,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5584bfad623922a4a9040ce5230bbc73
+      spriteID: 5f32467e6c3acec448e4f0adfd9f6197
       vertices: []
       indices: 
       edges: []
@@ -109,10 +109,10 @@ TextureImporter:
       name: Fire_Boss_New_Boss_Fire_Walk_Left_1
       rect:
         serializedVersion: 2
-        x: 756
-        y: 233
-        width: 537
-        height: 244
+        x: 800
+        y: 0
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -120,7 +120,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56aa6a928604fce439d81b5f9c4815bf
+      spriteID: 0b81698e0b35a994b990c5c954638b0f
       vertices: []
       indices: 
       edges: []
@@ -129,10 +129,10 @@ TextureImporter:
       name: Fire_Boss_New_Boss_Fire_Walk_Left_2
       rect:
         serializedVersion: 2
-        x: 1407
-        y: 227
-        width: 535
-        height: 250
+        x: 1600
+        y: 0
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,7 +140,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d92b23c22bc32164ea0de3641a20af13
+      spriteID: 1fe098269ff50674286aeb392b5e9ecc
       vertices: []
       indices: 
       edges: []
@@ -149,10 +149,10 @@ TextureImporter:
       name: Fire_Boss_New_Boss_Fire_Walk_Left_3
       rect:
         serializedVersion: 2
-        x: 2057
-        y: 233
-        width: 535
-        height: 244
+        x: 2400
+        y: 0
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,7 +160,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6d857a3d84697344b37334b21c9f966
+      spriteID: b117e1dd614725c48964ee232b03c68a
       vertices: []
       indices: 
       edges: []

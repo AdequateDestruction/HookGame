@@ -4,6 +4,8 @@ TextureImporter:
   fileIDToRecycleName:
     21300000: Fire_Boss_New_Boss_Fire_Walk_Up_0
     21300002: Fire_Boss_New_Boss_Fire_Walk_Up_1
+    21300004: Fire_Boss_New_Boss_Fire_Walk_Up_2
+    21300006: Fire_Boss_New_Boss_Fire_Walk_Up_3
   externalObjects: {}
   serializedVersion: 5
   mipmaps:
@@ -87,18 +89,18 @@ TextureImporter:
       name: Fire_Boss_New_Boss_Fire_Walk_Up_0
       rect:
         serializedVersion: 2
-        x: 122
-        y: 189
-        width: 478
-        height: 331
+        x: 293
+        y: 0
+        width: 300
+        height: 800
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a34529c4d7c121488f482caa293e4b1
+      spriteID: 3cfc468eea037ae468334734da6e237e
       vertices: []
       indices: 
       edges: []
@@ -107,18 +109,58 @@ TextureImporter:
       name: Fire_Boss_New_Boss_Fire_Walk_Up_1
       rect:
         serializedVersion: 2
-        x: 777
-        y: 193
-        width: 480
-        height: 331
+        x: 1090
+        y: 0
+        width: 300
+        height: 800
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e02202a0c27ef114daedf4f023e30715
+      spriteID: 9bb466ad7c35ce741a0efe4c22fc230d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire_Boss_New_Boss_Fire_Walk_Up_2
+      rect:
+        serializedVersion: 2
+        x: 1895
+        y: 0
+        width: 300
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6561ce65c1806b743a7fe5a716889a65
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire_Boss_New_Boss_Fire_Walk_Up_3
+      rect:
+        serializedVersion: 2
+        x: 2695
+        y: 0
+        width: 300
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2deafa214499311439f23ffb48b1ae78
       vertices: []
       indices: 
       edges: []

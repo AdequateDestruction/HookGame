@@ -93,8 +93,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 650
-        height: 650
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -102,7 +102,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94740670bf328e644986fd327f12350a
+      spriteID: 7689d410ed6e46c4086f733471ef22e5
       vertices: []
       indices: 
       edges: []
@@ -111,10 +111,10 @@ TextureImporter:
       name: Fire_Boss_Boss_Fire_Idle_BoulderAttack_1
       rect:
         serializedVersion: 2
-        x: 650
+        x: 800
         y: 0
-        width: 650
-        height: 650
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -122,7 +122,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90eee36f396a8ca44bde763fcbc42e42
+      spriteID: fa8a904c53636234181035f9ccc1d41f
       vertices: []
       indices: 
       edges: []
@@ -131,10 +131,10 @@ TextureImporter:
       name: Fire_Boss_Boss_Fire_Idle_BoulderAttack_2
       rect:
         serializedVersion: 2
-        x: 1300
+        x: 1600
         y: 0
-        width: 650
-        height: 650
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,7 +142,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f8ece812cbce9b4188bc2eb4b1b56b3
+      spriteID: b9a4bb1f98efb1c4cb831522cdd728e8
       vertices: []
       indices: 
       edges: []
@@ -151,10 +151,10 @@ TextureImporter:
       name: Fire_Boss_Boss_Fire_Idle_BoulderAttack_3
       rect:
         serializedVersion: 2
-        x: 1950
+        x: 2400
         y: 0
-        width: 650
-        height: 650
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,7 +162,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5c23d6a1a48a7648959f055d7e458a0
+      spriteID: f12fbb8b7fb2bda40a9b78a3688dc4a2
       vertices: []
       indices: 
       edges: []
@@ -171,10 +171,10 @@ TextureImporter:
       name: Fire_Boss_Boss_Fire_Idle_BoulderAttack_4
       rect:
         serializedVersion: 2
-        x: 2600
+        x: 3200
         y: 0
-        width: 650
-        height: 650
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,7 +182,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c264f144139335942811a856459e04ef
+      spriteID: 478f8a39539e0944ab8c74ed794f8105
       vertices: []
       indices: 
       edges: []
@@ -191,10 +191,10 @@ TextureImporter:
       name: Fire_Boss_Boss_Fire_Idle_BoulderAttack_5
       rect:
         serializedVersion: 2
-        x: 3250
+        x: 4000
         y: 0
-        width: 650
-        height: 650
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,7 +202,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ddff93a7246c28946b8ea2a8613b755f
+      spriteID: 8e6aafe212b8676408f61970bff44e1e
       vertices: []
       indices: 
       edges: []
