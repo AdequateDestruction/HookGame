@@ -8,11 +8,16 @@ public class WorldSceneManager : MonoBehaviour {
     static WorldSceneManager instance;
 
     Fade fade;
+    PlayerMovement player;
     public bool Out;
     public bool In;
 
-    public static string INTERACTIVEMENU, BREAKROOM, MAINMENU, SUBMITSCORESCENE;
-    static int LASTSCENEVISITED;
+
+    public static string INTERACTIVEMENU, BREAKROOM, MAINMENU, SUBMITSCORESCENE,ELECTRICSTAGE,WATERSTAGEPHASE1, WATERSTAGEPHASE2,FIRESTAGE;
+    public static int LASTSCENEVISITEDINT;
+    public static string LASTSCENEVISITEDSTRING;
+
+
 
 
 
@@ -39,6 +44,10 @@ public class WorldSceneManager : MonoBehaviour {
         BREAKROOM = "BreakRoom";
         MAINMENU = "MainMenu";
         SUBMITSCORESCENE = "SubmitScoreScene";
+        WATERSTAGEPHASE1 = "Stage2Phase1";
+        WATERSTAGEPHASE2 = "Stage2Phase2";
+        FIRESTAGE = "ThirdBoss";
+        ELECTRICSTAGE = "Main";
     }
 
 
@@ -55,14 +64,19 @@ public class WorldSceneManager : MonoBehaviour {
 
 
         //DEBUG
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            NextScene();
-        }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            DebugPreviousScene();
-        }
+        //if (Input.GetKeyDown(KeyCode.RightArrow))
+        //{
+        //    NextScene();
+        //}
+        //if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //{
+        //    DebugPreviousScene();
+        //}
+        //if (Input.GetKeyDown(KeyCode.UpArrow))
+        //{
+        //    LoadBreakRoom();
+        //}
+
 
         //TODO function for fade that uses coroutine for fading
         //if (In)
@@ -129,7 +143,8 @@ public class WorldSceneManager : MonoBehaviour {
     /// </summary>
     public static void LoadBreakRoom()
     {
-        LASTSCENEVISITED = SceneManager.GetActiveScene().buildIndex;
+        LASTSCENEVISITEDINT = SceneManager.GetActiveScene().buildIndex;
+        LASTSCENEVISITEDSTRING = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(BREAKROOM);
 
     }
@@ -140,7 +155,7 @@ public class WorldSceneManager : MonoBehaviour {
     /// </summary>
     public static void LoadNextScene()
     {
-        SceneManager.LoadScene(LASTSCENEVISITED+1);
+        SceneManager.LoadScene(LASTSCENEVISITEDINT+1);
 
     }
 
