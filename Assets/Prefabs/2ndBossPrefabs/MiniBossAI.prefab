@@ -21,9 +21,10 @@ GameObject:
   - component: {fileID: 4351338259644184}
   - component: {fileID: 212723114381672694}
   - component: {fileID: 95061883059224428}
+  - component: {fileID: 58579775129981844}
   m_Layer: 0
   m_Name: MiniBossVisual
-  m_TagString: Untagged
+  m_TagString: MiniBoss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,7 +87,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1625975651353342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.18, y: -0.41, z: 0}
+  m_LocalPosition: {x: 5.54, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4067428101687552}
@@ -142,6 +143,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.11
+--- !u!58 &58579775129981844
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1238084603678294}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.2
 --- !u!95 &95061883059224428
 Animator:
   serializedVersion: 3
@@ -194,6 +210,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   body_Anim: {fileID: 0}
   electricityTime: 5
+  animationTime: 1
   isDead: 0
 --- !u!114 &114110204287116390
 MonoBehaviour:

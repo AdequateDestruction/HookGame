@@ -109,7 +109,8 @@ public class WaterStageManager : MonoBehaviour {
         }
         if (inhaleScript.inhaledEnemies >= 20)
         {
-            WorldSceneManager.LoadBreakRoom();
+            //WorldSceneManager.LoadBreakRoom();
+            waterBossAiScript.SM.SetNextState("Death");
 
         }
     }
