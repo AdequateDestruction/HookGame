@@ -21,7 +21,8 @@ public class GameSettingsScript : MonoBehaviour
     public float boss1Time, boss2Time, boss3Time;
     ThirdBossSM thirdBoss;
     public BossScript firstBoss;
-    inhale secondInhale;
+    WaterStageManager waterStageManager;
+    WaterBossAI secondInhale;
     Text timerText;
 
     void Awake()
@@ -60,71 +61,97 @@ public class GameSettingsScript : MonoBehaviour
 
         }
 
-
-        if(firstBoss == null && GameObject.Find("Boss").GetComponent<BossScript>() != null && SceneManager.GetActiveScene().name == "Main")
+        if(SceneManager.GetActiveScene().name == "Main")
         {
-            print("first boss script fetched");
-            firstBoss = GameObject.Find("Boss").GetComponent<BossScript>();
-        }
-
-        if (firstBoss != null)
-        {
-            if (firstBoss.currentStage2HP > 0)
+            if(firstBoss == null && GameObject.Find("Boss").GetComponent<BossScript>() != null)
             {
-                print(boss1Time);
-                boss1Time += Time.deltaTime;
-                timerText.text = Mathf.RoundToInt((int)boss1Time).ToString();
+                print("first boss script fetched");
+                firstBoss = GameObject.Find("Boss").GetComponent<BossScript>();
             }
 
-            if (firstBoss.pMoveScript.currentHealth <= 0 && thirdBoss.thirdPhaseHP > 0)
+            if (firstBoss != null)
             {
-                boss1Time = 0;
+                if (firstBoss.currentStage2HP > 0)
+                {
+                    print(boss1Time);
+                    boss1Time += Time.deltaTime;
+                    timerText.text = Mathf.RoundToInt((int)boss1Time).ToString();
+                }
+
+                if (firstBoss.pMoveScript.currentHealth <= 0 && thirdBoss.thirdPhaseHP > 0)
+                {
+                    boss1Time = 0;
+                }
             }
         }
 
 
-        //WaterStageManager
+        //2nd boss time management
 
-        if(secondInhale == null && SceneManager.GetActiveScene().name == "Stage2Phase2")
+        //WaterStageManager search
+        if(SceneManager.GetActiveScene().name == "Stage2Phase1")
         {
-            secondInhale = GameObject.FindGameObjectWithTag("Boss").GetComponent<inhale>();
-        }
+            if(waterStageManager == null)
+            {
+                waterStageManager = GameObject.FindGameObjectWithTag("WaterStageManager").GetComponent<WaterStageManager>();
+            }
 
-        if(secondInhale != null)
-        {
-            if(secondInhale.inhaledEnemies < 20)
+            if(waterStageManager.LeversActivated < 3)
             {
                 boss2Time += Time.deltaTime;
+                timerText.text = Mathf.RoundToInt((int)boss2Time).ToString();
+            }
+        }
+
+        if(SceneManager.GetActiveScene().name == "Stage2Phase2")
+        {
+            if(secondInhale == null)
+            {
+                secondInhale = GameObject.FindGameObjectWithTag("Boss").GetComponent<WaterBossAI>();
             }
 
+            if(secondInhale != null)
+            {
+                if(secondInhale.inhaleScript.inhaledEnemies < 20)
+                {
+                    boss2Time += Time.deltaTime;
+                    timerText.text = Mathf.RoundToInt((int)boss2Time).ToString();
+                }
+
             
+            }
         }
+
 
 
 
 
         //third boss time management
-        if (thirdBoss == null && SceneManager.GetActiveScene().name == "ThirdBoss")
+        if(SceneManager.GetActiveScene().name == "ThirdBoss")
         {
-            thirdBoss = GameObject.FindGameObjectWithTag("Boss").GetComponent<ThirdBossSM>();
-            print(thirdBoss);
-        }
-
-        if (thirdBoss != null)
-        {
-            if(thirdBoss.thirdPhaseHP > 0)
+            if (thirdBoss == null)
             {
-                //print(boss3Time);
-                boss3Time += Time.deltaTime;
-                timerText.text = Mathf.RoundToInt((int)boss3Time).ToString();
-
+                thirdBoss = GameObject.FindGameObjectWithTag("Boss").GetComponent<ThirdBossSM>();
+                print(thirdBoss);
             }
 
-            if(thirdBoss.playerDead == true && thirdBoss.thirdPhaseHP > 0)
+            if (thirdBoss != null)
             {
-                boss3Time = 0;
+                if(thirdBoss.thirdPhaseHP > 0)
+                {
+                    //print(boss3Time);
+                    boss3Time += Time.deltaTime;
+                    timerText.text = Mathf.RoundToInt((int)boss3Time).ToString();
+
+                }
+
+                if(thirdBoss.playerDead == true && thirdBoss.thirdPhaseHP > 0)
+                {
+                    boss3Time = 0;
+                }
             }
         }
+
         //////////////////////////////////////////////
 
 

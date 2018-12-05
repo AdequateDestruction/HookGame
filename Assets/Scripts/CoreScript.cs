@@ -40,6 +40,7 @@ public class CoreScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E) && Time.time >= ripTimer)
             {
                 transform.position = Vector3.MoveTowards(transform.position, playerPos, moveSpeed * 1.7f * Time.deltaTime);
+                if(RipSources.Length != 0)
                 RipSources[currentRipSource].Play();
 
                 if (currentRipSource >= RipSources.Length - 1)
@@ -81,6 +82,7 @@ public class CoreScript : MonoBehaviour
         if (rippedOff)
         {
             transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, moveSpeed * 0.8f * Time.deltaTime);
+            if(pieceAnimator != null)
             pieceAnimator.enabled = false;
             lineRend.enabled = false;
         }
@@ -98,6 +100,7 @@ public class CoreScript : MonoBehaviour
         beingRipped = true;
         playerPos = playerTransform.position;
         startedRipping = true;
+        if(FindObjectOfType<BossScript>() != null)
         FindObjectOfType<BossScript>().StopVulnTimer();
         ripTimer = Time.time;
     }
