@@ -69,11 +69,11 @@ public class EnemySpawner : MonoBehaviour {
             newEnemy.transform.position = transform.position;
             newEnemy.transform.rotation = transform.rotation;
             newEnemy.SetActive(true);
-            //if (SceneManager.GetActiveScene)
-            //{
+            if (SceneManager.GetActiveScene().name== "Stage2Phase1")
+            {
+                anim.SetTrigger("Spawn");
 
-            //}
-            anim.SetTrigger("Spawn");
+            }
         }
 
     }

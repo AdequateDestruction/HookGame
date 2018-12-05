@@ -176,6 +176,9 @@ public class WaterBreath : State
 
     public override void Enter()
     {
+        waterBossAI.waterBossAnimator.SetFloat("BreathAngle", waterBossAI.trueAngle);
+        waterBossAI.waterBossAnimator.SetTrigger("Breath");
+        waterBossAI.rb.velocity = new Vector2(0, 0);
         Debug.Log(waterBossAI.SM.CurrentState);
         waterBossAI.particle.Play();
     }
@@ -193,6 +196,8 @@ public class WaterBreath : State
     {
         waterBossAI.particle.Stop();
         timer = 0;
+        waterBossAI.waterBossAnimator.SetTrigger("EndBreath");
+
 
     }
 }
@@ -304,8 +309,8 @@ public class WaterToCorner : State
             angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             waterBossAI.transform.rotation = Quaternion.Slerp(waterBossAI.transform.localRotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * waterBossAI.rotateSpeed);
         }
-    
-            }
+
+    }
     public override void Exit()
     {
         waterBossAI.lastCorner = corner;
@@ -313,6 +318,40 @@ public class WaterToCorner : State
         travelled = false;
         waterBossAI.waterStagemanagerScript.index++;
     }
+
+
+
+}
+//DEATH
+public class WaterDeath : State
+{
+    WaterBossAI waterBossAI;
+    float timer;
+
+    public WaterDeath(string stateID, WaterBossAI waterBossAI) : base(stateID)
+    {
+        this.waterBossAI = waterBossAI;
     }
+
+    public override void Enter()
+    {
+        waterBossAI.waterBossAnimator.SetTrigger("Death");
+    }
+
+    public override void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer > 5)
+        {
+            WorldSceneManager.LoadBreakRoom();
+
+        }
+
+    }
+    public override void Exit()
+    {
+
+    }
+}
 
 

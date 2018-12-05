@@ -21,6 +21,7 @@ public class miniBossAI : MonoBehaviour {
     float electricityTime = 5, animationTime=1;
 
     public bool isDead;
+    Collider2D eelElecCollider;
 
     
     void Start ()
@@ -29,6 +30,7 @@ public class miniBossAI : MonoBehaviour {
         if (eel)
         {
             animator = GetComponent<Animator>();
+           // eelElecCollider = this.gameObject.transform.root.GetChild(1).GetComponent<Collider2D>();
         }
 
         body_Anim = transform.root.GetChild(1).GetComponent<Animator>();
@@ -67,10 +69,11 @@ public class miniBossAI : MonoBehaviour {
                 {
 
                     waterBossScript.minibossKilled++;
-                    //if (eel)
-                    //{
                     animator.SetBool("Dead", true);
-                    //}
+                    body_Anim.SetBool("Dead", true);
+                    //eelElecCollider.enabled = !eelElecCollider.enabled;
+                    this.transform.localScale = new Vector3(1, 1, 1);
+
                 }
                 if (fishling)
                 {
@@ -136,6 +139,10 @@ public class miniBossAI : MonoBehaviour {
             if (eel)
             {
                 animator.SetBool("Dead", false);
+                this.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+
+                //eelElecCollider.enabled = !eelElecCollider.enabled;
+
             }
             isDead = false;
             doOnce = false;

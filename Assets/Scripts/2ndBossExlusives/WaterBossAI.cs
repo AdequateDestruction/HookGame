@@ -52,9 +52,9 @@ public class WaterBossAI : MonoBehaviour {
 
 
 
-    Animator waterBossAnimator;
+    public Animator waterBossAnimator;
     //rotation in 360 degrees
-    float trueAngle;
+    public float trueAngle;
 
     public List<Collider2D> polyCols;
     int tempLast=0;
@@ -100,7 +100,7 @@ public class WaterBossAI : MonoBehaviour {
         //DEBUG
         if (Input.GetKey(KeyCode.U))
         {
-            Debug.Log(Vector2.Distance(this.transform.position, corners[waterStagemanagerScript.randomIndex[waterStagemanagerScript.index]].transform.position));   
+            SM.SetNextState("Death");
         }
 
         //if enough minibosses killed starts to attack player
@@ -208,6 +208,8 @@ public class WaterBossAI : MonoBehaviour {
         sm.AddState(new WaterWhirlpool("Whirlpool", this));
         sm.AddState(new WaterInHale("InHale", this));
         sm.AddState(new WaterToCorner("ToCorner", this));
+        sm.AddState(new WaterDeath("Death", this));
+
     }
 
     void WaterBossAnimations()
