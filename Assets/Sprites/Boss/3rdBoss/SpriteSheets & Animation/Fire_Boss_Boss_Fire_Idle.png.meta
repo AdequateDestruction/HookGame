@@ -93,8 +93,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 650
-        height: 650
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -102,7 +102,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 251d6c20f2fb60b4684f04c9590a94e4
+      spriteID: cb4831c03946604439eb3769b16c3c58
       vertices: []
       indices: 
       edges: []
@@ -111,10 +111,10 @@ TextureImporter:
       name: Fire_Boss_Boss_Fire_Idle_1
       rect:
         serializedVersion: 2
-        x: 650
+        x: 800
         y: 0
-        width: 650
-        height: 650
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -122,7 +122,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff9ac49432df2fd45a2a554a034d5467
+      spriteID: c217137eaba6b004088eb8e3c2a2c70c
       vertices: []
       indices: 
       edges: []
@@ -131,10 +131,10 @@ TextureImporter:
       name: Fire_Boss_Boss_Fire_Idle_2
       rect:
         serializedVersion: 2
-        x: 1300
+        x: 1600
         y: 0
-        width: 650
-        height: 650
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,7 +142,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 117b57b267c4a63429cabe4f34534c65
+      spriteID: 0261437310fe3d740b8e5beaa5b96d3b
       vertices: []
       indices: 
       edges: []
@@ -151,10 +151,10 @@ TextureImporter:
       name: Fire_Boss_Boss_Fire_Idle_3
       rect:
         serializedVersion: 2
-        x: 1950
+        x: 2400
         y: 0
-        width: 650
-        height: 650
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,7 +162,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa72e91ff8be3e4469ba942fa0fb66df
+      spriteID: 20939ff3aec91d6439aba5868c737a90
       vertices: []
       indices: 
       edges: []
@@ -171,10 +171,10 @@ TextureImporter:
       name: Fire_Boss_Boss_Fire_Idle_4
       rect:
         serializedVersion: 2
-        x: 2600
+        x: 3200
         y: 0
-        width: 650
-        height: 650
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,7 +182,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef00c315f0d94ac4fa834ea471bce3fb
+      spriteID: a7b846fe1d5c48e4d8e1d30b943630a7
       vertices: []
       indices: 
       edges: []
@@ -191,10 +191,10 @@ TextureImporter:
       name: Fire_Boss_Boss_Fire_Idle_5
       rect:
         serializedVersion: 2
-        x: 3250
+        x: 4000
         y: 0
-        width: 650
-        height: 650
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,7 +202,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22dc2099c3582f941acbb22c5e932f59
+      spriteID: 7c59926d38efa504fa124572db39983e
       vertices: []
       indices: 
       edges: []

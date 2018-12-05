@@ -8,10 +8,18 @@ public class MiniVolcanoes : MonoBehaviour {
 
     public GameObject projectileShadow;
 
-    //public variables for balancing
+    
+    //invul flash
+    SpriteRenderer bossVisual;
+    public Color defaultColor, damageColor;
+    public float invulnerableCD;
+    bool inPool, invulnerable;
+    float invulnerableTimer;
+    public int invulFlashCounter;
 
+    float flashTimer;
 
-
+//public variables for balancing
     public float maxRange = 3, minRange = -3, randomInvokeMin = 0.05f, randomInvokeMax = 0.9f, invokeRepeat = 1;
     public bool stopShooting, boss = false;
     public int volcanoHP = 3;
@@ -31,6 +39,8 @@ public class MiniVolcanoes : MonoBehaviour {
     {
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
 
+        bossVisual = gameObject.GetComponent<SpriteRenderer>();
+
         float randomStart = Random.Range(randomInvokeMin, randomInvokeMax);
         InvokeRepeating("TacticalArtillery", randomStart, invokeRepeat);
     }
@@ -38,7 +48,11 @@ public class MiniVolcanoes : MonoBehaviour {
     public void hookHit()
     {
         if (volcanoHP > 0)
+        {
             volcanoHP = volcanoHP - 1;
+            invulnerable = true;
+        }
+
 
         if (!despawning && !boss && volcanoHP <= 0)
         {
@@ -95,5 +109,59 @@ public class MiniVolcanoes : MonoBehaviour {
     private void OnDestroy()
     {
         StopAllCoroutines();
+    }
+
+    private void Update()
+    {
+        /*
+        if (invulnerable)
+        {
+            if (invulFlashCounter % 10 == 0 || invulFlashCounter % 10 == 1)
+            {
+                bossVisual.color = damageColor;
+            }
+            else
+            {
+                bossVisual.color = defaultColor;
+            }
+            invulFlashCounter++;
+
+            if (Time.time >= invulnerableTimer)
+            {
+                invulnerable = false;
+                bossVisual.color = defaultColor;
+            }
+        }*/
+
+        if(flashTimer < 1)
+        {
+            invulnerableTimer = Time.time + invulnerableCD;
+        }
+        else if(flashTimer >= 1)
+        {
+            flashTimer = 0;
+        }
+
+        if (invulnerable)
+        {
+            flashTimer += Time.deltaTime;
+            if (invulFlashCounter % 10 == 0 || invulFlashCounter % 10 == 1)
+            {
+                bossVisual.color = damageColor;
+            }
+            else
+            {
+                bossVisual.color = defaultColor;
+            }
+            invulFlashCounter++;
+
+            if (Time.time >= invulnerableTimer)
+            {
+                invulnerable = false;
+                bossVisual.color = defaultColor;
+            }
+        }
+
+
     }
 }

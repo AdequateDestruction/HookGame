@@ -471,7 +471,7 @@ public class ThirdBossSM : MonoBehaviour {
     {
         //Miron change scene functio tänne
         yield return new WaitForSeconds(4f);
-        WorldSceneManager.LoadInteractiveMenu();
+        SceneManager.LoadScene(WorldSceneManager.SUBMITSCORESCENE);
     }
 
     void MovingAnimationVariants()
