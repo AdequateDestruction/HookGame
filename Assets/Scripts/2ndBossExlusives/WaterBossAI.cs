@@ -48,7 +48,7 @@ public class WaterBossAI : MonoBehaviour {
     float invulnerableCD;
     bool inPool, invulnerable;
     float invulnerableTimer;
-    int invulFlashCounter;
+    public int invulFlashCounter;
 
 
 

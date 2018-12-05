@@ -18,7 +18,7 @@ public class miniBossAI : MonoBehaviour {
     bool canDo, doOnce = false;
     float timer = 0;
     [SerializeField]
-    float electricityTime = 5;
+    float electricityTime = 5, animationTime=1;
 
     public bool isDead;
 
@@ -30,6 +30,7 @@ public class miniBossAI : MonoBehaviour {
         {
             animator = GetComponent<Animator>();
         }
+
         body_Anim = transform.root.GetChild(1).GetComponent<Animator>();
         Parent = transform.parent.gameObject;
         visual = transform.parent.GetChild(1).gameObject;
@@ -57,40 +58,61 @@ public class miniBossAI : MonoBehaviour {
         //electricity on corpse after death
         if (isDead)
         {
+
+
             if (!doOnce)
             {
+
                 if (canDo)
                 {
-                    waterBossScript.minibossKilled++;
-                    if (eel)
-                    {
-                        animator.SetBool("Dead", true);
 
-                    }
+                    waterBossScript.minibossKilled++;
+                    //if (eel)
+                    //{
+                    animator.SetBool("Dead", true);
+                    //}
                 }
+                if (fishling)
+                {
+                    body_Anim.SetBool("Dead", true);
+                }
+                ////disables pathfinding/stops moving
+                Parent.GetComponent<Pathfinding.AIPath>().canMove = false;
+                doOnce = true;
+            }
+            if (body_Anim.GetCurrentAnimatorStateInfo(0).IsName("DeadMiniBoss"))
+            {
                 this.gameObject.tag = "Untagged";
-                visual.SetActive(false);
+                //visual.SetActive(false);
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 GetComponent<Rigidbody2D>().angularVelocity = 0f;
 
-                //disables pathfinding/stops moving
-                Parent.GetComponent<Pathfinding.AIPath>().canMove = false;
-                doOnce = true;
             }
 
             //how long electricity stays on corpse
             timer += Time.deltaTime;
-            if (timer > electricityTime)
+            if (eel)
             {
-                Parent.SetActive(false);
+                if (timer > electricityTime)
+                {
+                    Parent.SetActive(false);
+                }
             }
+            if (fishling)
+            {
+                if (timer > animationTime)
+                {
+                    Parent.SetActive(false);
+                }
+            }
+        
         }
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
         //kills miniboss when collided with StaticBlock
-        if (collision.gameObject.tag == "StaticBlock")
+        if (collision.gameObject.tag == "Whirlpool")
         {
             //GetComponent<ChildposToParent>().enabled = !GetComponent<ChildposToParent>().enabled;
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour {
 
@@ -22,10 +23,14 @@ public class EnemySpawner : MonoBehaviour {
 
     public bool spawnEnemy=true;
 
+    Animator anim;
+
     void Start ()
     {
         //pooling
         enemy = new List<GameObject>();
+        anim = GetComponent<Animator>();
+
         for (int i = 0; i < enemyAmountToPool; i++)
         {
             newEnemy = (GameObject)Instantiate(enemyPrefab);
@@ -45,7 +50,10 @@ public class EnemySpawner : MonoBehaviour {
 
         }
     }
-
+    private void Update()
+    {
+            
+    }
     public void invoketentacle(float time)
     {
         Invoke("SpawnEnemy", time);
@@ -53,12 +61,19 @@ public class EnemySpawner : MonoBehaviour {
 
     public void SpawnEnemy()
     {
+        
         newEnemy = GetPooledEnemies();
         if (newEnemy)
         {
+            
             newEnemy.transform.position = transform.position;
             newEnemy.transform.rotation = transform.rotation;
             newEnemy.SetActive(true);
+            //if (SceneManager.GetActiveScene)
+            //{
+
+            //}
+            anim.SetTrigger("Spawn");
         }
 
     }

@@ -187,8 +187,9 @@ public class HookScript : MonoBehaviour
                         goingOut = false;
                         hitAS.Play();
                         Debug.Log("Switch");
-                        other.transform.GetChild(0).gameObject.SetActive(false);
-                        other.transform.GetChild(1).gameObject.SetActive(true);
+                        other.gameObject.GetComponent<Lever>().Inactive();
+                        //other.transform.GetChild(0).gameObject.SetActive(false);
+                        //other.transform.GetChild(1).gameObject.SetActive(true);
 
                     }
                     break;
