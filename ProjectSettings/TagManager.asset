@@ -35,6 +35,7 @@ TagManager:
   - BtnLeft
   - BtnUp
   - BtnDown
+  - WaterStageManager
   layers:
   - Default
   - TransparentFX

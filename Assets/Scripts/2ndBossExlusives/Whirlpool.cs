@@ -68,6 +68,12 @@ public class Whirlpool : MonoBehaviour {
             //spriteRenderer.enabled = !spriteRenderer.enabled;
    
         }
+        if (exploded)
+        {
+            speedMax = speedMax - 0.005f;
+            propellerAnim.speed = speedMax;
+
+        }
 
         //explosion activation
         if (explosionTimer>explosionTime&&somethingInWhirlpool)
@@ -75,7 +81,7 @@ public class Whirlpool : MonoBehaviour {
             if (!doOnce)
             {
                 explosionAnim.SetBool("Exploded", true);
-                propellerAnim.speed = 0;
+                //propellerAnim.speed = 0;
                 //explosion.SetActive(true);
             }
 

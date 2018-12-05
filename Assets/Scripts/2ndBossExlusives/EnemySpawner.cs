@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour {
 
@@ -68,6 +69,10 @@ public class EnemySpawner : MonoBehaviour {
             newEnemy.transform.position = transform.position;
             newEnemy.transform.rotation = transform.rotation;
             newEnemy.SetActive(true);
+            //if (SceneManager.GetActiveScene)
+            //{
+
+            //}
             anim.SetTrigger("Spawn");
         }
 
