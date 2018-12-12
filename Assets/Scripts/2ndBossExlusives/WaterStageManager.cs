@@ -114,6 +114,17 @@ public class WaterStageManager : MonoBehaviour {
 
         }
     }
+
+    public void LoadSceneAgain()
+    {
+        WorldSceneManager.LoadCurrentRoom();
+    }
+    public void LoadInteractiveMenu()
+    {
+        WorldSceneManager.LoadInteractiveMenu();
+    }
+
+
         //DEBUG
     public void Debug()
     {
