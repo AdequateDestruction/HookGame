@@ -11,7 +11,7 @@ public class ThirdBossSM : MonoBehaviour {
     //Non-Public variables
     MiniVolcanoes thisVolcano;
     bool coroutineInProgress = false, idleAnimationActive, moveAnimationActive, moveCoroutineInProgress = false;
-    bool playerRangeCheckInProg = false;
+    bool playerRangeCheckInProg = false, inCoreRipping;
     SpriteRenderer lavaSpriteRenderer;
     float risingAlpha = 0, lavaTimer = 0, magmaBreathTimer = 0, lavaOverflowTimer; // all of the timer variables
     float trueAngle;
@@ -32,7 +32,7 @@ public class ThirdBossSM : MonoBehaviour {
     public bool lavaActive = false, magmaBreathActive = false, doOnce = false, lavaOverflowActive, playerDead = false;
     public GameObject debugText, bossSpriteChild;
     public Sprite walkingSprite, idleSprite;
-    public GameObject walkingCollision, idleCollision;
+    public GameObject walkingCollision, idleCollision, Core;
 
     // Use this for initialization
     void Start () {
@@ -191,6 +191,9 @@ public class ThirdBossSM : MonoBehaviour {
             case "3rdState":
                 ThirdState();
                 break;
+            case "CoreRippingState":
+                StartCoroutine(DyingAnimation());
+                break;
             case "BossDeadState":
                 BossDead();
             break;
@@ -338,9 +341,9 @@ public class ThirdBossSM : MonoBehaviour {
     {
         if(thirdPhaseHP <= 0)
         {
-            debugText.GetComponent<Text>().gameObject.SetActive(true);
-            print("Boss dies");
-            currentState = "BossDeadState";
+
+            print("Entering core ripping state");
+            currentState = "CoreRippingState";
         }
         thisVolcano.stopShooting = true;
         print("third state");
@@ -350,6 +353,36 @@ public class ThirdBossSM : MonoBehaviour {
            StartCoroutine(MoveSeconds(4));
         }
 
+    }
+
+    IEnumerator DyingAnimation()
+    {
+        if(Core.GetComponent<CoreScript>().beingRipped != true || Core.GetComponent<CoreScript>().rippedOff != true || inCoreRipping != true)
+        {
+            print("Boss core ripping state");
+            magmaBreathTimer = 0;
+            magmaBreathActive = false;
+            magmaParticle.Stop();
+            animController.SetBool("Dying", true);
+            yield return new WaitForSeconds(1f);
+            Core.GetComponent<SpriteRenderer>().enabled = true;
+            Core.GetComponent<BoxCollider2D>().enabled = true;
+        }
+
+
+        CoreRipping();
+    }
+
+    void CoreRipping()
+    {
+        inCoreRipping = true;
+
+        if(Core.GetComponent<CoreScript>().rippedOff)
+        {
+            animController.SetBool("Dying", false);
+            animController.SetBool("Dead", true);
+            currentState = "BossDeadState";
+        }
     }
 
     /// <summary>
@@ -454,6 +487,7 @@ public class ThirdBossSM : MonoBehaviour {
 
     void BossDead()
     {
+        debugText.GetComponent<Text>().gameObject.SetActive(true);
         magmaBreathTimer = 0;
         magmaBreathActive = false;
         magmaParticle.Stop();
@@ -470,7 +504,7 @@ public class ThirdBossSM : MonoBehaviour {
     IEnumerator ChangeScene()
     {
         //Miron change scene functio tänne
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(WorldSceneManager.SUBMITSCORESCENE);
     }
 
