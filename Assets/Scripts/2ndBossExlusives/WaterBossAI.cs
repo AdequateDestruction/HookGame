@@ -155,7 +155,7 @@ public class WaterBossAI : MonoBehaviour {
             }
         }
 
-        Debug.Log((hit.collider.gameObject.name)+"<--raycast");
+        //Debug.Log((hit.collider.gameObject.name)+"<--raycast");
         //uses inhale state always when hitting center. Checks if next corner is reached before using inhale again 
         //Debug.Log((Vector2.Distance(this.transform.position, corners[waterStagemanagerScript.randomIndex[waterStagemanagerScript.index]].transform.position) )+"<--distance");
         //Debug.Log((this.transform.position)+"<-- this--corner-->"+ (corners[waterStagemanagerScript.randomIndex[waterStagemanagerScript.index]].transform.position));
