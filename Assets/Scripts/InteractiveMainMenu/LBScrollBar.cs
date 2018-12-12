@@ -20,12 +20,12 @@ public class LBScrollBar : MonoBehaviour {
         {
             if (gameObject.tag == "BtnUp")
             {
-                scrollbar.value = scrollbar.value + 0.02f;
+                scrollbar.value = scrollbar.value + 0.005f;
             }
 
             if (gameObject.tag == "BtnDown")
             {
-                scrollbar.value = scrollbar.value - 0.02f;
+                scrollbar.value = scrollbar.value - 0.005f;
             }
         }
 	}

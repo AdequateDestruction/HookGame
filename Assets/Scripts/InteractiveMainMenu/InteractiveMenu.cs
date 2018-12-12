@@ -10,10 +10,6 @@ public class InteractiveMenu : MonoBehaviour {
     private bool onButton = false;
     public GameObject buttondown;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
 	// Update is called once per frame
 	void Update ()
@@ -23,13 +19,13 @@ public class InteractiveMenu : MonoBehaviour {
             if (gameObject.tag =="BtnRight")
             {
                 Debug.Log("oikealle");
-                slider.value = slider.value + 0.2f;
+                slider.value = slider.value + 0.08f;
             }
 
             if (gameObject.tag == "BtnLeft")
             {
                 Debug.Log("oikealle");
-                slider.value = slider.value - 0.2f;
+                slider.value = slider.value - 0.08f;
             }
         }
     }
@@ -41,11 +37,6 @@ public class InteractiveMenu : MonoBehaviour {
             onButton = true;
             buttondown.SetActive(true);
         }
-
-        //if (collision.gameObject.tag == "Player" )
-        //{
-        //    onButton = true;
-        //}
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -55,10 +46,5 @@ public class InteractiveMenu : MonoBehaviour {
             onButton = false;
             buttondown.SetActive(false);
         }
-
-        //if (collision.gameObject.tag == "Player")
-        //{
-        //    onButton = false;
-        //}
     }
 }

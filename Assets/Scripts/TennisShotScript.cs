@@ -14,6 +14,15 @@ public class TennisShotScript : MonoBehaviour {
     Transform wallTransform;
     AudioSource pongSource;
 
+    private void OnEnable()
+    {
+        if (SceneManager.GetActiveScene().name == "InteractiveMainMenu")
+        {
+            moveSpeed = 2.5f;
+
+        }
+    }
+
     void Start()
     {
         if (SceneManager.GetActiveScene().name != "InteractiveMainMenu")
