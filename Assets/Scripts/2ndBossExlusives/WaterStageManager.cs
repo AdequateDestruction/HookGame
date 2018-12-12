@@ -107,13 +107,24 @@ public class WaterStageManager : MonoBehaviour {
             waterBossAiScript.SM.SetNextState("ToCorner");
             doOnce = true;
         }
-        if (inhaleScript.inhaledEnemies >= 20)
+        if (inhaleScript.inhaledEnemies >= 10)
         {
             //WorldSceneManager.LoadBreakRoom();
             waterBossAiScript.SM.SetNextState("Death");
 
         }
     }
+
+    public void LoadSceneAgain()
+    {
+        WorldSceneManager.LoadCurrentRoom();
+    }
+    public void LoadInteractiveMenu()
+    {
+        WorldSceneManager.LoadInteractiveMenu();
+    }
+
+
         //DEBUG
     public void Debug()
     {
