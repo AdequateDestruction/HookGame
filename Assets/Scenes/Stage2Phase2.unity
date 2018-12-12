@@ -2686,11 +2686,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4483599720315382, guid: ee98113c00b230143bfc3095533f5311, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3.46
+      value: 1.72
       objectReference: {fileID: 0}
     - target: {fileID: 4483599720315382, guid: ee98113c00b230143bfc3095533f5311, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.18
+      value: -3.82
       objectReference: {fileID: 0}
     - target: {fileID: 4483599720315382, guid: ee98113c00b230143bfc3095533f5311, type: 2}
       propertyPath: m_LocalPosition.z
@@ -5439,9 +5439,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1625975651353342, guid: 7449ffacb7a56734bb873345838e803a,
     type: 2}
-  enemyAmountToPool: 10
+  enemyAmountToPool: 5
   invokeStartTime: 0
-  invokeRepeatTime: 3
+  invokeRepeatTime: 5
   spawnEnemy: 1
 --- !u!4 &154951224
 Transform:
@@ -9200,9 +9200,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1625975651353342, guid: 7449ffacb7a56734bb873345838e803a,
     type: 2}
-  enemyAmountToPool: 10
+  enemyAmountToPool: 5
   invokeStartTime: 0
-  invokeRepeatTime: 3
+  invokeRepeatTime: 5
   spawnEnemy: 1
 --- !u!4 &268822265
 Transform:
@@ -9633,6 +9633,7 @@ MonoBehaviour:
   boss1Time: 0
   boss2Time: 0
   boss3Time: 0
+  firstBoss: {fileID: 0}
 --- !u!4 &276352328
 Transform:
   m_ObjectHideFlags: 0
@@ -19904,9 +19905,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1625975651353342, guid: 7449ffacb7a56734bb873345838e803a,
     type: 2}
-  enemyAmountToPool: 10
+  enemyAmountToPool: 5
   invokeStartTime: 0
-  invokeRepeatTime: 3
+  invokeRepeatTime: 5
   spawnEnemy: 1
 --- !u!4 &580123792
 Transform:
@@ -40071,6 +40072,29 @@ Prefab:
       propertyPath: UVModule.cycles
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1384479548434016, guid: baee9a171215fd946b30971b8b1d527d, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61312425043418788, guid: baee9a171215fd946b30971b8b1d527d,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1384479548434016, guid: baee9a171215fd946b30971b8b1d527d, type: 2}
+      propertyPath: m_TagString
+      value: Inhale
+      objectReference: {fileID: 0}
+    - target: {fileID: 114678367060366172, guid: baee9a171215fd946b30971b8b1d527d,
+        type: 2}
+      propertyPath: suckSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 60720047406810950, guid: baee9a171215fd946b30971b8b1d527d,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: baee9a171215fd946b30971b8b1d527d, type: 2}
   m_IsPrefabParent: 0
@@ -45134,9 +45158,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1625975651353342, guid: 7449ffacb7a56734bb873345838e803a,
     type: 2}
-  enemyAmountToPool: 10
+  enemyAmountToPool: 5
   invokeStartTime: 0
-  invokeRepeatTime: 3
+  invokeRepeatTime: 5
   spawnEnemy: 1
 --- !u!4 &1322915095
 Transform:

@@ -247,8 +247,12 @@ public class WaterInHale : State
     public override void Enter()
     {
         Debug.Log(waterBossAI.SM.CurrentState);
+        waterBossAI.waterBossAnimator.SetTrigger("Breath");
+
         timer = 0;
         waterBossAI.inHale.SetActive(true);
+        waterBossAI.rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
     }
 
     public override void Update()
@@ -264,6 +268,10 @@ public class WaterInHale : State
     public override void Exit()
     {
         waterBossAI.inHale.SetActive(false);
+        waterBossAI.rb.constraints = RigidbodyConstraints2D.None;
+        waterBossAI.waterBossAnimator.SetTrigger("EndBreath");
+
+
     }
 
 }
@@ -341,7 +349,7 @@ public class WaterDeath : State
     public override void Update()
     {
         timer += Time.deltaTime;
-        if (timer > 5)
+        if (timer > 3)
         {
             WorldSceneManager.LoadBreakRoom();
 

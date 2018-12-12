@@ -179,7 +179,7 @@ public class WaterBossAI : MonoBehaviour {
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0f;
         }
-        if (collision.gameObject.tag=="Player")
+        if (collision.gameObject.tag=="Player"&&!inHale.activeSelf)
         {
             playerMovementScript.TakeDamage();
         }
