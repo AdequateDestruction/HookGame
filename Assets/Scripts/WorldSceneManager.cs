@@ -64,18 +64,18 @@ public class WorldSceneManager : MonoBehaviour {
 
 
         //DEBUG
-        //if (Input.GetKeyDown(KeyCode.RightArrow))
-        //{
-        //    NextScene();
-        //}
-        //if (Input.GetKeyDown(KeyCode.LeftArrow))
-        //{
-        //    DebugPreviousScene();
-        //}
-        //if (Input.GetKeyDown(KeyCode.UpArrow))
-        //{
-        //    LoadBreakRoom();
-        //}
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            NextScene();
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            DebugPreviousScene();
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            LoadBreakRoom();
+        }
 
 
         //TODO function for fade that uses coroutine for fading

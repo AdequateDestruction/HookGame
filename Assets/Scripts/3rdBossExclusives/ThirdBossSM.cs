@@ -260,6 +260,7 @@ public class ThirdBossSM : MonoBehaviour {
     {
         if(secondPhaseHP > 0)
         {
+            gameObject.GetComponent<MiniVolcanoes>().invulnerable = true;
             secondPhaseHP = secondPhaseHP - 1;
             StartCoroutine(LavaOverflow());
         }
@@ -407,6 +408,7 @@ public class ThirdBossSM : MonoBehaviour {
     /// </summary>
     public void ThirdPhaseTakeDMG()
     {
+        gameObject.GetComponent<MiniVolcanoes>().invulnerable = true;
         thirdPhaseHP = thirdPhaseHP - 1;
         if(lavaOverflowActive == false)
         {

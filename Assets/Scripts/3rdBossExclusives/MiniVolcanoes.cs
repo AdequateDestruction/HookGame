@@ -8,13 +8,14 @@ public class MiniVolcanoes : MonoBehaviour {
 
     public GameObject projectileShadow;
 
-    
+
     //invul flash
+    public SpriteRenderer thirdBossVisual;
     SpriteRenderer bossVisual;
     public Color defaultColor, damageColor;
     public float invulnerableCD;
-    bool inPool, invulnerable;
-    float invulnerableTimer;
+    public bool invulnerable = false;
+    public float invulnerableTimer;
     public int invulFlashCounter;
 
     float flashTimer;
@@ -41,6 +42,11 @@ public class MiniVolcanoes : MonoBehaviour {
 
         bossVisual = gameObject.GetComponent<SpriteRenderer>();
 
+        if(boss)
+        {
+            bossVisual = thirdBossVisual;
+        }
+
         float randomStart = Random.Range(randomInvokeMin, randomInvokeMax);
         InvokeRepeating("TacticalArtillery", randomStart, invokeRepeat);
     }
@@ -49,6 +55,7 @@ public class MiniVolcanoes : MonoBehaviour {
     {
         if (volcanoHP > 0)
         {
+            print("Volcano hit");
             volcanoHP = volcanoHP - 1;
             invulnerable = true;
         }
@@ -113,6 +120,9 @@ public class MiniVolcanoes : MonoBehaviour {
 
     private void Update()
     {
+
+        print(invulnerable);
+    
         /*
         if (invulnerable)
         {
@@ -133,18 +143,13 @@ public class MiniVolcanoes : MonoBehaviour {
             }
         }*/
 
-        if(flashTimer < 1)
-        {
-            invulnerableTimer = Time.time + invulnerableCD;
-        }
-        else if(flashTimer >= 1)
-        {
-            flashTimer = 0;
-        }
+
 
         if (invulnerable)
         {
-            flashTimer += Time.deltaTime;
+            invulnerableTimer += Time.deltaTime;
+
+            //flashTimer += Time.deltaTime;
             if (invulFlashCounter % 10 == 0 || invulFlashCounter % 10 == 1)
             {
                 bossVisual.color = damageColor;
@@ -155,9 +160,12 @@ public class MiniVolcanoes : MonoBehaviour {
             }
             invulFlashCounter++;
 
-            if (Time.time >= invulnerableTimer)
+            //if (Time.time >= invulnerableTimer)
+            if(invulnerableTimer > 2)
             {
                 invulnerable = false;
+                invulnerableTimer = 0;
+                invulFlashCounter = 0;
                 bossVisual.color = defaultColor;
             }
         }

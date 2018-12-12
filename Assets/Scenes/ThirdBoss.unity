@@ -368,9 +368,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileShadow: {fileID: 1878005953594204, guid: c02c610e6cf8cff46859ea11cd2a00f6,
     type: 2}
+  thirdBossVisual: {fileID: 0}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
-  invulnerableCD: 1
+  invulnerableCD: 0.1
+  invulnerable: 0
+  invulnerableTimer: 0
   invulFlashCounter: 0
   maxRange: 3
   minRange: -3
@@ -578,9 +581,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileShadow: {fileID: 1878005953594204, guid: c02c610e6cf8cff46859ea11cd2a00f6,
     type: 2}
+  thirdBossVisual: {fileID: 0}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
-  invulnerableCD: 1
+  invulnerableCD: 0.1
+  invulnerable: 0
+  invulnerableTimer: 0
   invulFlashCounter: 0
   maxRange: 3
   minRange: -3
@@ -1681,9 +1687,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileShadow: {fileID: 1878005953594204, guid: c02c610e6cf8cff46859ea11cd2a00f6,
     type: 2}
+  thirdBossVisual: {fileID: 0}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
-  invulnerableCD: 1
+  invulnerableCD: 0.1
+  invulnerable: 0
+  invulnerableTimer: 0
   invulFlashCounter: 0
   maxRange: 3
   minRange: -3
@@ -7705,9 +7714,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileShadow: {fileID: 1878005953594204, guid: c02c610e6cf8cff46859ea11cd2a00f6,
     type: 2}
+  thirdBossVisual: {fileID: 0}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
-  invulnerableCD: 1
+  invulnerableCD: 0.1
+  invulnerable: 0
+  invulnerableTimer: 0
   invulFlashCounter: 0
   maxRange: 3
   minRange: -3
@@ -9946,9 +9958,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileShadow: {fileID: 1878005953594204, guid: c02c610e6cf8cff46859ea11cd2a00f6,
     type: 2}
+  thirdBossVisual: {fileID: 0}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
-  invulnerableCD: 1
+  invulnerableCD: 0.1
+  invulnerable: 0
+  invulnerableTimer: 0
   invulFlashCounter: 0
   maxRange: 3
   minRange: -3
@@ -10947,9 +10962,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileShadow: {fileID: 1878005953594204, guid: c02c610e6cf8cff46859ea11cd2a00f6,
     type: 2}
+  thirdBossVisual: {fileID: 0}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
-  invulnerableCD: 1
+  invulnerableCD: 0.1
+  invulnerable: 0
+  invulnerableTimer: 0
   invulFlashCounter: 0
   maxRange: 3
   minRange: -3
@@ -11297,9 +11315,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileShadow: {fileID: 1878005953594204, guid: 2d5c92cb21fcb3f40af63668ce6ec71c,
     type: 2}
-  defaultColor: {r: 1, g: 1, b: 1, a: 0}
-  damageColor: {r: 1, g: 0, b: 0, a: 0}
+  thirdBossVisual: {fileID: 1803109027}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
   invulnerableCD: 0
+  invulnerable: 0
+  invulnerableTimer: 0
   invulFlashCounter: 0
   maxRange: 0
   minRange: 0
@@ -16341,9 +16362,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileShadow: {fileID: 1878005953594204, guid: c02c610e6cf8cff46859ea11cd2a00f6,
     type: 2}
+  thirdBossVisual: {fileID: 0}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
-  invulnerableCD: 1
+  invulnerableCD: 0.1
+  invulnerable: 0
+  invulnerableTimer: 0
   invulFlashCounter: 0
   maxRange: 3
   minRange: -3
@@ -16551,9 +16575,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileShadow: {fileID: 1878005953594204, guid: c02c610e6cf8cff46859ea11cd2a00f6,
     type: 2}
+  thirdBossVisual: {fileID: 0}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
-  invulnerableCD: 1
+  invulnerableCD: 0.1
+  invulnerable: 0
+  invulnerableTimer: 0
   invulFlashCounter: 0
   maxRange: 3
   minRange: -3
@@ -17349,9 +17376,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileShadow: {fileID: 1878005953594204, guid: c02c610e6cf8cff46859ea11cd2a00f6,
     type: 2}
+  thirdBossVisual: {fileID: 0}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
-  invulnerableCD: 1
+  invulnerableCD: 0.1
+  invulnerable: 0
+  invulnerableTimer: 0
   invulFlashCounter: 0
   maxRange: 3
   minRange: -3
@@ -18042,9 +18072,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileShadow: {fileID: 1878005953594204, guid: c02c610e6cf8cff46859ea11cd2a00f6,
     type: 2}
+  thirdBossVisual: {fileID: 0}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
-  invulnerableCD: 1
+  invulnerableCD: 0.1
+  invulnerable: 0
+  invulnerableTimer: 0
   invulFlashCounter: 0
   maxRange: 3
   minRange: -3
@@ -19573,9 +19606,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileShadow: {fileID: 1878005953594204, guid: c02c610e6cf8cff46859ea11cd2a00f6,
     type: 2}
+  thirdBossVisual: {fileID: 0}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
-  invulnerableCD: 1
+  invulnerableCD: 0.1
+  invulnerable: 0
+  invulnerableTimer: 0
   invulFlashCounter: 0
   maxRange: 3
   minRange: -3

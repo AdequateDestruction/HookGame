@@ -53,7 +53,8 @@ public class GameSettingsScript : MonoBehaviour
     {
         if(timerText == null) 
         {
-            if(SceneManager.GetActiveScene().name != WorldSceneManager.INTERACTIVEMENU && SceneManager.GetActiveScene().name != WorldSceneManager.MAINMENU && SceneManager.GetActiveScene().name != WorldSceneManager.SUBMITSCORESCENE)
+            if(SceneManager.GetActiveScene().name != WorldSceneManager.INTERACTIVEMENU && SceneManager.GetActiveScene().name != WorldSceneManager.MAINMENU 
+                && SceneManager.GetActiveScene().name != WorldSceneManager.SUBMITSCORESCENE && SceneManager.GetActiveScene().name != WorldSceneManager.BREAKROOM)
             {
                 print(SceneManager.GetActiveScene().name);
                 timerText = GameObject.FindGameObjectWithTag("TimerText").GetComponent<Text>();
