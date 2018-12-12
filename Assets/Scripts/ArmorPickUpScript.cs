@@ -8,6 +8,12 @@ public class ArmorPickUpScript : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
+            Debug.Log("RIPPING!!!!");
+            GetComponentInParent<CoreScript>().ArmorPickUp();
+        }
+        if (other.tag == "Hook")
+        {
+            Debug.Log("RIPPING!!!!");
             GetComponentInParent<CoreScript>().ArmorPickUp();
         }
     }

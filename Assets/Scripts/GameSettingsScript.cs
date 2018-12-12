@@ -71,7 +71,7 @@ public class GameSettingsScript : MonoBehaviour
         {
             if (firstBoss.currentStage2HP > 0)
             {
-                print(boss1Time);
+                //print(boss1Time);
                 boss1Time += Time.deltaTime;
                 timerText.text = Mathf.RoundToInt((int)boss1Time).ToString();
             }
