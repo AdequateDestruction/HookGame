@@ -19,6 +19,10 @@ public class Leaderboard : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if(playfab == null)
+        {
+            playfab = GameObject.FindGameObjectWithTag("Playfab").GetComponent<PlayFabSM>();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

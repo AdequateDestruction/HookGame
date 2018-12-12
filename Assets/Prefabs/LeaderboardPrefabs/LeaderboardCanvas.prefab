@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 114190248028686808}
   m_Layer: 5
   m_Name: CenteredName
-  m_TagString: Untagged
+  m_TagString: CenteredNameText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 114658288215130672}
   m_Layer: 5
   m_Name: CenteredScore
-  m_TagString: Untagged
+  m_TagString: CenteredScoreText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -672,7 +672,7 @@ GameObject:
   - component: {fileID: 114120289877699936}
   m_Layer: 5
   m_Name: CenteredPosition
-  m_TagString: Untagged
+  m_TagString: CenteredPosText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1793,7 +1793,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: setrswerimtkrietsiantane
+  m_Text: 
 --- !u!114 &114019791476281280
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1998,7 +1998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2069,7 +2069,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100
+  m_Text: 
 --- !u!114 &114149541117940000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2148,7 +2148,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: setrswerimtkrietsiantane
+  m_Text: 
 --- !u!114 &114170303190276120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2215,7 +2215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2235,7 +2235,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: setrswerimtkrietsiantane
+  m_Text: Name
 --- !u!114 &114192307602965864
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2268,7 +2268,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100
+  m_Text: 
 --- !u!114 &114193628336718278
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2334,7 +2334,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: setrswerimtkrietsiantane
+  m_Text: 
 --- !u!114 &114213729595151628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2394,7 +2394,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10000
+  m_Text: 
 --- !u!114 &114228469587413392
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2427,7 +2427,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100
+  m_Text: 
 --- !u!114 &114268695932309884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2491,7 +2491,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: setrswerimtkrietsiantane
+  m_Text: 
 --- !u!114 &114307458825639042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2557,7 +2557,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10000
+  m_Text: 
 --- !u!114 &114342590153971522
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2623,7 +2623,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10000
+  m_Text: 
 --- !u!114 &114362130185901422
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2656,7 +2656,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100
+  m_Text: 
 --- !u!114 &114368437559615196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2842,7 +2842,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10000
+  m_Text: 
 --- !u!114 &114429459884193498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2875,7 +2875,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100
+  m_Text: 
 --- !u!114 &114440514916977516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2908,7 +2908,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10000
+  m_Text: 
 --- !u!114 &114455038190169476
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3132,7 +3132,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pertti Jorma
+  m_Text: 
 --- !u!114 &114501941335126880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3165,7 +3165,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: setrswerimtkrietsiantane
+  m_Text: 
 --- !u!114 &114507037444123724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3225,7 +3225,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pertti Jorma
+  m_Text: 
 --- !u!114 &114522354003052158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3365,7 +3365,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pertti Jorma
+  m_Text: 
 --- !u!114 &114557058120122294
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3398,7 +3398,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10000
+  m_Text: 
 --- !u!114 &114557794205745136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3431,7 +3431,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pertti Jorma
+  m_Text: 
 --- !u!114 &114570848857610470
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3578,7 +3578,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10000
+  m_Text: 
 --- !u!114 &114594229953900652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3744,7 +3744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3824,7 +3824,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pertti Jorma
+  m_Text: 
 --- !u!114 &114682735139786170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4080,7 +4080,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pertti Jorma
+  m_Text: 
 --- !u!114 &114739999694000574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4179,7 +4179,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: setrswerimtkrietsiantane
+  m_Text: 
 --- !u!114 &114767179504729932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4212,7 +4212,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: setrswerimtkrietsiantane
+  m_Text: 
 --- !u!114 &114784668080146372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4419,7 +4419,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100
+  m_Text: 
 --- !u!114 &114799904838735028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4515,7 +4515,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: setrswerimtkrietsiantane
+  m_Text: 
 --- !u!114 &114826115665081260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4548,7 +4548,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100
+  m_Text: 
 --- !u!114 &114827756128162136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4614,7 +4614,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10000
+  m_Text: 
 --- !u!114 &114844147886611136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4647,7 +4647,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: setrswerimtkrietsiantane
+  m_Text: 
 --- !u!114 &114847308586324086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4743,7 +4743,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pertti Jorma
+  m_Text: 
 --- !u!114 &114850876378297306
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4776,7 +4776,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pertti Jorma
+  m_Text: 
 --- !u!114 &114859652939456446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4809,7 +4809,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10000
+  m_Text: 
 --- !u!114 &114860522292298694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4869,7 +4869,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pertti Jorma
+  m_Text: 
 --- !u!114 &114874140503704328
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5025,7 +5025,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100
+  m_Text: 
 --- !u!114 &114905012718177616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5058,7 +5058,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pertti Jorma
+  m_Text: 
 --- !u!114 &114910598671147876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5091,7 +5091,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10000
+  m_Text: 
 --- !u!114 &114937619390377896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5268,7 +5268,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100
+  m_Text: 
 --- !u!114 &114967085081972598
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5334,7 +5334,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: setrswerimtkrietsiantane
+  m_Text: 
 --- !u!114 &114995273834172088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5367,7 +5367,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100
+  m_Text: 
 --- !u!222 &222001185941806554
 CanvasRenderer:
   m_ObjectHideFlags: 1

@@ -64,6 +64,7 @@ public class WorldSceneManager : MonoBehaviour {
 
 
         //DEBUG
+        /*
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             NextScene();
@@ -75,7 +76,7 @@ public class WorldSceneManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             LoadBreakRoom();
-        }
+        }*/
 
 
         //TODO function for fade that uses coroutine for fading

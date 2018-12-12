@@ -66,10 +66,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.H))
         {
             currentHealth = 100;
-        }
+        }*/
 
         if (currentState != 4 && currentState != 3)
         {

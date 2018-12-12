@@ -159,6 +159,7 @@ public class ThirdBossSM : MonoBehaviour {
         MovingAnimationVariants();
         BossVsPlayerPos();
 
+        /*
         if(Input.GetKeyDown(KeyCode.H))//Cheat for easier testing, DISABLE ON RELEASE
         {
             player.currentHealth = 40;
@@ -167,7 +168,7 @@ public class ThirdBossSM : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.K))//Cheat for easier testing, DISABLE ON RELEASE
         {
             player.currentHealth = 1;
-        }
+        }*/
     }
 
     // Update is called once per frame

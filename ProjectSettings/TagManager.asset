@@ -37,6 +37,12 @@ TagManager:
   - BtnDown
   - WaterStageManager
   - Inhale
+  - YourScore
+  - YourName
+  - Playfab
+  - CenteredPosText
+  - CenteredScoreText
+  - CenteredNameText
   layers:
   - Default
   - TransparentFX

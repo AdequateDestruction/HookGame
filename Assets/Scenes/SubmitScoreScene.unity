@@ -146,6 +146,7 @@ MonoBehaviour:
   boss1Time: 0
   boss2Time: 0
   boss3Time: 0
+  firstBoss: {fileID: 0}
 --- !u!4 &64942486
 Transform:
   m_ObjectHideFlags: 0
@@ -172,8 +173,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leaderboardPanel: {fileID: 0}
   submitScreenName: {fileID: 489837785}
-  mainMenuUserName: {fileID: 0}
   totalScoreText: {fileID: 668646396}
+  mainMenuUserName: {fileID: 0}
   userName: 
   centeredPosition: {fileID: 0}
   centeredScore: {fileID: 0}
@@ -402,7 +403,7 @@ GameObject:
   - component: {fileID: 489837785}
   m_Layer: 5
   m_Name: PlayerNameText
-  m_TagString: Untagged
+  m_TagString: YourName
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -513,7 +514,7 @@ GameObject:
   - component: {fileID: 668646396}
   m_Layer: 5
   m_Name: ScoreText
-  m_TagString: Untagged
+  m_TagString: YourScore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -819,6 +820,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1df1d512e8e7e1479b7cd4c46dc0519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  electric: {fileID: 0}
+  water: {fileID: 0}
+  fire: {fileID: 0}
 --- !u!4 &1215882219
 Transform:
   m_ObjectHideFlags: 0

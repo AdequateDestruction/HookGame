@@ -25,11 +25,14 @@ public class PlayFabSM : MonoBehaviour
 
     GameSettingsScript gameSettings;
 
+    //submit score scene
     public Text submitScreenName;
-    public Text mainMenuUserName;
     public Text totalScoreText;
+    //
+
+    public Text mainMenuUserName;
     public string userName;
-    public Text centeredPosition, centeredScore, centeredName;
+    public Text centeredPositionText, centeredScoreText, centeredNameText;
     public float totalScore = 100000;
 
     public void Start()
@@ -58,7 +61,7 @@ public class PlayFabSM : MonoBehaviour
 
     private void OnLoginSuccess(LoginResult result)
     {
-        Debug.Log("Congratulations, you have logged into playfab");
+        //Debug.Log("Congratulations, you have logged into playfab");
         //UpdatePlayerStatistics();
         //GetPlayerStatistics();
         //UpdateDisplayName();
@@ -160,22 +163,22 @@ public class PlayFabSM : MonoBehaviour
     //sets the 'results' leaderboard info to a non-local variable so that it can be used elsewhere
     public void GetBoss1Scores(List<PlayerLeaderboardEntry> playerLeaderboardEntries)
     {
-        print("playerleaderboardsentires count " + playerLeaderboardEntries.Count);
+        //print("playerleaderboardsentires count " + playerLeaderboardEntries.Count);
         playerScoresBoss1 = playerLeaderboardEntries;
-        print("Playerscores count " + playerScoresBoss1.Count);
+        //print("Playerscores count " + playerScoresBoss1.Count);
 
         ShowScoresBoss1();
     }
 
     public void ShowScoresBoss1()
     {
-        print("playerScoresBoss1 count " + playerScoresBoss1.Count);
+        //print("playerScoresBoss1 count " + playerScoresBoss1.Count);
 
         if (playerScoresBoss1 != null)
         {
             for (int i = 0; i < playerScoresBoss1.Count; i++)
             {
-                print("Boss1 showscores");
+                //print("Boss1 showscores");
                 leaderboardScoresObj.GetComponentsInChildren<Text>()[i].text = playerScoresBoss1[i].StatValue.ToString();
                 leaderboardNamesObj.GetComponentsInChildren<Text>()[i].text = playerScoresBoss1[i].DisplayName;
 
@@ -223,16 +226,16 @@ public class PlayFabSM : MonoBehaviour
     //sets the 'results' leaderboard info to a non-local variable so that it can be used elsewhere
     public void GetBoss2Scores(List<PlayerLeaderboardEntry> playerLeaderboardEntries)
     {
-        print("playerleaderboardsentires count " + playerLeaderboardEntries.Count);
+        //print("playerleaderboardsentires count " + playerLeaderboardEntries.Count);
         playerScoresBoss2 = playerLeaderboardEntries;
-        print("Playerscores count " + playerScoresBoss2.Count);
+        //print("Playerscores count " + playerScoresBoss2.Count);
 
         ShowScoresBoss2();
     }
 
     public void ShowScoresBoss2()
     {
-        print("playerScoresBoss2 count " + playerScoresBoss2.Count);
+        //print("playerScoresBoss2 count " + playerScoresBoss2.Count);
 
         if (playerScoresBoss2 != null)
         {
@@ -286,16 +289,16 @@ public class PlayFabSM : MonoBehaviour
     //sets the 'results' leaderboard info to a non-local variable so that it can be used elsewhere
     public void GetBoss3Scores(List<PlayerLeaderboardEntry> playerLeaderboardEntries)
     {
-        print("playerleaderboardsentires count " + playerLeaderboardEntries.Count);
+        //print("playerleaderboardsentires count " + playerLeaderboardEntries.Count);
         playerScoresBoss3 = playerLeaderboardEntries;
-        print("Playerscores count " + playerScoresBoss3.Count);
+        //print("Playerscores count " + playerScoresBoss3.Count);
         
         ShowScoresBoss3();
     }
 
     public void ShowScoresBoss3()
     {
-        print("playerScoresBoss3 count " + playerScoresBoss3.Count);
+        //print("playerScoresBoss3 count " + playerScoresBoss3);
 
         if (playerScoresBoss3 != null)
         {
@@ -371,6 +374,27 @@ public class PlayFabSM : MonoBehaviour
             userName = mainMenuUserName.text;
         }
 
+        
+        if(SceneManager.GetActiveScene().name == WorldSceneManager.INTERACTIVEMENU)
+        {
+            if (centeredNameText == null)
+            {
+                centeredNameText = GameObject.FindGameObjectWithTag("CenteredNameText").GetComponent<Text>();
+            }
+
+            if(centeredPositionText == null)
+            {
+                centeredPositionText = GameObject.FindGameObjectWithTag("CenteredPosText").GetComponent<Text>();
+            }
+
+            if(centeredScoreText == null)
+            {
+                centeredScoreText = GameObject.FindGameObjectWithTag("CenteredScoreText").GetComponent<Text>();
+            }
+        }
+
+
+
         if(totalScoreText != null) //for submit score scene
         {
             totalScore = (gameSettings.boss1Time + gameSettings.boss2Time + gameSettings.boss3Time) * 2;
@@ -388,6 +412,11 @@ public class PlayFabSM : MonoBehaviour
             leaderboardScoresObj = GameObject.FindGameObjectWithTag("LeaderboardScores");
         }
 
+        if(SceneManager.GetActiveScene().name == WorldSceneManager.SUBMITSCORESCENE && totalScoreText == null)
+        {
+            totalScoreText = GameObject.FindGameObjectWithTag("YourScore").GetComponent<Text>();
+            submitScreenName = GameObject.FindGameObjectWithTag("YourName").GetComponent<Text>();
+        }
     }
 
     void FindLeaderboardComponents()
@@ -419,18 +448,22 @@ public class PlayFabSM : MonoBehaviour
 
     public void GetCenteredScore(List<PlayerLeaderboardEntry> playerLeaderboardEntries)
     {
-        print("playerleaderboardsentires count " + playerLeaderboardEntries.Count);
+        //print("playerleaderboardsentires count " + playerLeaderboardEntries.Count);
         playerCenteredScore = playerLeaderboardEntries;
-        print("Playerscores count " + playerCenteredScore.Count);
+        //print("Playerscores count " + playerCenteredScore.Count);
 
         ShowPlayerCenteredScore();
     }
 
     public void ShowPlayerCenteredScore()
     {
-        centeredPosition.text = (playerCenteredScore[0].Position +1).ToString();
-        centeredScore.text = playerCenteredScore[0].StatValue.ToString();
-        centeredName.text = playerCenteredScore[0].DisplayName;
+        if(SceneManager.GetActiveScene().name != WorldSceneManager.SUBMITSCORESCENE)
+        {
+            centeredPositionText.text = (playerCenteredScore[0].Position +1).ToString();
+            centeredScoreText.text = playerCenteredScore[0].StatValue.ToString();
+            centeredNameText.text = playerCenteredScore[0].DisplayName;
+        }
+
     }
 
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RefreshButton : MonoBehaviour {
 
-    public GameObject playfab;
+    public PlayFabSM playfab;
     float timer = 12;
     bool timerOn = true;
     public GameObject buttondown;
@@ -17,7 +17,12 @@ public class RefreshButton : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(timerOn && timer < 11)
+        if (playfab == null)
+        {
+            playfab = GameObject.FindGameObjectWithTag("Playfab").GetComponent<PlayFabSM>();
+        }
+
+        if (timerOn && timer < 11)
         {
             timer = timer + Time.deltaTime;
         }
@@ -33,12 +38,12 @@ public class RefreshButton : MonoBehaviour {
         if(collision.tag == "Player" && timer > 10)
         {
             print("debug");
-            playfab.GetComponent<PlayFabSM>().GetLeaderboardBoss1();
-            playfab.GetComponent<PlayFabSM>().GetLeaderboardBoss2();
-            playfab.GetComponent<PlayFabSM>().GetLeaderboardBoss3();
-            playfab.GetComponent<PlayFabSM>().GetLeaderboardTotalScores();
-            playfab.GetComponent<PlayFabSM>().ShowTotalScores();
-            playfab.GetComponent<PlayFabSM>().ShowSpecificPlayerScore("TotalScore");
+            playfab.GetLeaderboardBoss1();
+            playfab.GetLeaderboardBoss2();
+            playfab.GetLeaderboardBoss3();
+            playfab.GetLeaderboardTotalScores();
+            playfab.ShowTotalScores();
+            playfab.ShowSpecificPlayerScore("TotalScore");
             timerOn = true;
             timer = 0;
             buttondown.SetActive(true);
