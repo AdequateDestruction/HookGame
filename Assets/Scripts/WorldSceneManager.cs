@@ -148,6 +148,11 @@ public class WorldSceneManager : MonoBehaviour {
         SceneManager.LoadScene(BREAKROOM);
 
     }
+    /// </summary>
+    public static void LoadCurrentRoom()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
 
     /// <summary>

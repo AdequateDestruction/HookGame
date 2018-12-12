@@ -15,7 +15,7 @@ public class WaterIdle : State
 
     public override void Enter()
     {
-        Debug.Log(waterBossAI.SM.CurrentState);
+        //Debug.Log(waterBossAI.SM.CurrentState);
     }
 
     public override void Update()
@@ -34,7 +34,7 @@ public class WaterIdle : State
 
     public override void Exit()
     {
-        Debug.Log("ExampleIdle: Exit");
+        //Debug.Log("ExampleIdle: Exit");
         timer = 0;
     }
 
@@ -52,7 +52,7 @@ public class WaterWaiting : State
 
     public override void Enter()
     {
-        Debug.Log(waterBossAI.SM.CurrentState);
+        //Debug.Log(waterBossAI.SM.CurrentState);
     }
 
     public override void Update()
@@ -62,7 +62,7 @@ public class WaterWaiting : State
 
     public override void Exit()
     {
-        Debug.Log("ExampleIdle: Exit");
+        //Debug.Log("ExampleIdle: Exit");
 
     }
 
@@ -117,7 +117,7 @@ public class WaterTurbine: State
 
     public override void Enter()
     {
-        Debug.Log(waterBossAI.SM.CurrentState);
+        //Debug.Log(waterBossAI.SM.CurrentState);
     }
 
     public override void Update()
@@ -144,7 +144,7 @@ public class WaterMoving : State
 
     public override void Enter()
     {
-        Debug.Log(waterBossAI.SM.CurrentState);
+       // Debug.Log(waterBossAI.SM.CurrentState);
     }
 
     public override void Update()
@@ -179,7 +179,7 @@ public class WaterBreath : State
         waterBossAI.waterBossAnimator.SetFloat("BreathAngle", waterBossAI.trueAngle);
         waterBossAI.waterBossAnimator.SetTrigger("Breath");
         waterBossAI.rb.velocity = new Vector2(0, 0);
-        Debug.Log(waterBossAI.SM.CurrentState);
+        //Debug.Log(waterBossAI.SM.CurrentState);
         waterBossAI.particle.Play();
     }
 
@@ -214,7 +214,7 @@ public class WaterWhirlpool : State
 
     public override void Enter()
     {
-        Debug.Log(waterBossAI.SM.CurrentState);
+        //Debug.Log(waterBossAI.SM.CurrentState);
         waterBossAI.rb.velocity = Vector2.zero;
 
     }
@@ -246,9 +246,13 @@ public class WaterInHale : State
 
     public override void Enter()
     {
-        Debug.Log(waterBossAI.SM.CurrentState);
+        //Debug.Log(waterBossAI.SM.CurrentState);
+        waterBossAI.waterBossAnimator.SetTrigger("Breath");
+
         timer = 0;
         waterBossAI.inHale.SetActive(true);
+        waterBossAI.rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
     }
 
     public override void Update()
@@ -264,6 +268,10 @@ public class WaterInHale : State
     public override void Exit()
     {
         waterBossAI.inHale.SetActive(false);
+        waterBossAI.rb.constraints = RigidbodyConstraints2D.None;
+        waterBossAI.waterBossAnimator.SetTrigger("EndBreath");
+
+
     }
 
 }
@@ -283,9 +291,9 @@ public class WaterToCorner : State
 
     public override void Enter()
     {
-        Debug.Log(waterBossAI.SM.CurrentState);
+        //Debug.Log(waterBossAI.SM.CurrentState);
         corner = waterBossAI.corners[waterBossAI.waterStagemanagerScript.randomIndex[waterBossAI.waterStagemanagerScript.index]];
-        Debug.Log(corner);
+        //Debug.Log(corner);
     }
 
     public override void Update()
@@ -301,7 +309,7 @@ public class WaterToCorner : State
         //rotates towards center, complete when raycast hits center collider       
         if (Vector2.Distance(corner.position, waterBossAI.transform.position) < 1.2f)
         {
-            Debug.Log("travelleddd");
+            //Debug.Log("travelleddd");
 
             travelled = true;
             waterBossAI.rb.velocity = Vector2.zero;
@@ -341,7 +349,7 @@ public class WaterDeath : State
     public override void Update()
     {
         timer += Time.deltaTime;
-        if (timer > 5)
+        if (timer > 3)
         {
             WorldSceneManager.LoadBreakRoom();
 

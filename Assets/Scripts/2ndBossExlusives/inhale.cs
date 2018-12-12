@@ -70,5 +70,9 @@ public class inhale : MonoBehaviour {
             collision.gameObject.GetComponent<miniBossAI>().isDead = true;
             inhaledEnemies++;
         }
+        if (collision.gameObject.tag=="Player")
+        {
+            collision.gameObject.GetComponent<PlayerMovement>().TakeDamage();
+        }
     }
 }
